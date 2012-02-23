@@ -3,19 +3,20 @@
    i18n:domain="s17.app.taskmanager" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Panel tasks</property>
+  <property name="title" i18n:translate="">Task</property>
   <property name="description" i18n:translate=""></property>
-  <property name="content_icon">++resource++s17.app.taskmanager/taskfolder_icon.png</property>
-  <property name="factory">s17.app.taskmanager.taskfolder</property>
-  <property name="global_allow">True</property>
+  <property name="content_icon">++resource++s17.app.taskmanager/task_icon.png</property>
+  <property name="factory">s17.app.taskmanager.task</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <element value="s17.app.taskmanager.task"/>
+    <element value="File"/>
+    <element value="Image"/>
   </property>
-  <property name="allow_discussion">False</property>
+  <property name="allow_discussion">True</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">s17.app.taskmanager.taskfolder.ITaskFolder</property>
+  <property name="schema">s17.app.taskmanager.task.ITask</property>
   <property name="klass">plone.dexterity.content.Container</property>
 
   <property name="behaviors">
