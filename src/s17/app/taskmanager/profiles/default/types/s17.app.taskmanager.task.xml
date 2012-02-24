@@ -16,7 +16,7 @@
   <property name="allow_discussion">True</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">s17.app.taskmanager.task.ITask</property>
+  <property name="schema">s17.app.taskmanager.content.ITask</property>
   <property name="klass">plone.dexterity.content.Container</property>
 
   <property name="behaviors">
@@ -24,6 +24,7 @@
      <element value="plone.app.dexterity.behaviors.metadata.IBasic" />
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
      <element value="plone.app.relationfield.behavior.IRelatedItems" />
+     <element value="collective.upload.behaviors.IMultipleUpload"/>
    </property>
 
   <!-- View information -->

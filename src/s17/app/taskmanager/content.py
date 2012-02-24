@@ -47,7 +47,7 @@ class ITask(form.Schema):
         required=False,
     )
 
-    final_date = schema.Date(
+    end_date = schema.Date(
         title=_(u'End date'),
         description=_(''),
         required=False,

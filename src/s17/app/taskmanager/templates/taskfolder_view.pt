@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="sc.essencis.ideias">
+      i18n:domain="s17.app.taskmanager">
 <body>
 
 <metal:main fill-slot="content-core">
@@ -14,21 +14,15 @@
             i18n:translate="tasksfolder_title">Tasks</h2>
         <ul>
             <li tal:repeat="content context/keys">
-                <tal:block define="file python:context[content]">
+                <tal:block define="task python:context[content]">
                     <div class="discreet">
                     <span tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
-                          tal:replace="python:toLocalizedTime(file.ModificationDate(), long_format=1)">10/10/2010</span>
-                        &ndash; <span tal:replace="file/Creator">Fulano da Silva</span>
+                          tal:replace="python:toLocalizedTime(task.ModificationDate(), long_format=1)">10/10/2010</span>
+                        &ndash; <span tal:replace="task/Creator">Fulano da Silva</span>
                     </div>
-                    <a title="Clique para acessar o arquivo" tal:attributes="href string:${file/absolute_url}/view">
-                        <span tal:replace="file/Title|file/getFilename">Filename.pdf</span>
+                    <a title="" tal:attributes="href string:${task/absolute_url}">
+                        <span tal:replace="task/Title">task title</span>
                     </a>
-                <span tal:define="size file/get_size;
-                                  size_kb python:size/1024;
-                                  display_size python:'({0:n} kB)'.format(size_kb) if size_kb > 0 else '';"
-                      tal:replace="display_size">(57.976MB)</span>
-                    <a class="download-ico" title="Clique para baixar o arquivo"
-                       tal:attributes="href string:${file/absolute_url}/download" />
                 </tal:block>
             </li>
         </ul>

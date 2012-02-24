@@ -1,0 +1,92 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-02-24 00:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: ../content.py:17
+msgid ""
+msgstr ""
+
+#: ../content.py:39
+msgid "Body text"
+msgstr ""
+
+#: ../content.py:51
+#: ../templates/task_view.pt:31
+msgid "End date"
+msgstr ""
+
+#: ../content.py:35
+msgid "High"
+msgstr ""
+
+#: ../content.py:45
+#: ../templates/task_view.pt:26
+msgid "Initial date"
+msgstr ""
+
+#: ../content.py:35
+msgid "Low"
+msgstr ""
+
+#: ../content.py:35
+msgid "Normal"
+msgstr ""
+
+#: ../profiles/default/types/s17.app.taskmanager.taskfolder.xml
+msgid "Panel tasks"
+msgstr ""
+
+#: ../content.py:32
+#: ../templates/task_view.pt:18
+msgid "Priority"
+msgstr ""
+
+#: ../content.py:57
+#: ../templates/task_view.pt:35
+msgid "Provided date"
+msgstr ""
+
+#: ../content.py:16
+#: ../templates/task_view.pt:22
+msgid "Responsible"
+msgstr ""
+
+#: ../profiles/default/types/s17.app.taskmanager.task.xml
+msgid "Task"
+msgstr ""
+
+#: ../templates/task_view.pt:13
+msgid "Task details"
+msgstr ""
+
+#: ../content.py:23
+msgid "Who can add tasks?"
+msgstr ""
+
+#. Default: "Files"
+#: ../templates/task_view.pt:63
+msgid "task_files"
+msgstr ""
+
+#. Default: "Images"
+#: ../templates/task_view.pt:45
+msgid "task_images"
+msgstr ""
+
+#. Default: "Tasks"
+#: ../templates/taskfolder_view.pt:13
+msgid "tasksfolder_title"
+msgstr ""
+

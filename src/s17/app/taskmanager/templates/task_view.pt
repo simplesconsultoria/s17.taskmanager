@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="s17.app.taskmanager">
+<body>
+
+<metal:main fill-slot="content-core">
+    <tal:main-macro metal:define-macro="content-core">
+
+        <table class="vertical listing" summary="Task details"
+               i18n:attributes="summary"
+               tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+            <tbody>
+            <tr>
+                <th width="20%" i18n:translate="">Priority</th>
+                <td width="70%" tal:content="context/priority"></td>
+            </tr>
+            <tr tal:condition="context/responsible">
+                <th i18n:translate="">Responsible</th>
+                <td tal:content="view/responsible"></td>
+            </tr>
+            <tr tal:condition="context/initial_date">
+                <th i18n:translate="">Initial date</th>
+                <td tal:content="python: context.initial_date.strftime('%d/%m/%Y')">
+                </td>
+            </tr>
+            <tr tal:condition="context/end_date">
+                <th i18n:translate="">End date</th>
+                <td tal:content="context/end_date"></td>
+            </tr>
+            <tr tal:condition="context/provided_date">
+                <th i18n:translate="">Provided date</th>
+                <td tal:content="context/provided_date"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div tal:content="structure view/w/text/render" />
+
+        <tal:block condition="view/images">
+            <fieldset>
+                <legend i18n:translate="task_images">Images</legend>
+                <tal:images tal:repeat="image view/images">
+                    <div class="photoAlbumEntry">
+                        <a tal:attributes="href string:${image/absolute_url}/view;
+                                        title image/Description">
+                    <span class="photoAlbumEntryWrapper">
+                        <img src="" alt="" tal:replace="structure python:image.tag(scale='thumb', title=image.Description())" />
+                    </span>
+                    <span class="photoAlbumEntryTitle" tal:content="image/pretty_title_or_id">
+                       Title
+                    </span>
+                        </a>
+                    </div>
+                </tal:images>
+            </fieldset>
+        </tal:block>
+        <tal:block condition="view/files">
+            <fieldset id="">
+                <legend i18n:translate="task_files">Files</legend>
+                <ul class="visualNoMarker">
+                    <tal:related tal:repeat="item view/files">
+                        <li tal:define="desc item/Description;
+                                item_type item/portal_type;
+                                portal context/@@plone_portal_state/portal;
+                                putils portal/plone_utils;
+                                item_type_class python:'contenttype-' + putils.normalizeString(item_type);
+                                item_wf_state item/review_state | python:getInfoFor(item, 'review_state', '');
+                                item_wf_state_class python:'state-' + putils.normalizeString(item_wf_state);
+                                item_url item/getURL;">
+                    <span tal:attributes="class item_type_class">
+                        <a href="" class="visualIconPadding"
+                           tal:attributes="href item_url;
+                                           title desc;"
+                           tal:content="item/pretty_title_or_id">
+                        </a>
+                    </span>
+                        </li>
+                    </tal:related>
+                </ul>
+            </fieldset>
+        </tal:block>
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
