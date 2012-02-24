@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="taskmanager_workflow" title="Task Manager Workflow" description="" state_variable="review_state" initial_state="opened" manager_bypass="False">
+    <permission>Access contents information</permission>
+    <permission>Change portal events</permission>
+    <permission>Modify portal content</permission>
+    <permission>View</permission>
+    <state state_id="assigned" title="Assigned">
+        <exit-transition transition_id="close"/>
+        <exit-transition transition_id="reject"/>
+    </state>
+    <state state_id="closed" title="Closed">
+        <exit-transition transition_id="reopen"/>
+    </state>
+    <state state_id="opened" title="Opened">
+        <exit-transition transition_id="assign"/>
+        <exit-transition transition_id="close"/>
+        <exit-transition transition_id="reject"/>
+    </state>
+    <transition transition_id="assign" title="Assign" new_state="assigned" trigger="USER" before_script="" after_script="">
+        <action url="%(content_url)s/content_status_modify?workflow_action=assign" category="workflow" icon="">Assign</action>
+        <guard>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </transition>
+    <transition transition_id="close" title="Close" new_state="closed" trigger="USER" before_script="" after_script="">
+        <action url="%(content_url)s/content_status_modify?workflow_action=close" category="workflow" icon="">Close</action>
+        <guard>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </transition>
+    <transition transition_id="reject" title="Reject the task" new_state="closed" trigger="USER" before_script="" after_script="">
+        <action url="%(content_url)s/content_status_modify?workflow_action=reject" category="workflow" icon="">Reject</action>
+        <guard>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </transition>
+    <transition transition_id="reopen" title="Reopen" new_state="open" trigger="USER" before_script="" after_script="">
+        <action url="%(content_url)s/content_status_modify?workflow_action=reopen" category="workflow" icon="">Reopern</action>
+        <guard>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </transition>
+    <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
+        <description>Previous transition</description>
+        <default>
+
+            <expression>transition/getId|nothing</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+    <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True">
+        <description>The ID of the user who performed the previous transition</description>
+        <default>
+
+            <expression>user/getId</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+    <variable variable_id="comments" for_catalog="False" for_status="True" update_always="True">
+        <description>Comment about the last transition</description>
+        <default>
+
+            <expression>python:state_change.kwargs.get('comment', '')</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+    <variable variable_id="review_history" for_catalog="False" for_status="False" update_always="False">
+        <description>Provides access to workflow history</description>
+        <default>
+
+            <expression>state_change/getHistory</expression>
+        </default>
+        <guard>
+            <guard-permission>Request review</guard-permission>
+            <guard-permission>Review portal content</guard-permission>
+        </guard>
+    </variable>
+    <variable variable_id="time" for_catalog="False" for_status="True" update_always="True">
+        <description>When the previous transition was performed</description>
+        <default>
+
+            <expression>state_change/getDateTime</expression>
+        </default>
+        <guard>
+        </guard>
+    </variable>
+</dc-workflow>
