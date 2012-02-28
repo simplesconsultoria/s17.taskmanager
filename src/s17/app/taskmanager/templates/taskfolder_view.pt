@@ -12,20 +12,39 @@
 
         <h2 class="documentFirstHeading"
             i18n:translate="tasksfolder_title">Tasks</h2>
-        <ul>
-            <li tal:repeat="content context/keys">
-                <tal:block define="task python:context[content]">
-                    <div class="discreet">
-                    <span tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
-                          tal:replace="python:toLocalizedTime(task.ModificationDate(), long_format=1)">10/10/2010</span>
-                        &ndash; <span tal:replace="task/Creator">Fulano da Silva</span>
-                    </div>
-                    <a title="" tal:attributes="href string:${task/absolute_url}">
-                        <span tal:replace="task/Title">task title</span>
-                    </a>
-                </tal:block>
-            </li>
-        </ul>
+        <table class="vertical listing" summary="Tasks"
+               i18n:attributes="summary"
+               tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+            <tr>
+                <th i18n:translate="tasksfolder_table_task">
+                    Task
+                </th>
+                <th i18n:translate="tasksfolder_table_status">
+                    Status
+                </th>
+                <th i18n:translate="tasksfolder_table_responsible">
+                    Responsible
+                </th>
+                <th i18n:translate="tasksfolder_table_priority">
+                    Priority
+                </th>
+            </tr>
+            <tr tal:repeat="task view/tasks">
+                <td tal:content="task/title">
+                    title
+                </td>
+                <td tal:content="task/status">
+                    status
+                </td>
+                <td tal:content="task/responsible">
+                    responsible
+                </td>
+                <td tal:content="task/priority">
+                    priority
+                </td>
+            </tr>
+        </table>
+
     </tal:main-macro>
 </metal:main>
 

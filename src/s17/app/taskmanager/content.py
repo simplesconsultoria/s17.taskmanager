@@ -28,6 +28,19 @@ class ITaskFolder(form.Schema):
 
 class ITask(form.Schema):
 
+    title = schema.TextLine(
+        title=_(u"Task Name"),
+        description=_(''),
+        required=True,
+    )
+
+    responsible = schema.Choice(
+        title=_(u'Responsible'),
+        description=_(''),
+        required=False,
+        vocabulary='plone.principalsource.Users',
+    )
+
     priority = schema.Choice(
         title=_(u'Priority'),
         description=_(''),
@@ -59,21 +72,6 @@ class ITask(form.Schema):
         required=False,
     )
 
-    responsible = schema.Choice(
-        title=_(u'Responsible'),
-        description=_(''),
-        required=False,
-        vocabulary='plone.principalsource.Users',
-    )
-
 @form.default_value(field=ITask['initial_date'])
 def initial_date_default_value(data):
-    return datetime.today()
-
-@form.default_value(field=ITask['end_date'])
-def end_date_default_value(data):
-    return datetime.today()
-
-@form.default_value(field=ITask['provided_date'])
-def provided_date_default_value(data):
     return datetime.today()
