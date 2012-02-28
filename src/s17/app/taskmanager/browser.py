@@ -44,6 +44,7 @@ class TaskFolderView(dexterity.DisplayForm):
         tasks = ct(object_provides=ITask.__identifier__, path='/'.join(self.context.getPhysicalPath()))
         if tasks:
             return [dict(title=task.Title,
+                         url=task.getURL(),
                          status=task.review_state.capitalize(),
                          responsible=self.responsible(task.getObject()),
                          priority=task.getObject().priority,)

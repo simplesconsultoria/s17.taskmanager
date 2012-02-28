@@ -30,8 +30,13 @@
                 </th>
             </tr>
             <tr tal:repeat="task view/tasks">
-                <td tal:content="task/title">
-                    title
+                <td>
+                    <a href=""
+                       title=""
+                       tal:attributes="href task/url;
+                                       title task/title;"
+                       tal:content="task/title">
+                    </a>
                 </td>
                 <td tal:content="task/status">
                     status
