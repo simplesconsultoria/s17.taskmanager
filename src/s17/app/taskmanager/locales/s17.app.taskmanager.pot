@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-02-24 00:40+0000\n"
+"POT-Creation-Date: 2012-02-28 19:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,44 +18,88 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ../content.py:39
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Assign"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Assigned"
+msgstr ""
+
+#: ../content.py:52
 msgid "Body text"
 msgstr ""
 
-#: ../content.py:51
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Close"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Closed"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Comment about the last transition"
+msgstr ""
+
+#: ../content.py:64
 #: ../templates/task_view.pt:31
 msgid "End date"
 msgstr ""
 
-#: ../content.py:35
+#: ../content.py:48
 msgid "High"
 msgstr ""
 
-#: ../content.py:45
+#: ../content.py:58
 #: ../templates/task_view.pt:26
 msgid "Initial date"
 msgstr ""
 
-#: ../content.py:35
+#: ../content.py:48
 msgid "Low"
 msgstr ""
 
-#: ../content.py:35
+#: ../content.py:48
 msgid "Normal"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Opened"
 msgstr ""
 
 #: ../profiles/default/types/s17.app.taskmanager.taskfolder.xml
 msgid "Panel tasks"
 msgstr ""
 
-#: ../content.py:32
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Previous transition"
+msgstr ""
+
+#: ../content.py:45
 #: ../templates/task_view.pt:18
 msgid "Priority"
 msgstr ""
 
-#: ../content.py:57
+#: ../content.py:70
 #: ../templates/task_view.pt:35
 msgid "Provided date"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Provides access to workflow history"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reject"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reject the task"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reopen"
 msgstr ""
 
 #: ../content.py:16
@@ -67,8 +111,28 @@ msgstr ""
 msgid "Task"
 msgstr ""
 
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Task Manager Workflow"
+msgstr ""
+
+#: ../content.py:32
+msgid "Task Name"
+msgstr ""
+
 #: ../templates/task_view.pt:13
 msgid "Task details"
+msgstr ""
+
+#: ../templates/taskfolder_view.pt:15
+msgid "Tasks"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "The ID of the user who performed the previous transition"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "When the previous transition was performed"
 msgstr ""
 
 #: ../content.py:23
@@ -83,6 +147,26 @@ msgstr ""
 #. Default: "Images"
 #: ../templates/task_view.pt:45
 msgid "task_images"
+msgstr ""
+
+#. Default: "Priority"
+#: ../templates/taskfolder_view.pt:28
+msgid "tasksfolder_table_priority"
+msgstr ""
+
+#. Default: "Responsible"
+#: ../templates/taskfolder_view.pt:25
+msgid "tasksfolder_table_responsible"
+msgstr ""
+
+#. Default: "Status"
+#: ../templates/taskfolder_view.pt:22
+msgid "tasksfolder_table_status"
+msgstr ""
+
+#. Default: "Task"
+#: ../templates/taskfolder_view.pt:19
+msgid "tasksfolder_table_task"
 msgstr ""
 
 #. Default: "Tasks"

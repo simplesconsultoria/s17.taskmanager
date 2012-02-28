@@ -1,58 +1,102 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: s17.app.taskmanager\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-02-23 22:12-0300\n"
+"PO-Revision-Date: 2012-02-28 16:26-0300\n"
 "Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Simples Consultoria <lepri@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Code: pt-br\n"
+"Language-Name: Brazilian Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: s17.app.taskmanager\n"
 
-#: ../content.py:39
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Assign"
+msgstr "Atribuir"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Assigned"
+msgstr "Atribuída"
+
+#: ../content.py:52
 msgid "Body text"
 msgstr "Corpo do texto"
 
-#: ../content.py:51
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Close"
+msgstr "Fechar"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Closed"
+msgstr "Fechado"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Comment about the last transition"
+msgstr "Comentário sobre a última transição"
+
+#: ../content.py:64
 #: ../templates/task_view.pt:31
 msgid "End date"
 msgstr "Data final"
 
-#: ../content.py:35
+#: ../content.py:48
 msgid "High"
 msgstr "Alta"
 
-#: ../content.py:45
+#: ../content.py:58
 #: ../templates/task_view.pt:26
 msgid "Initial date"
 msgstr "Data inicial"
 
-#: ../content.py:35
+#: ../content.py:48
 msgid "Low"
 msgstr "Baixa"
 
-#: ../content.py:35
+#: ../content.py:48
 msgid "Normal"
 msgstr "Normal"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Opened"
+msgstr "Aberta"
 
 #: ../profiles/default/types/s17.app.taskmanager.taskfolder.xml
 msgid "Panel tasks"
 msgstr "Painel de tarefas"
 
-#: ../content.py:32
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Previous transition"
+msgstr "Transição anterior"
+
+#: ../content.py:45
 #: ../templates/task_view.pt:18
 msgid "Priority"
 msgstr "Prioridade"
 
-#: ../content.py:57
+#: ../content.py:70
 #: ../templates/task_view.pt:35
 msgid "Provided date"
 msgstr "Data prevista"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Provides access to workflow history"
+msgstr "Fornece acesso ao histórico do workflow"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reject"
+msgstr "Rejeitada"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reject the task"
+msgstr "Rejeitar a tarefa"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reopen"
+msgstr "Reabrir"
 
 #: ../content.py:16
 #: ../templates/task_view.pt:22
@@ -63,9 +107,29 @@ msgstr "Responsável"
 msgid "Task"
 msgstr "Tarefa"
 
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Task Manager Workflow"
+msgstr "Workflow do Gerenciador de Tarefas"
+
+#: ../content.py:32
+msgid "Task Name"
+msgstr "Nome da tarefa"
+
 #: ../templates/task_view.pt:13
 msgid "Task details"
 msgstr "Detalhes da tarefa"
+
+#: ../templates/taskfolder_view.pt:15
+msgid "Tasks"
+msgstr "Tarefas"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "The ID of the user who performed the previous transition"
+msgstr "O ID do usuário que realizou a transição anterior"
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "When the previous transition was performed"
+msgstr "Quando a última transição foi realizada"
 
 #: ../content.py:23
 msgid "Who can add tasks?"
@@ -80,6 +144,26 @@ msgstr "Arquivos"
 #: ../templates/task_view.pt:45
 msgid "task_images"
 msgstr "Imagens"
+
+#. Default: "Priority"
+#: ../templates/taskfolder_view.pt:28
+msgid "tasksfolder_table_priority"
+msgstr "Prioridade"
+
+#. Default: "Responsible"
+#: ../templates/taskfolder_view.pt:25
+msgid "tasksfolder_table_responsible"
+msgstr "Responsável"
+
+#. Default: "Status"
+#: ../templates/taskfolder_view.pt:22
+msgid "tasksfolder_table_status"
+msgstr "Status"
+
+#. Default: "Task"
+#: ../templates/taskfolder_view.pt:19
+msgid "tasksfolder_table_task"
+msgstr "Tarefa"
 
 #. Default: "Tasks"
 #: ../templates/taskfolder_view.pt:13
