@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-02-28 19:23+0000\n"
+"POT-Creation-Date: 2012-02-28 20:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,28 +18,8 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Assign"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Assigned"
-msgstr ""
-
 #: ../content.py:52
 msgid "Body text"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Close"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Closed"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Comment about the last transition"
 msgstr ""
 
 #: ../content.py:64
@@ -64,16 +44,8 @@ msgstr ""
 msgid "Normal"
 msgstr ""
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Opened"
-msgstr ""
-
 #: ../profiles/default/types/s17.app.taskmanager.taskfolder.xml
 msgid "Panel tasks"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Previous transition"
 msgstr ""
 
 #: ../content.py:45
@@ -86,22 +58,6 @@ msgstr ""
 msgid "Provided date"
 msgstr ""
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Provides access to workflow history"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reject"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reject the task"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reopen"
-msgstr ""
-
 #: ../content.py:16
 #: ../templates/task_view.pt:22
 msgid "Responsible"
@@ -109,10 +65,6 @@ msgstr ""
 
 #: ../profiles/default/types/s17.app.taskmanager.task.xml
 msgid "Task"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Task Manager Workflow"
 msgstr ""
 
 #: ../content.py:32
@@ -125,14 +77,6 @@ msgstr ""
 
 #: ../templates/taskfolder_view.pt:15
 msgid "Tasks"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "The ID of the user who performed the previous transition"
-msgstr ""
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "When the previous transition was performed"
 msgstr ""
 
 #: ../content.py:23

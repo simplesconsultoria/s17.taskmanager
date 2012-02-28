@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-             i18n:domain="s17.app.taskmanager"
+             i18n:domain="plone"
              workflow_id="taskmanager_workflow"
              title="Task Manager Workflow"
              description=""
@@ -71,7 +71,7 @@
     </transition>
     <transition transition_id="reopen"
                 title="Reopen"
-                new_state="open"
+                new_state="opened"
                 trigger="USER"
                 before_script=""
                 after_script=""

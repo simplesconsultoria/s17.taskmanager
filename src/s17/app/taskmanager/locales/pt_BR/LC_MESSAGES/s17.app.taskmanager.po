@@ -14,29 +14,9 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: s17.app.taskmanager\n"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Assign"
-msgstr "Atribuir"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Assigned"
-msgstr "Atribuída"
-
 #: ../content.py:52
 msgid "Body text"
 msgstr "Corpo do texto"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Close"
-msgstr "Fechar"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Closed"
-msgstr "Fechado"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Comment about the last transition"
-msgstr "Comentário sobre a última transição"
 
 #: ../content.py:64
 #: ../templates/task_view.pt:31
@@ -60,17 +40,9 @@ msgstr "Baixa"
 msgid "Normal"
 msgstr "Normal"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Opened"
-msgstr "Aberta"
-
 #: ../profiles/default/types/s17.app.taskmanager.taskfolder.xml
 msgid "Panel tasks"
 msgstr "Painel de tarefas"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Previous transition"
-msgstr "Transição anterior"
 
 #: ../content.py:45
 #: ../templates/task_view.pt:18
@@ -82,22 +54,6 @@ msgstr "Prioridade"
 msgid "Provided date"
 msgstr "Data prevista"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Provides access to workflow history"
-msgstr "Fornece acesso ao histórico do workflow"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reject"
-msgstr "Rejeitada"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reject the task"
-msgstr "Rejeitar a tarefa"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reopen"
-msgstr "Reabrir"
-
 #: ../content.py:16
 #: ../templates/task_view.pt:22
 msgid "Responsible"
@@ -106,10 +62,6 @@ msgstr "Responsável"
 #: ../profiles/default/types/s17.app.taskmanager.task.xml
 msgid "Task"
 msgstr "Tarefa"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Task Manager Workflow"
-msgstr "Workflow do Gerenciador de Tarefas"
 
 #: ../content.py:32
 msgid "Task Name"
@@ -122,14 +74,6 @@ msgstr "Detalhes da tarefa"
 #: ../templates/taskfolder_view.pt:15
 msgid "Tasks"
 msgstr "Tarefas"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "The ID of the user who performed the previous transition"
-msgstr "O ID do usuário que realizou a transição anterior"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "When the previous transition was performed"
-msgstr "Quando a última transição foi realizada"
 
 #: ../content.py:23
 msgid "Who can add tasks?"
