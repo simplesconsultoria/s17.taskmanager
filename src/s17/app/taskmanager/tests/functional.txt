@@ -1,0 +1,97 @@
+This functional test simulates que funcionality of the task manager package.
+
+Initial setup
+=============
+In this part of the test we authenticate in the site to create the initial
+structure.
+
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> request = layer['request']
+
+    >>> from cStringIO import StringIO
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+    >>> browser.handleErrors = False  # see original exceptions
+    >>> portal_url = portal.absolute_url()
+
+    >>> from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
+    >>> browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
+    >>> browser.getControl(name='submit').click()
+
+    >>> 'Você agora está autenticado' in browser.contents
+    True
+
+Adding new user
+---------------
+admin now adds a new user:
+
+    >>> browser.open(portal_url + '/@@new-user')
+    >>> browser.getControl('Nome completo').value = 'Some new user'
+    >>> browser.getControl('Usuário').value = 'someuser'
+    >>> browser.getControl('E-Mail').value = 'someuser@domain.com'
+    >>> browser.getControl('Senha').value = 'secret'
+    >>> browser.getControl('Confirme a senha').value = 'secret'
+    >>> browser.getControl('Registrar').click()
+    >>> 'Usuário adicionado' in browser.contents
+    True
+
+
+Adding a Panel tasks
+--------------------
+As admin, we create a Panel Tasks to include the tasks in there:
+
+    >>> browser.open(portal_url)
+    >>> browser.getLink('Painel de tarefas').click()
+    >>> browser.getControl('Título').value = 'Painel de Tarefas'
+    >>> browser.getControl('Descrição').value = 'Um painel de tarefas'
+    >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
+    >>> ctrl.options
+    ['--NOVALUE--', 'someuser', 'test_user_1_']
+    >>> ctrl.value = ['someuser']
+    >>> browser.getControl('Salvar').click()
+    >>> 'Item criado' in browser.contents
+    True
+
+Adding a task
+--------------
+Now we add some ideas in the painel tasks.
+    >>> browser.getLink(id='s17-app-taskmanager-task').click()
+    >>> browser.getControl('Nome da tarefa').value = 'Uma tarefa'
+    >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
+    >>> ctrl.options
+    ['--NOVALUE--', 'someuser', 'test_user_1_']
+    >>> ctrl.value = ['someuser']
+    >>> ctrl = browser.getControl(name='form.widgets.priority:list')
+    >>> ctrl.options
+    ['Low', 'Normal', 'High']
+    >>> ctrl.value = ['Normal']
+    >>> browser.getControl(name='form.widgets.text').value = "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin eget dui. Phasellus tristique adipiscing justo. Vestibulum mattis, lorem vitae tristique molestie, turpis mi congue ligula, eget placerat libero mi quis massa. Proin pretium dictum nulla.</p>"
+    >>> browser.getControl('Salvar').click()
+    >>> 'Item criado' in browser.contents
+    True
+
+An idea can contain images:
+
+    >>> browser.getLink('Página Inicial').click()
+    >>> browser.getLink('Painel de Tarefas').click()
+    >>> browser.getLink('Uma tarefa').click()
+    >>> browser.getLink('Imagem').click()
+    >>> from zope.app.file.tests.test_image import zptlogo
+    >>> ctrl = browser.getControl(name='image_file')
+    >>> ctrl.add_file(StringIO(zptlogo), 'image/gif', 'zpt.gif')
+    >>> browser.getControl('Salvar').click()
+    >>> 'Alterações salvas' in browser.contents
+    True
+
+An idea can contain files:
+
+    >>> browser.getLink('Uma tarefa').click()
+    >>> browser.getLink('Arquivo').click()
+    >>> ctrl = browser.getControl(name='file_file')
+    >>> ctrl.add_file(StringIO('File contents'), 'text/plain', 'test.txt')
+    >>> browser.getControl('Salvar').click()
+    >>> 'Alterações salvas' in browser.contents
+    True
