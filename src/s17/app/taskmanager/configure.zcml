@@ -16,4 +16,8 @@
 
     <i18n:registerTranslations directory="locales" />
 
+    <adapter provides=".adapters.IResponseContainer"
+             factory=".adapters.ResponseContainer"
+             />
+
 </configure>

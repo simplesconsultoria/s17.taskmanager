@@ -45,12 +45,15 @@ class ITask(form.Schema):
         title=_(u'Priority'),
         description=_(''),
         required=True,
-        values= [_(u'Low'), _(u'Normal'), _(u'High')],
+        values= [_(u'Baixa'), _(u'Normal'), _(u'Alta')],
     )
 
     text = RichText(
         title=_(u'Body text'),
         description=_(''),
+        default_mime_type='text/structured',
+        output_mime_type='text/html',
+        allowed_mime_types=('text/structured', 'text/plain',),
         required=False,
     )
 
@@ -58,12 +61,14 @@ class ITask(form.Schema):
         title=_(u'Initial date'),
         description=_(''),
         required=False,
+        readonly=True,
     )
 
     end_date = schema.Date(
         title=_(u'End date'),
         description=_(''),
         required=False,
+        readonly=True,
     )
 
     provided_date = schema.Date(
@@ -72,6 +77,6 @@ class ITask(form.Schema):
         required=False,
     )
 
-@form.default_value(field=ITask['initial_date'])
-def initial_date_default_value(data):
+@form.default_value(field=ITask['provided_date'])
+def provided_date_default_value(data):
     return datetime.today()
