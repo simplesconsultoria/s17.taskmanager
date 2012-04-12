@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-04-12 13:26+0000\n"
+"POT-Creation-Date: 2012-04-12 19:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,25 +32,29 @@ msgstr ""
 msgid "Body text"
 msgstr ""
 
-#: ../browser.py:311
+#: ../browser.py:352
 msgid "Changes saved to response id ${response_id}."
 msgstr ""
 
-#: ../templates/task_view.pt:111
+#: ../templates/task_view.pt:143
 msgid "Delete"
 msgstr ""
 
-#: ../templates/task_view.pt:101
+#: ../templates/task_view.pt:133
 msgid "Edit"
 msgstr ""
 
+#: ../templates/task_view.pt:111
+msgid "Edit task"
+msgstr ""
+
 #: ../content.py:68
-#: ../templates/task_view.pt:31
+#: ../templates/task_view.pt:52
 msgid "End date"
 msgstr ""
 
 #: ../content.py:61
-#: ../templates/task_view.pt:26
+#: ../templates/task_view.pt:47
 msgid "Initial date"
 msgstr ""
 
@@ -58,15 +62,15 @@ msgstr ""
 msgid "No change"
 msgstr ""
 
-#: ../browser.py:336
+#: ../browser.py:377
 msgid "No response selected for removal."
 msgstr ""
 
-#: ../browser.py:299
+#: ../browser.py:340
 msgid "No response selected for saving."
 msgstr ""
 
-#: ../browser.py:244
+#: ../browser.py:285
 msgid "No response text added and no issue changes made."
 msgstr ""
 
@@ -79,36 +83,44 @@ msgstr ""
 msgid "Panel tasks"
 msgstr ""
 
-#: ../browser.py:226
+#: ../browser.py:267
 #: ../content.py:45
-#: ../templates/task_view.pt:18
+#: ../templates/task_view.pt:29
 msgid "Priority"
 msgstr ""
 
 #: ../content.py:75
-#: ../templates/task_view.pt:35
+#: ../templates/task_view.pt:56
 msgid "Provided date"
 msgstr ""
 
-#: ../browser.py:358
+#: ../browser.py:399
 msgid "Removed response id ${response_id}."
 msgstr ""
 
-#: ../browser.py:303
+#: ../browser.py:344
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr ""
 
-#: ../browser.py:351
+#: ../browser.py:392
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr ""
 
-#: ../browser.py:343
+#: ../browser.py:384
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr ""
 
 #: ../content.py:16
-#: ../templates/task_view.pt:22
+#: ../templates/task_view.pt:43
 msgid "Responsible"
+msgstr ""
+
+#: ../templates/task_view.pt:33
+msgid "Submitted by"
+msgstr ""
+
+#: ../templates/task_view.pt:39
+msgid "Submitted on"
 msgstr ""
 
 #: ../profiles/default/types/s17.app.taskmanager.task.xml
@@ -119,11 +131,11 @@ msgstr ""
 msgid "Task Name"
 msgstr ""
 
-#: ../templates/task_view.pt:13
+#: ../templates/task_view.pt:23
 msgid "Task details"
 msgstr ""
 
-#: ../browser.py:221
+#: ../browser.py:238
 msgid "Task state"
 msgstr ""
 
@@ -135,11 +147,11 @@ msgstr ""
 msgid "Who can add tasks?"
 msgstr ""
 
-#: ../browser.py:330
+#: ../browser.py:371
 msgid "You are not allowed to delete responses."
 msgstr ""
 
-#: ../browser.py:293
+#: ../browser.py:334
 msgid "You are not allowed to edit responses."
 msgstr ""
 
@@ -154,72 +166,72 @@ msgid "label_return_to_issue"
 msgstr ""
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: ../templates/task_view.pt:155
+#: ../templates/task_view.pt:187
 msgid "login_suggestion_response"
 msgstr ""
 
 #. Default: "No responses can be added."
-#: ../templates/task_view.pt:146
+#: ../templates/task_view.pt:178
 msgid "msg_no_responses_can_be_added"
 msgstr ""
 
 #. Default: "Added by"
-#: ../templates/task_view.pt:120
+#: ../templates/task_view.pt:152
 msgid "task_added_by"
 msgstr ""
 
 #. Default: "on"
-#: ../templates/task_view.pt:125
+#: ../templates/task_view.pt:157
 msgid "task_added_on"
 msgstr ""
 
 #. Default: "Files"
-#: ../templates/task_view.pt:63
+#: ../templates/task_view.pt:84
 msgid "task_files"
 msgstr ""
 
 #. Default: "Select a change of state in the task this response is for, if applicable"
-#: ../templates/task_view.pt:208
+#: ../templates/task_view.pt:240
 msgid "task_help_issueTransition"
 msgstr ""
 
 #. Default: "Select the priority for this task"
-#: ../templates/task_view.pt:239
+#: ../templates/task_view.pt:271
 msgid "task_help_newPriority"
 msgstr ""
 
 #. Default: "Select the responsible for this task"
-#: ../templates/task_view.pt:267
+#: ../templates/task_view.pt:299
 msgid "task_help_newResponsible"
 msgstr ""
 
 #. Default: "Please enter your response below"
-#: ../templates/task_view.pt:180
+#: ../templates/task_view.pt:212
 msgid "task_help_response"
 msgstr ""
 
 #. Default: "Images"
-#: ../templates/task_view.pt:45
+#: ../templates/task_view.pt:66
 msgid "task_images"
 msgstr ""
 
 #. Default: "Change task state"
-#: ../templates/task_view.pt:203
+#: ../templates/task_view.pt:235
 msgid "task_label_issueTransition"
 msgstr ""
 
 #. Default: "Change task priority"
-#: ../templates/task_view.pt:234
+#: ../templates/task_view.pt:266
 msgid "task_label_newPriority"
 msgstr ""
 
 #. Default: "Change responsible"
-#: ../templates/task_view.pt:262
+#: ../templates/task_view.pt:294
 msgid "task_label_newResponsible"
 msgstr ""
 
 #. Default: "Response"
-#: ../templates/task_view.pt:177
+#: ../templates/task_view.pt:209
 msgid "task_label_response"
 msgstr ""
 
@@ -249,7 +261,7 @@ msgid "tasksfolder_title"
 msgstr ""
 
 #. Default: "Add response"
-#: ../templates/task_view.pt:171
+#: ../templates/task_view.pt:203
 msgid "title_add_response"
 msgstr ""
 
