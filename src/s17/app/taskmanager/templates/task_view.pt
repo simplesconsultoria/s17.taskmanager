@@ -20,13 +20,24 @@
 <metal:main fill-slot="content-core">
     <tal:main-macro metal:define-macro="content-core">
 
-        <table class="vertical listing" summary="Task details"
+        <table class="vertical listing task-info-box" summary="Task details"
                i18n:attributes="summary"
-               tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+               tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+                           pas_member context/@@pas_member;">
             <tbody>
             <tr>
                 <th width="20%" i18n:translate="">Priority</th>
                 <td width="70%" tal:content="context/priority"></td>
+            </tr>
+            <tr>
+                <th i18n:translate="">Submitted by</th>
+                <td tal:define="creator python:pas_member.info(here.Creator())"
+                    tal:content="creator/name_or_id" />
+
+            </tr>
+            <tr>
+                <th i18n:translate="">Submitted on</th>
+                <td tal:content="python:here.toLocalizedTime(here.created())" />
             </tr>
             <tr tal:condition="context/responsible">
                 <th i18n:translate="">Responsible</th>
@@ -39,11 +50,11 @@
             </tr>
             <tr tal:condition="context/end_date">
                 <th i18n:translate="">End date</th>
-                <td tal:content="context/end_date"></td>
+                <td tal:content="python: context.end_date.strftime('%d/%m/%Y')"></td>
             </tr>
             <tr tal:condition="context/provided_date">
                 <th i18n:translate="">Provided date</th>
-                <td tal:content="context/provided_date"></td>
+                <td tal:content="python: context.provided_date.strftime('%d/%m/%Y')"></td>
             </tr>
             </tbody>
         </table>
@@ -93,6 +104,17 @@
                 </ul>
             </fieldset>
         </tal:block>
+
+        <div class="formControls">
+            <form style="display: inline" action="edit"
+                  tal:condition="python: user.has_permission('Modify portal content', here)">
+                <input class="context"
+                       type="submit"
+                       i18n:attributes="value"
+                       value="Edit task"
+                       />
+            </form>
+        </div>
         <div class="visualClear"><!----></div>
 
         <tal:responses repeat="response_info view/responses">
@@ -296,26 +318,25 @@
                     </tal:options>
                 </div>
 
-                <div id="formfield-form-widgets-provided_date"
+                <div id="provided_date"
                      class="field z3cformInlineValidation kssattr-fieldname-form.widgets.provided_date">
 
-                    <label class="horizontal" for="form-widgets-provided_date">
+                    <label class="horizontal" for="provided_date">
                         Data prevista
                     </label>
-                    <input type="text" value="" maxlength="2" size="2" class="date-widget date-field" name="form.widgets.provided_date-day" id="form-widgets-provided_date-day"> /
-                    <select class="date-widget date-field" name="form.widgets.provided_date-month" id="form-widgets-provided_date-month">
-                        <option value="1">janeiro</option>
-                        <option value="2">fevereiro</option>
-                        <option value="3">mar?o</option>
-                        <option value="4">abril</option>
-                        <option value="5">maio</option>
-                        <option value="6">junho</option>
-                        <option value="7">julho</option>
-                        <option value="8">agosto</option>
-                        <option value="9">setembro</option>
-                        <option value="10">outubro</option>
-                        <option value="11">novembro</option>
-                        <option value="12">dezembro</option>
+                    <input type="text"
+                           value=""
+                           maxlength="2"
+                           size="2"
+                           class="date-widget date-field"
+                           name="date-day"
+                           id="date-day"> /
+                    <select class="date-widget date-field" name="date-month" id="date-month">
+                        <option value="" selected=""
+                                tal:repeat="item view/months"
+                                tal:attributes="value item/value;
+                            selected python:item['selected'] and 'selected' or None"
+                                tal:content="item/name">label</option>
                     </select> /
                     <input type="text"
                            value=""
@@ -324,27 +345,35 @@
                            accesskey=""
                            alt=""
                            class="date-widget date-field"
-                           name="form.widgets.provided_date-year"
-                           id="form-widgets-provided_date-year">
+                           name="date-year"
+                           id="date-year">
                     <input type="hidden"
                            value="1"
-                           name="form.widgets.provided_date-empty-marker"
+                           name="date-empty-marker"
                            originalvalue="1">
                     <input type="hidden"
-                           id="form-widgets-provided_date-calendar"
-                           name="form.widgets.provided_date-calendar"
-                           class="date" originalvalue="">
-                    <a href="#"
-                       class="caltrigger"
-                       style="background: url(&quot;popup_calendar.gif&quot;) repeat scroll 0% 0% transparent;
-                              height: 16px;
-                              width: 16px;
-                              display: inline-block;
-                              vertical-align: middle;">
-                    </a>
-
+                           id="date-calendar"
+                           name="date-calendar"
+                           class="date"
+                           originalvalue="">
+                    <script type="text/javascript">
+                        if (jQuery().dateinput) {
+                            jQuery.tools.dateinput.localize("pt-br", {months: "janeiro,fevereiro,marco,abril,maio,junho,julho,agosto,setembro,outubro,novembro,dezembro",shortMonths: "jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez",days: "segunda-feira,terca-feira,quarta-feira,quinta-feira,sexta-feira,sabado,domingo",shortDays: "seg,ter,qua,qui,sex,sab,dom"});
+                            jQuery("#date-calendar").dateinput({lang: "pt-br", change: function() { var value = this.getValue("yyyy-m-dd").split("-");
+                                jQuery("#date-year").val(value[0]);
+                                jQuery("#date-month").val(value[1]);
+                                jQuery("#date-day").val(value[2]);
+                            }, selectors: true, trigger: true, yearRange: [-10, 10]}).unbind('change')
+                                    .bind('onShow', function (event) {
+                                        var trigger_offset = jQuery(this).next().offset();
+                                        jQuery(this).data('dateinput').getCalendar().offset(
+                                                {top: trigger_offset.top+20, left: trigger_offset.left}
+                                        );
+                                    });
+                            jQuery("#date-calendar").next().css("background","url(popup_calendar.gif)").css("height", "16px").css("width", "16px").css("display", "inline-block").css("vertical-align", "middle");
+                        }
+                    </script>
                 </div>
-
                 <div class="formControls">
                     <input class="standalone" value="Submit" type="submit"
                            i18n:domain="plone" i18n:attributes="value"/>

@@ -168,6 +168,23 @@ class TaskView(dexterity.DisplayForm, BaseView):
         else:
             return None
 
+    @property
+    def months(self):
+        try:
+            selected = int(self.month)
+        except:
+            selected = -1
+
+        calendar = self.request.locale.dates.calendars['gregorian']
+        month_names = calendar.getMonthNames()
+
+        for i, month in enumerate(month_names):
+            yield dict(
+                name     = month,
+                value    = i+1,
+                selected = i+1 == selected)
+
+
     def responsible(self):
         """ Return the fullname of the responsible for the task
         """
@@ -229,6 +246,22 @@ class CreateResponse(grok.View, BaseView):
         responsible = form.get('responsible', u'')
         if responsible:
             context.responsible = responsible
+
+        day = form.get('date-day', None)
+        month = form.get('date-month', None)
+        if len(month) == 1:
+            month = '0' + month
+        year = form.get('date-year', None)
+        if year and len(year) == 4:
+            year = year[2:]
+
+        if day and month and year:
+            import pdb;pdb.set_trace()
+            date = '%s/%s/%s' %(day,month,year)
+            formatter = self.request.locale.dates.getFormatter("date", "short")
+            dateobj = formatter.parse(date)
+
+            context.provided_date = dateobj
 
         options = [
             ('priority', _(u'Priority'), 'available_priority'),
