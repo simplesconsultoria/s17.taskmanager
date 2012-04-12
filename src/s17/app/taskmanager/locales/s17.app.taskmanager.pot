@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-04-12 19:25+0000\n"
+"POT-Creation-Date: 2012-04-12 20:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,14 @@ msgstr ""
 msgid "Alta"
 msgstr ""
 
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Assign"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Assigned"
+msgstr ""
+
 #: ../browser.py:99
 #: ../content.py:48
 msgid "Baixa"
@@ -36,25 +44,37 @@ msgstr ""
 msgid "Changes saved to response id ${response_id}."
 msgstr ""
 
-#: ../templates/task_view.pt:143
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Close"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Closed"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Comment about the last transition"
+msgstr ""
+
+#: ../templates/task_view.pt:153
 msgid "Delete"
 msgstr ""
 
-#: ../templates/task_view.pt:133
+#: ../templates/task_view.pt:143
 msgid "Edit"
 msgstr ""
 
-#: ../templates/task_view.pt:111
+#: ../templates/task_view.pt:121
 msgid "Edit task"
 msgstr ""
 
 #: ../content.py:68
-#: ../templates/task_view.pt:52
+#: ../templates/task_view.pt:62
 msgid "End date"
 msgstr ""
 
 #: ../content.py:61
-#: ../templates/task_view.pt:47
+#: ../templates/task_view.pt:57
 msgid "Initial date"
 msgstr ""
 
@@ -74,28 +94,56 @@ msgstr ""
 msgid "No response text added and no issue changes made."
 msgstr ""
 
+#: ../browser.py:63
+msgid "Nobody"
+msgstr ""
+
 #: ../browser.py:99
 #: ../content.py:48
 msgid "Normal"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Opened"
 msgstr ""
 
 #: ../profiles/default/types/s17.app.taskmanager.taskfolder.xml
 msgid "Panel tasks"
 msgstr ""
 
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Previous transition"
+msgstr ""
+
 #: ../browser.py:267
 #: ../content.py:45
-#: ../templates/task_view.pt:29
+#: ../templates/task_view.pt:39
 msgid "Priority"
 msgstr ""
 
 #: ../content.py:75
-#: ../templates/task_view.pt:56
+#: ../templates/task_view.pt:66
 msgid "Provided date"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Provides access to workflow history"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reject"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reject the task"
 msgstr ""
 
 #: ../browser.py:399
 msgid "Removed response id ${response_id}."
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Reopen"
 msgstr ""
 
 #: ../browser.py:344
@@ -111,20 +159,28 @@ msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr ""
 
 #: ../content.py:16
-#: ../templates/task_view.pt:43
+#: ../templates/task_view.pt:53
 msgid "Responsible"
 msgstr ""
 
-#: ../templates/task_view.pt:33
+#: ../templates/task_view.pt:32
+msgid "State"
+msgstr ""
+
+#: ../templates/task_view.pt:43
 msgid "Submitted by"
 msgstr ""
 
-#: ../templates/task_view.pt:39
+#: ../templates/task_view.pt:49
 msgid "Submitted on"
 msgstr ""
 
 #: ../profiles/default/types/s17.app.taskmanager.task.xml
 msgid "Task"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "Task Manager Workflow"
 msgstr ""
 
 #: ../content.py:32
@@ -141,6 +197,14 @@ msgstr ""
 
 #: ../templates/taskfolder_view.pt:15
 msgid "Tasks"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "The ID of the user who performed the previous transition"
+msgstr ""
+
+#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
+msgid "When the previous transition was performed"
 msgstr ""
 
 #: ../content.py:23
@@ -166,72 +230,72 @@ msgid "label_return_to_issue"
 msgstr ""
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: ../templates/task_view.pt:187
+#: ../templates/task_view.pt:197
 msgid "login_suggestion_response"
 msgstr ""
 
 #. Default: "No responses can be added."
-#: ../templates/task_view.pt:178
+#: ../templates/task_view.pt:188
 msgid "msg_no_responses_can_be_added"
 msgstr ""
 
 #. Default: "Added by"
-#: ../templates/task_view.pt:152
+#: ../templates/task_view.pt:162
 msgid "task_added_by"
 msgstr ""
 
 #. Default: "on"
-#: ../templates/task_view.pt:157
+#: ../templates/task_view.pt:167
 msgid "task_added_on"
 msgstr ""
 
 #. Default: "Files"
-#: ../templates/task_view.pt:84
+#: ../templates/task_view.pt:94
 msgid "task_files"
 msgstr ""
 
 #. Default: "Select a change of state in the task this response is for, if applicable"
-#: ../templates/task_view.pt:240
+#: ../templates/task_view.pt:250
 msgid "task_help_issueTransition"
 msgstr ""
 
 #. Default: "Select the priority for this task"
-#: ../templates/task_view.pt:271
+#: ../templates/task_view.pt:281
 msgid "task_help_newPriority"
 msgstr ""
 
 #. Default: "Select the responsible for this task"
-#: ../templates/task_view.pt:299
+#: ../templates/task_view.pt:309
 msgid "task_help_newResponsible"
 msgstr ""
 
 #. Default: "Please enter your response below"
-#: ../templates/task_view.pt:212
+#: ../templates/task_view.pt:222
 msgid "task_help_response"
 msgstr ""
 
 #. Default: "Images"
-#: ../templates/task_view.pt:66
+#: ../templates/task_view.pt:76
 msgid "task_images"
 msgstr ""
 
 #. Default: "Change task state"
-#: ../templates/task_view.pt:235
+#: ../templates/task_view.pt:245
 msgid "task_label_issueTransition"
 msgstr ""
 
 #. Default: "Change task priority"
-#: ../templates/task_view.pt:266
+#: ../templates/task_view.pt:276
 msgid "task_label_newPriority"
 msgstr ""
 
 #. Default: "Change responsible"
-#: ../templates/task_view.pt:294
+#: ../templates/task_view.pt:304
 msgid "task_label_newResponsible"
 msgstr ""
 
 #. Default: "Response"
-#: ../templates/task_view.pt:209
+#: ../templates/task_view.pt:219
 msgid "task_label_response"
 msgstr ""
 
@@ -261,7 +325,7 @@ msgid "tasksfolder_title"
 msgstr ""
 
 #. Default: "Add response"
-#: ../templates/task_view.pt:203
+#: ../templates/task_view.pt:213
 msgid "title_add_response"
 msgstr ""
 

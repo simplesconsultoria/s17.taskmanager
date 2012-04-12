@@ -44,7 +44,7 @@
 .response-reply {
     margin: 1em 0;
     padding: 0.5em;
-    border: 1px solid #9C6E3D;
+    border: 1px solid #E7E7E7;
     clear: both;
 }
 
@@ -64,7 +64,7 @@
     margin-bottom: 0.5em;
 }
 
-.issueChange {
+.taskChange {
     text-transform: lowercase;
 }
 

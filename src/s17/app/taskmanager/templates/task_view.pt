@@ -23,8 +23,18 @@
         <table class="vertical listing task-info-box" summary="Task details"
                i18n:attributes="summary"
                tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-                           pas_member context/@@pas_member;">
+                           pas_member context/@@pas_member;
+                           wtool context/portal_workflow;">
             <tbody>
+            <tr tal:define="state python:wtool.getInfoFor(here, 'review_state');
+                            state_title python:wtool.getTitleForStateOnType(state,
+                            here.getPortalTypeName());">
+                <th i18n:translate="">State</th>
+                <td tal:content="state_title"
+                    i18n:translate=""
+                    tal:attributes="class string:task-${state}"/>
+            </tr>
+
             <tr>
                 <th width="20%" i18n:translate="">Priority</th>
                 <td width="70%" tal:content="context/priority"></td>

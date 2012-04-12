@@ -60,7 +60,7 @@ class BaseView:
         context = aq_inner(self.context)
         users_factory = getUtility(IVocabularyFactory, name=u"plone.principalsource.Users")
         users = users_factory(context)
-        options = []
+        options = [{'checked':'','value':'','label':_('Nobody')},]
         for value in users:
             values = {}
             values['checked'] = (value.token == self.res) and "checked" or ""
