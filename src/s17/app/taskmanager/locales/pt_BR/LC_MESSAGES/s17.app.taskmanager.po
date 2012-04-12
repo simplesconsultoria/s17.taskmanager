@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s17.app.taskmanager\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-04-12 10:29-0300\n"
+"PO-Revision-Date: 2012-04-12 16:30-0300\n"
 "Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <lepri@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -28,25 +28,29 @@ msgstr "Baixa"
 msgid "Body text"
 msgstr "Corpo do texto"
 
-#: ../browser.py:311
+#: ../browser.py:352
 msgid "Changes saved to response id ${response_id}."
 msgstr "Alterações salvas para a resposta com id ${response_id}."
 
-#: ../templates/task_view.pt:111
+#: ../templates/task_view.pt:143
 msgid "Delete"
 msgstr "Excluir"
 
-#: ../templates/task_view.pt:101
+#: ../templates/task_view.pt:133
 msgid "Edit"
 msgstr "Editar"
 
+#: ../templates/task_view.pt:111
+msgid "Edit task"
+msgstr "Editar tarefa"
+
 #: ../content.py:68
-#: ../templates/task_view.pt:31
+#: ../templates/task_view.pt:52
 msgid "End date"
 msgstr "Data final"
 
 #: ../content.py:61
-#: ../templates/task_view.pt:26
+#: ../templates/task_view.pt:47
 msgid "Initial date"
 msgstr "Data inicial"
 
@@ -54,15 +58,15 @@ msgstr "Data inicial"
 msgid "No change"
 msgstr "Sem alterações"
 
-#: ../browser.py:336
+#: ../browser.py:377
 msgid "No response selected for removal."
 msgstr "Nenhuma resposta selecionada para remoção."
 
-#: ../browser.py:299
+#: ../browser.py:340
 msgid "No response selected for saving."
 msgstr "Nenhuma resposta selecionada para salvar."
 
-#: ../browser.py:244
+#: ../browser.py:285
 msgid "No response text added and no issue changes made."
 msgstr "Não foi adicionado um texto à resposta e nenhuma alteração foi realizada na tarefa."
 
@@ -75,37 +79,45 @@ msgstr "Normal"
 msgid "Panel tasks"
 msgstr "Painel de tarefas"
 
-#: ../browser.py:226
+#: ../browser.py:267
 #: ../content.py:45
-#: ../templates/task_view.pt:18
+#: ../templates/task_view.pt:29
 msgid "Priority"
 msgstr "Prioridade"
 
 #: ../content.py:75
-#: ../templates/task_view.pt:35
+#: ../templates/task_view.pt:56
 msgid "Provided date"
 msgstr "Data prevista"
 
-#: ../browser.py:358
+#: ../browser.py:399
 msgid "Removed response id ${response_id}."
 msgstr "Resposta com o id ${response_id} removida."
 
-#: ../browser.py:303
+#: ../browser.py:344
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr "Resposta não mais existe; talvez ela tenha sido removida por outro usuário."
 
-#: ../browser.py:351
+#: ../browser.py:392
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr "Resposta com o id ${response_id} não existe de modo que não pode ser removida."
 
-#: ../browser.py:343
+#: ../browser.py:384
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr "Resposta com o id ${response_id} não é inteiro de modo que não pode ser removida."
 
 #: ../content.py:16
-#: ../templates/task_view.pt:22
+#: ../templates/task_view.pt:43
 msgid "Responsible"
 msgstr "Responsável"
+
+#: ../templates/task_view.pt:33
+msgid "Submitted by"
+msgstr "Submetida por"
+
+#: ../templates/task_view.pt:39
+msgid "Submitted on"
+msgstr "Submetida em"
 
 #: ../profiles/default/types/s17.app.taskmanager.task.xml
 msgid "Task"
@@ -115,11 +127,11 @@ msgstr "Tarefa"
 msgid "Task Name"
 msgstr "Nome da tarefa"
 
-#: ../templates/task_view.pt:13
+#: ../templates/task_view.pt:23
 msgid "Task details"
 msgstr "Detalhes da tarefa"
 
-#: ../browser.py:221
+#: ../browser.py:238
 msgid "Task state"
 msgstr "Estado da tarefa"
 
@@ -131,11 +143,11 @@ msgstr "Tarefas"
 msgid "Who can add tasks?"
 msgstr "Quem pode adicionar tarefas?"
 
-#: ../browser.py:330
+#: ../browser.py:371
 msgid "You are not allowed to delete responses."
 msgstr "Você não pode apagar respostas."
 
-#: ../browser.py:293
+#: ../browser.py:334
 msgid "You are not allowed to edit responses."
 msgstr "Você não pode editar respostas."
 
@@ -150,72 +162,75 @@ msgid "label_return_to_issue"
 msgstr "Retornar à tarefa."
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: ../templates/task_view.pt:155
+#: ../templates/task_view.pt:187
 msgid "login_suggestion_response"
 msgstr "Se for possível, por favor, se autentique antes de enviar esta reação."
 
 #. Default: "No responses can be added."
-#: ../templates/task_view.pt:146
+#: ../templates/task_view.pt:178
 msgid "msg_no_responses_can_be_added"
 msgstr "Não é possível adicionar respostas."
 
 #. Default: "Added by"
-#: ../templates/task_view.pt:120
+#: ../templates/task_view.pt:152
 msgid "task_added_by"
 msgstr "Adicionado por"
 
 #. Default: "on"
-#: ../templates/task_view.pt:125
+#: ../templates/task_view.pt:157
 msgid "task_added_on"
 msgstr "em"
 
 #. Default: "Files"
-#: ../templates/task_view.pt:63
+#: ../templates/task_view.pt:84
 msgid "task_files"
 msgstr "Arquivos"
 
-#. Default: "Select a change of state in the issue this response is for, if applicable"
-#: ../templates/task_view.pt:208
+#. Default: "Select a change of state in the task this response is for, if applicable"
+#: ../templates/task_view.pt:240
+#, fuzzy
 msgid "task_help_issueTransition"
 msgstr "\"Selecione a troca de situação da tarefa a que esta resposta se refere, se aplicável."
 
 #. Default: "Select the priority for this task"
-#: ../templates/task_view.pt:239
+#: ../templates/task_view.pt:271
 msgid "task_help_newPriority"
 msgstr "Selecione a prioridade para esta tarefa."
 
 #. Default: "Select the responsible for this task"
-#: ../templates/task_view.pt:267
+#: ../templates/task_view.pt:299
 msgid "task_help_newResponsible"
 msgstr "Selecione o responsável pela esta tarefa"
 
 #. Default: "Please enter your response below"
-#: ../templates/task_view.pt:180
+#: ../templates/task_view.pt:212
 msgid "task_help_response"
 msgstr "Por favor, informe a sua resposta abaixo."
 
 #. Default: "Images"
-#: ../templates/task_view.pt:45
+#: ../templates/task_view.pt:66
 msgid "task_images"
 msgstr "Imagens"
 
-#. Default: "Change issue state"
-#: ../templates/task_view.pt:203
+#. Default: "Change task state"
+#: ../templates/task_view.pt:235
+#, fuzzy
 msgid "task_label_issueTransition"
 msgstr "Altera o estado da tarefa"
 
 #. Default: "Change task priority"
-#: ../templates/task_view.pt:234
+#: ../templates/task_view.pt:266
 msgid "task_label_newPriority"
 msgstr "Altera a prioridade da tarefa"
 
-#. Default: "Change responsible manager"
-#: ../templates/task_view.pt:262
+#. Default: "Change responsible"
+#: ../templates/task_view.pt:294
+#, fuzzy
 msgid "task_label_newResponsible"
 msgstr "Altera o responsável"
 
 #. Default: "Response"
-#: ../templates/task_view.pt:177
+#: ../templates/task_view.pt:209
 msgid "task_label_response"
 msgstr "Resposta"
 
@@ -245,7 +260,7 @@ msgid "tasksfolder_title"
 msgstr "Tarefas"
 
 #. Default: "Add response"
-#: ../templates/task_view.pt:171
+#: ../templates/task_view.pt:203
 msgid "title_add_response"
 msgstr "Adicionar resposta"
 
