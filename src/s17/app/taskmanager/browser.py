@@ -60,7 +60,7 @@ class BaseView:
         context = aq_inner(self.context)
         users_factory = getUtility(IVocabularyFactory, name=u"plone.principalsource.Users")
         users = users_factory(context)
-        options = [{'checked':'','value':'','label':_('Nobody')},]
+        options = [{'checked':'','value':'nobody','label':_('Nobody')},]
         for value in users:
             values = {}
             values['checked'] = (value.token == self.res) and "checked" or ""
@@ -226,7 +226,7 @@ class CreateResponse(grok.View, BaseView):
         new_response = Response(response_text)
         folder = IResponseContainer(self.context)
 
-        issue_has_changed = False
+        task_has_changed = False
         transition = form.get('transition', u'')
         if transition and transition in self.available_transitions:
             wftool = getToolByName(context, 'portal_workflow')
@@ -237,15 +237,21 @@ class CreateResponse(grok.View, BaseView):
             after = wftool.getTitleForStateOnType(after, 's17.app.taskmanager.task')
             new_response.add_change('review_state', _(u'Task state'),
                 before, after)
-            issue_has_changed = True
+            task_has_changed = True
 
         priority = form.get('priority', u'')
         if priority and priority in self.available_priority:
             context.priority = priority
+            task_has_changed = True
 
         responsible = form.get('responsible', u'')
         if responsible:
-            context.responsible = responsible
+            import pdb;pdb.set_trace()
+            if responsible == 'nobody':
+                context.responsible = ''
+            else:
+                context.responsible = responsible
+            task_has_changed = True
 
         day = form.get('date-day', None)
         month = form.get('date-month', None)
@@ -260,8 +266,8 @@ class CreateResponse(grok.View, BaseView):
             date = '%s/%s/%s' %(day,month,year)
             formatter = self.request.locale.dates.getFormatter("date", "short")
             dateobj = formatter.parse(date)
-
             context.provided_date = dateobj
+            task_has_changed = True
 
         options = [
             ('priority', _(u'Priority'), 'available_priority'),
@@ -278,9 +284,9 @@ class CreateResponse(grok.View, BaseView):
                     changes[option] = new
                     new_response.add_change(option, title,
                         current, new)
-                    issue_has_changed = True
+                    task_has_changed = True
 
-        if len(response_text) == 0 and not issue_has_changed:
+        if len(response_text) == 0 and not task_has_changed:
             status = IStatusMessage(self.request)
             msg = _(u"No response text added and no issue changes made.")
             msg = translate(msg, 's17.app.taskmanager', context=self.request)
