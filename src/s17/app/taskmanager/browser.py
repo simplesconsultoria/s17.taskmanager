@@ -246,7 +246,6 @@ class CreateResponse(grok.View, BaseView):
 
         responsible = form.get('responsible', u'')
         if responsible:
-            import pdb;pdb.set_trace()
             if responsible == 'nobody':
                 context.responsible = ''
             else:
@@ -262,7 +261,6 @@ class CreateResponse(grok.View, BaseView):
             year = year[2:]
 
         if day and month and year:
-            import pdb;pdb.set_trace()
             date = '%s/%s/%s' %(day,month,year)
             formatter = self.request.locale.dates.getFormatter("date", "short")
             dateobj = formatter.parse(date)
