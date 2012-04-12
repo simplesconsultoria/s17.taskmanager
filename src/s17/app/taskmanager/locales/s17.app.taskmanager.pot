@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-02-28 20:18+0000\n"
+"POT-Creation-Date: 2012-04-12 13:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,28 +18,59 @@ msgstr ""
 msgid ""
 msgstr ""
 
+#: ../browser.py:99
+#: ../content.py:48
+msgid "Alta"
+msgstr ""
+
+#: ../browser.py:99
+#: ../content.py:48
+msgid "Baixa"
+msgstr ""
+
 #: ../content.py:52
 msgid "Body text"
 msgstr ""
 
-#: ../content.py:64
+#: ../browser.py:311
+msgid "Changes saved to response id ${response_id}."
+msgstr ""
+
+#: ../templates/task_view.pt:111
+msgid "Delete"
+msgstr ""
+
+#: ../templates/task_view.pt:101
+msgid "Edit"
+msgstr ""
+
+#: ../content.py:68
 #: ../templates/task_view.pt:31
 msgid "End date"
 msgstr ""
 
-#: ../content.py:48
-msgid "High"
-msgstr ""
-
-#: ../content.py:58
+#: ../content.py:61
 #: ../templates/task_view.pt:26
 msgid "Initial date"
 msgstr ""
 
-#: ../content.py:48
-msgid "Low"
+#: ../browser.py:82
+msgid "No change"
 msgstr ""
 
+#: ../browser.py:336
+msgid "No response selected for removal."
+msgstr ""
+
+#: ../browser.py:299
+msgid "No response selected for saving."
+msgstr ""
+
+#: ../browser.py:244
+msgid "No response text added and no issue changes made."
+msgstr ""
+
+#: ../browser.py:99
 #: ../content.py:48
 msgid "Normal"
 msgstr ""
@@ -48,14 +79,31 @@ msgstr ""
 msgid "Panel tasks"
 msgstr ""
 
+#: ../browser.py:226
 #: ../content.py:45
 #: ../templates/task_view.pt:18
 msgid "Priority"
 msgstr ""
 
-#: ../content.py:70
+#: ../content.py:75
 #: ../templates/task_view.pt:35
 msgid "Provided date"
+msgstr ""
+
+#: ../browser.py:358
+msgid "Removed response id ${response_id}."
+msgstr ""
+
+#: ../browser.py:303
+msgid "Response does not exist anymore; perhaps it was removed by another user."
+msgstr ""
+
+#: ../browser.py:351
+msgid "Response id ${response_id} does not exist so it cannot be removed."
+msgstr ""
+
+#: ../browser.py:343
+msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr ""
 
 #: ../content.py:16
@@ -75,6 +123,10 @@ msgstr ""
 msgid "Task details"
 msgstr ""
 
+#: ../browser.py:221
+msgid "Task state"
+msgstr ""
+
 #: ../templates/taskfolder_view.pt:15
 msgid "Tasks"
 msgstr ""
@@ -83,14 +135,92 @@ msgstr ""
 msgid "Who can add tasks?"
 msgstr ""
 
+#: ../browser.py:330
+msgid "You are not allowed to delete responses."
+msgstr ""
+
+#: ../browser.py:293
+msgid "You are not allowed to edit responses."
+msgstr ""
+
+#. Default: "You are not allowed to edit this response."
+#: ../templates/edit_response.pt:38
+msgid "label_edit_response_not_allowed"
+msgstr ""
+
+#. Default: "Return to issue."
+#: ../templates/edit_response.pt:28
+msgid "label_return_to_issue"
+msgstr ""
+
+#. Default: "If you can, please log in before submitting a reaction."
+#: ../templates/task_view.pt:155
+msgid "login_suggestion_response"
+msgstr ""
+
+#. Default: "No responses can be added."
+#: ../templates/task_view.pt:146
+msgid "msg_no_responses_can_be_added"
+msgstr ""
+
+#. Default: "Added by"
+#: ../templates/task_view.pt:120
+msgid "task_added_by"
+msgstr ""
+
+#. Default: "on"
+#: ../templates/task_view.pt:125
+msgid "task_added_on"
+msgstr ""
+
 #. Default: "Files"
 #: ../templates/task_view.pt:63
 msgid "task_files"
 msgstr ""
 
+#. Default: "Select a change of state in the task this response is for, if applicable"
+#: ../templates/task_view.pt:208
+msgid "task_help_issueTransition"
+msgstr ""
+
+#. Default: "Select the priority for this task"
+#: ../templates/task_view.pt:239
+msgid "task_help_newPriority"
+msgstr ""
+
+#. Default: "Select the responsible for this task"
+#: ../templates/task_view.pt:267
+msgid "task_help_newResponsible"
+msgstr ""
+
+#. Default: "Please enter your response below"
+#: ../templates/task_view.pt:180
+msgid "task_help_response"
+msgstr ""
+
 #. Default: "Images"
 #: ../templates/task_view.pt:45
 msgid "task_images"
+msgstr ""
+
+#. Default: "Change task state"
+#: ../templates/task_view.pt:203
+msgid "task_label_issueTransition"
+msgstr ""
+
+#. Default: "Change task priority"
+#: ../templates/task_view.pt:234
+msgid "task_label_newPriority"
+msgstr ""
+
+#. Default: "Change responsible"
+#: ../templates/task_view.pt:262
+msgid "task_label_newResponsible"
+msgstr ""
+
+#. Default: "Response"
+#: ../templates/task_view.pt:177
+msgid "task_label_response"
 msgstr ""
 
 #. Default: "Priority"
@@ -116,5 +246,20 @@ msgstr ""
 #. Default: "Tasks"
 #: ../templates/taskfolder_view.pt:13
 msgid "tasksfolder_title"
+msgstr ""
+
+#. Default: "Add response"
+#: ../templates/task_view.pt:171
+msgid "title_add_response"
+msgstr ""
+
+#. Default: "Edit response"
+#: ../templates/edit_response.pt:35
+msgid "title_edit_response"
+msgstr ""
+
+#. Default: "Error: no response found for editing"
+#: ../templates/edit_response.pt:24
+msgid "title_error_no_response"
 msgstr ""
 

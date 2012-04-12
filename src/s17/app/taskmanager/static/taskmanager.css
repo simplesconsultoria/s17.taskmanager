@@ -1,0 +1,79 @@
+
+/* task display */
+
+.task-details {
+    font-family: Monaco, "Courier New", Courier, monospace;
+    font-size: 100%;
+    color: Black;
+    padding: 0 0.1em;;
+}
+
+.modification-info {
+    margin: 0 0 0.5em 0;
+    color: Black;
+    font-size: 90%;
+}
+
+.task-info-box {
+    float: right;
+}
+.task-info-box th {
+    text-align: right;
+}
+.task-info-box td {
+    text-align: left;
+}
+
+#content table.issue-info-box {
+    width: 35%;
+}
+
+.unassigned-field {
+    text-align: left;
+}
+
+/* Different response types */
+
+.response-clarification {
+    margin: 1em 0;
+    padding: 0.5em;
+    border: 1px solid White;
+    clear: both;
+}
+
+.response-reply {
+    margin: 1em 0;
+    padding: 0.5em;
+    border: 1px solid #9C6E3D;
+    clear: both;
+}
+
+.response-additional {
+    margin: 1em 0;
+    padding: 0.5em;
+    border: 1px solid #74ae0b;
+    clear: both;
+}
+
+/* Response details */
+
+.response-info {
+    color: #76797c;
+    font-size: 90%;
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+.issueChange {
+    text-transform: lowercase;
+}
+
+/* Response actions box */
+.response-actions {
+    float: right;
+    clear: right;
+}
+
+.response-actions form {
+    display: inline;
+}

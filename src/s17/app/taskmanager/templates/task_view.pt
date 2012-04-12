@@ -7,6 +7,16 @@
       i18n:domain="s17.app.taskmanager">
 <body>
 
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+    <metal:css fill-slot="style_slot">
+        <link type="text/css"
+              rel="stylesheet"
+              href="++resource++s17.app.taskmanager/taskmanager.css" />
+    </metal:css>
+</head>
+
 <metal:main fill-slot="content-core">
     <tal:main-macro metal:define-macro="content-core">
 
@@ -95,7 +105,7 @@
                 <div class="response-actions"
                      tal:condition="view/can_edit_response|view/can_delete_response">
                     <form method="post"
-                          tal:attributes="action string:@@task_response_edit"
+                          tal:attributes="action string:@@edit_response"
                           tal:condition="view/can_edit_response">
                         <input type="hidden" name="response_id" tal:attributes="value id" />
                         <input class="standalone"
@@ -105,7 +115,7 @@
                                 />
                     </form>
                     <form method="post"
-                          tal:attributes="action string:@@task_response_delete"
+                          tal:attributes="action string:@@delete_response"
                           tal:condition="view/can_delete_response">
                         <input type="hidden" name="response_id" tal:attributes="value id" />
                         <input class="destructive"
@@ -127,12 +137,12 @@
                       tal:content="python:toLocalizedTime(response.date, long_format=True)" />
                     <div tal:repeat="delta response/changes">
                         <span i18n:translate="" tal:content="string:${delta/name}" />:
-                    <span class="issueChange"
+                    <span class="taskChange"
                           i18n:translate=""
                           i18n:domain="plone"
                           tal:content="delta/before" />
                         &#8594;
-                    <span class="issueChange"
+                    <span class="taskChange"
                           i18n:translate=""
                           i18n:domain="plone"
                           tal:content="delta/after" />
@@ -202,13 +212,13 @@
                      tal:condition="view/transitions_for_display">
                     <label for="transition"
                            i18n:translate="task_label_issueTransition">
-                        Change issue state
+                        Change task state
                     </label>
 
                     <div class="formHelp"
                          id="issueTransition_help"
                          i18n:translate="task_help_issueTransition">
-                        Select a change of state in the issue this response is for, if applicable
+                        Select a change of state in the task this response is for, if applicable
                     </div>
 
                     <tal:transitions
@@ -261,7 +271,7 @@
                      tal:condition="view/responsibles_for_display">
                     <label for="responsible"
                            i18n:translate="task_label_newResponsible">
-                        Change responsible manager
+                        Change responsible
                     </label>
 
                     <div class="formHelp" id="responsible_help"

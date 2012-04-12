@@ -8,6 +8,7 @@ from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 from zope.cachedescriptors.property import Lazy
 from zope.i18n import translate
+from zope.lifecycleevent import modified
 
 from plone.directives import dexterity
 from plone.memoize.view import memoize
@@ -24,92 +25,7 @@ from s17.app.taskmanager import MessageFactory as _
 
 grok.templatedir("templates")
 
-class TaskFolderView(dexterity.DisplayForm):
-    grok.context(ITaskFolder)
-    grok.name("view")
-    grok.template('taskfolder_view')
-    grok.require("zope2.View")
-
-    def responsible(self, obj):
-        """ Return the fullname of the responsible for the task
-        """
-        mt = getToolByName(self.context, 'portal_membership')
-        username = obj.responsible
-        if username:
-            fullname = mt.getMemberById(username).getProperty('fullname')
-            if fullname:
-                return fullname
-            else:
-                return username
-        else:
-            return None
-
-    def tasks(self):
-        ''' function to return all tasks in the container
-        '''
-        ct = getToolByName(self.context,'portal_catalog')
-        tasks = ct(object_provides=ITask.__identifier__, path='/'.join(self.context.getPhysicalPath()))
-        if tasks:
-            return [dict(title=task.Title,
-                         url=task.getURL(),
-                         status=task.review_state.capitalize(),
-                         responsible=self.responsible(task.getObject()),
-                         priority=task.getObject().priority,)
-                            for task in tasks]
-        else:
-            return None
-
-class TaskView(dexterity.DisplayForm):
-    grok.context(ITask)
-    grok.name("view")
-    grok.template('task_view')
-    grok.require("zope2.View")
-
-    def images(self):
-        ct = getToolByName(self.context,'portal_catalog')
-        images = ct(object_provides=IATImage.__identifier__,path = '/'.join(self.context.getPhysicalPath()))
-        if images:
-            images = [ image.getObject() for image in images ]
-            return images
-        else:
-            return None
-
-    def files(self):
-        ct = getToolByName(self.context,'portal_catalog')
-        files = ct(object_provides=IATFile.__identifier__,path = '/'.join(self.context.getPhysicalPath()))
-        if files:
-            return files
-        else:
-            return None
-
-    def responsible(self):
-        """ Return the fullname of the responsible for the task
-        """
-        mt = getToolByName(self.context, 'portal_membership')
-        username = self.context.responsible
-        if username:
-            fullname = mt.getMemberById(username).getProperty('fullname')
-            if fullname:
-                return fullname
-            else:
-                return username
-        else:
-            return None
-
-    def responses(self):
-        context = aq_inner(self.context)
-        items = []
-        folder = IResponseContainer(self.context)
-        for id, response in enumerate(folder):
-            if response is None:
-                # Has been removed.
-                continue
-            html = response.text or u''
-            info = dict(id=id,
-                response=response,
-                html=html)
-            items.append(info)
-        return items
+class BaseView:
 
     @Lazy
     def memship(self):
@@ -171,6 +87,12 @@ class TaskView(dexterity.DisplayForm):
         return transitions
 
     @property
+    def available_transitions(self):
+        """Get the available transitions for this issue.
+        """
+        return [x['value'] for x in self.transitions_for_display]
+
+    @property
     def priority_for_display(self):
         """Get the available priorities for this issue.
         """
@@ -182,71 +104,103 @@ class TaskView(dexterity.DisplayForm):
                 checked=checked))
         return options
 
-class Create(grok.View):
-    grok.context(ITask)
-    grok.name("create_response")
-    grok.require("zope2.View")
-
-
-    @Lazy
-    def memship(self):
-        context = aq_inner(self.context)
-        return getToolByName(context, 'portal_membership')
-
-    @property
-    @memoize
-    def transitions_for_display(self):
-        """Display the available transitions for this issue.
-        """
-        context = aq_inner(self.context)
-        if not self.memship.checkPermission('Modify portal content',context):
-            return []
-        wftool = getToolByName(context, 'portal_workflow')
-        transitions = []
-        transitions.append(dict(value='', label=_(u'No change'),
-            checked="checked"))
-        for tdef in wftool.getTransitionsFor(context):
-            transitions.append(dict(value=tdef['id'],
-                label=tdef['title_or_id'], checked=''))
-        return transitions
-
-    @property
-    def available_transitions(self):
-        """Get the available transitions for this issue.
-        """
-        return [x['value'] for x in self.transitions_for_display]
-
-    @property
-    @memoize
-    def responsibles_for_display(self):
-        context = aq_inner(self.context)
-        users_factory = getUtility(IVocabularyFactory, name=u"plone.principalsource.Users")
-        users = users_factory(context)
-        options = []
-        for value in users:
-            values = {}
-            values['checked'] = (value.token == context.responsible) and "checked" or ""
-            values['value'] = value.token
-            values['label'] = value.title
-            options.append(values)
-        return options
-
     @property
     def available_priority(self):
         vocab = [_(u'Baixa'), _(u'Normal'), _(u'Alta')]
         return vocab
 
-    @property
-    def priority_for_display(self):
-        """Get the available priorities for this issue.
+
+class TaskFolderView(dexterity.DisplayForm):
+    grok.context(ITaskFolder)
+    grok.name("view")
+    grok.template('taskfolder_view')
+    grok.require("zope2.View")
+
+    def responsible(self, obj):
+        """ Return the fullname of the responsible for the task
         """
-        vocab = [_(u'Baixa'), _(u'Normal'), _(u'Alta')]
-        options = []
-        for value in vocab:
-            checked = (value == self.context.priority) and "checked" or ""
-            options.append(dict(value=value, label=value,
-                checked=checked))
-        return options
+        mt = getToolByName(self.context, 'portal_membership')
+        username = obj.responsible
+        if username:
+            fullname = mt.getMemberById(username).getProperty('fullname')
+            if fullname:
+                return fullname
+            else:
+                return username
+        else:
+            return None
+
+    def tasks(self):
+        ''' function to return all tasks in the container
+        '''
+        ct = getToolByName(self.context,'portal_catalog')
+        tasks = ct(object_provides=ITask.__identifier__, path='/'.join(self.context.getPhysicalPath()))
+        if tasks:
+            return [dict(title=task.Title,
+                         url=task.getURL(),
+                         status=task.review_state.capitalize(),
+                         responsible=self.responsible(task.getObject()),
+                         priority=task.getObject().priority,)
+                            for task in tasks]
+        else:
+            return None
+
+class TaskView(dexterity.DisplayForm, BaseView):
+    grok.context(ITask)
+    grok.name("view")
+    grok.template('task_view')
+    grok.require("zope2.View")
+
+    def images(self):
+        ct = getToolByName(self.context,'portal_catalog')
+        images = ct(object_provides=IATImage.__identifier__,path = '/'.join(self.context.getPhysicalPath()))
+        if images:
+            images = [ image.getObject() for image in images ]
+            return images
+        else:
+            return None
+
+    def files(self):
+        ct = getToolByName(self.context,'portal_catalog')
+        files = ct(object_provides=IATFile.__identifier__,path = '/'.join(self.context.getPhysicalPath()))
+        if files:
+            return files
+        else:
+            return None
+
+    def responsible(self):
+        """ Return the fullname of the responsible for the task
+        """
+        mt = getToolByName(self.context, 'portal_membership')
+        username = self.context.responsible
+        if username:
+            fullname = mt.getMemberById(username).getProperty('fullname')
+            if fullname:
+                return fullname
+            else:
+                return username
+        else:
+            return None
+
+    def responses(self):
+        context = aq_inner(self.context)
+        items = []
+        folder = IResponseContainer(self.context)
+        for id, response in enumerate(folder):
+            if response is None:
+                # Has been removed.
+                continue
+            html = response.text or u''
+            info = dict(id=id,
+                response=response,
+                html=html)
+            items.append(info)
+        return items
+
+class CreateResponse(grok.View, BaseView):
+    grok.context(ITask)
+    grok.name("create_response")
+    grok.require("zope2.View")
 
     def render(self):
         form = self.request.form
@@ -267,6 +221,14 @@ class Create(grok.View):
             new_response.add_change('review_state', _(u'Task state'),
                 before, after)
             issue_has_changed = True
+
+        priority = form.get('priority', u'')
+        if priority and priority in self.available_priority:
+            context.priority = priority
+
+        responsible = form.get('responsible', u'')
+        if responsible:
+            context.responsible = responsible
 
         options = [
             ('priority', _(u'Priority'), 'available_priority'),
@@ -295,4 +257,114 @@ class Create(grok.View):
             self.update(**changes)
             # Add response
             folder.add(new_response)
+        self.request.response.redirect(context.absolute_url())
+
+
+class EditResponse(grok.View, BaseView):
+    grok.context(ITask)
+    grok.name("edit_response")
+    grok.require("zope2.View")
+    grok.template('edit_response')
+
+    @property
+    @memoize
+    def response(self):
+        folder = IResponseContainer(self.context)
+        form = self.request.form
+        response_id = form.get('response_id', None)
+        if response_id is None:
+            return None
+        try:
+            response_id = int(response_id)
+        except ValueError:
+            return None
+        if response_id >= len(folder):
+            return None
+        return folder[response_id]
+
+    @property
+    def response_found(self):
+        return self.response is not None
+
+
+class SaveResponse(grok.View, BaseView):
+    grok.context(ITask)
+    grok.name("save_response")
+    grok.require("zope2.View")
+
+    def render(self):
+        folder = IResponseContainer(self.context)
+        form = self.request.form
+        context = aq_inner(self.context)
+        status = IStatusMessage(self.request)
+        if not self.can_edit_response:
+            msg = _(u"You are not allowed to edit responses.")
+            msg = translate(msg, 's17.app.taskmanager', context=self.request)
+            status.addStatusMessage(msg, type='error')
+        else:
+            response_id = form.get('response_id', None)
+            if response_id is None:
+                msg = _(u"No response selected for saving.")
+                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                status.addStatusMessage(msg, type='error')
+            elif folder[response_id] is None:
+                msg = _(u"Response does not exist anymore; perhaps it was "
+                        "removed by another user.")
+                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                status.addStatusMessage(msg, type='error')
+            else:
+                response = folder[response_id]
+                response_text = form.get('response', u'')
+                response.text = response_text
+                msg = _(u"Changes saved to response id ${response_id}.",
+                    mapping=dict(response_id=response_id))
+                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                status.addStatusMessage(msg, type='info')
+                modified(response, context)
+        self.request.response.redirect(context.absolute_url())
+
+
+class DeleteResponse(grok.View, BaseView):
+    grok.context(ITask)
+    grok.name("delete_response")
+    grok.require("zope2.View")
+
+    def render(self):
+        folder = IResponseContainer(self.context)
+        context = aq_inner(self.context)
+        status = IStatusMessage(self.request)
+
+        if not self.can_delete_response:
+            msg = _(u"You are not allowed to delete responses.")
+            msg = translate(msg, 's17.app.taskmanager', context=self.request)
+            status.addStatusMessage(msg, type='error')
+        else:
+            response_id = self.request.form.get('response_id', None)
+            if response_id is None:
+                msg = _(u"No response selected for removal.")
+                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                status.addStatusMessage(msg, type='error')
+            else:
+                try:
+                    response_id = int(response_id)
+                except ValueError:
+                    msg = _(u"Response id ${response_id} is no integer so it "
+                            "cannot be removed.",
+                        mapping=dict(response_id=response_id))
+                    msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                    status.addStatusMessage(msg, type='error')
+                    self.request.response.redirect(context.absolute_url())
+                    return
+                if response_id >= len(folder):
+                    msg = _(u"Response id ${response_id} does not exist so it "
+                            "cannot be removed.",
+                        mapping=dict(response_id=response_id))
+                    msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                    status.addStatusMessage(msg, type='error')
+                else:
+                    folder.delete(response_id)
+                    msg = _(u"Removed response id ${response_id}.",
+                        mapping=dict(response_id=response_id))
+                    msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                    status.addStatusMessage(msg, type='info')
         self.request.response.redirect(context.absolute_url())
