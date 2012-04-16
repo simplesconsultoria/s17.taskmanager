@@ -36,8 +36,8 @@
             </tr>
 
             <tr>
-                <th width="20%" i18n:translate="">Priority</th>
-                <td width="70%" tal:content="context/priority"></td>
+                <th width="30%" i18n:translate="">Priority</th>
+                <td width="50%" tal:content="context/priority"></td>
             </tr>
             <tr>
                 <th i18n:translate="">Submitted by</th>
@@ -71,6 +71,7 @@
 
         <div tal:content="structure view/w/text/render" />
 
+        <div class="visualClear"><!----></div>
         <tal:block condition="view/images">
             <fieldset>
                 <legend i18n:translate="task_images">Images</legend>
@@ -104,7 +105,7 @@
                                 item_url item/getURL;">
                     <span tal:attributes="class item_type_class">
                         <a href="" class="visualIconPadding"
-                           tal:attributes="href item_url;
+                           tal:attributes="href string:${item_url}/view;
                                            title desc;"
                            tal:content="item/pretty_title_or_id">
                         </a>
@@ -124,7 +125,12 @@
                        value="Edit task"
                        />
             </form>
+            <a tal:condition="python: user.has_permission('Modify portal content', here)"
+               title="" id="multiplefiles" class="contenttype-multiplefiles link-overlay" href="./@@media_uploader"
+               style="cursor: pointer;">
+                <span class="subMenuTitle">Upload multiple files or images</span></a>
         </div>
+
         <div class="visualClear"><!----></div>
 
         <tal:responses repeat="response_info view/responses">
