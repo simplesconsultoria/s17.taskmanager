@@ -12,10 +12,10 @@ install = False
 [plone.principalsource]
 install = False
 
-[plone.namedfile[blobs]]
-install = False
-
 [collective.upload]
 install = True
 hidden = True
 profile = collective.upload:default
+
+[collective.watcherlist]
+version >=0.3

@@ -18,7 +18,10 @@
 </head>
 
 <metal:main fill-slot="content-core">
-    <tal:main-macro metal:define-macro="content-core">
+    <tal:main-macro metal:define-macro="content-core"
+        tal:define="member context/@@plone_portal_state/member;
+                    isAnon context/@@plone_portal_state/anonymous;
+                    isSubmitter python:member.getId() == here.Creator();">
 
         <table class="vertical listing task-info-box" summary="Task details"
                i18n:attributes="summary"
@@ -68,6 +71,25 @@
             </tr>
             </tbody>
         </table>
+
+        <form style="display: inline" action="@@watching"
+              id="watch-task-form"
+              tal:condition="python:not isAnon and not isSubmitter">
+            <div class="formControls">
+                <input tal:condition="view/is_watching"
+                       class="standalone"
+                       type="submit"
+                       i18n:attributes="value"
+                       value="Stop watching this task"
+                        />
+                <input tal:condition="not:view/is_watching"
+                       class="context"
+                       type="submit"
+                       i18n:attributes="value"
+                       value="Watch this task"
+                        />
+            </div>
+        </form>
 
         <div tal:content="structure view/w/text/render" />
 
@@ -338,7 +360,7 @@
                      class="field z3cformInlineValidation kssattr-fieldname-form.widgets.provided_date">
 
                     <label class="horizontal" for="provided_date">
-                        Data prevista
+                        Provided date
                     </label>
                     <input type="text"
                            value=""

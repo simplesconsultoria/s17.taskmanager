@@ -19,5 +19,8 @@
     <adapter provides=".adapters.IResponseContainer"
              factory=".adapters.ResponseContainer"
              />
+    <adapter for=".content.ITask"
+             factory="collective.watcherlist.watchers.WatcherList"
+             />
 
 </configure>

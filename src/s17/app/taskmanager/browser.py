@@ -4,6 +4,8 @@ from Acquisition import aq_inner
 
 from five import grok
 
+from collective.watcherlist.interfaces import IWatcherList
+
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 from zope.cachedescriptors.property import Lazy
@@ -24,6 +26,18 @@ from s17.app.taskmanager import MessageFactory as _
 
 
 grok.templatedir("templates")
+
+
+class WatcherView(grok.View):
+    grok.context(ITask)
+    grok.name("watching")
+    grok.require("zope2.View")
+
+    def render(self):
+        context = aq_inner(self.context)
+        watchers = IWatcherList(context)
+        watchers.toggle_watching()
+        self.request.RESPONSE.redirect(context.absolute_url())
 
 class BaseView:
 
@@ -167,6 +181,14 @@ class TaskView(dexterity.DisplayForm, BaseView):
             return files
         else:
             return None
+
+    def is_watching(self):
+        """
+        Determine if the current user is watching this task or not.
+        """
+        context = aq_inner(self.context)
+        watchers = IWatcherList(context)
+        return watchers.isWatching()
 
     @property
     def months(self):
