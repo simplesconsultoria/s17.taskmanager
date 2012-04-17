@@ -11,6 +11,8 @@ from s17.app.taskmanager.config import PRODUCTS
 
 PROJECT = 's17.app.taskmanager'
 
+def get_package_name(name):
+    return name[9:] if name.startswith('Products') else name
 
 def fromZero(context):
     ''' Upgrade from Zero to version 1000
@@ -28,7 +30,9 @@ def fromZero(context):
         'collective.upload',
         ]
     # (name,locked,hidden,install,profile,runProfile)
-    dependencies = [(name,locked,hidden,profile) for name,locked,hidden,install,profile,runProfile in PRODUCTS if ((name in packages) and install)]
+    dependencies = [p for p in PRODUCTS
+                    if ((p['package'] in packages) and p['install'])]
 
-    for name,locked,hidden,profile in dependencies:
-        qi.installProduct(name, locked=locked, hidden=hidden, profile=profile)
+    for p in dependencies:
+        qi.installProduct(get_package_name(p['package']), locked=p['locked'],
+            hidden=p['hidden'], profile=p['profile'])
