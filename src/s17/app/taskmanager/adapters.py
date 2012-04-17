@@ -33,6 +33,7 @@ class IResponse(Interface):
     changes = Attribute("Changes made to the task in this response.")
     creator = Attribute("Id of user making this change.")
     date = Attribute("Date (plus time) this response was made.")
+    responsible = Attribute("Responsible for the task.")
 
     def add_change(id, name, before, after):
         """Add change to the list of changes.
@@ -126,7 +127,7 @@ class Response(Persistent):
 
     implements(IResponse)
 
-    def __init__(self, text):
+    def __init__(self, text, responsible=None):
         self.__parent__ = self.__name__ = None
         self.text = text
         self.changes = PersistentList()
@@ -134,6 +135,7 @@ class Response(Persistent):
         user = sm.getUser()
         self.creator = user.getId() or '(anonymous)'
         self.date = DateTime()
+        self.responsible = responsible
 
     def add_change(self, id, name, before, after):
         """Add a new issue change.

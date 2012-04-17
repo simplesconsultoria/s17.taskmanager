@@ -123,6 +123,10 @@ class BaseView:
         vocab = [_(u'Baixa'), _(u'Normal'), _(u'Alta')]
         return vocab
 
+    @property
+    def available_responsibles(self):
+        vocab = [_(u'Baixa'), _(u'Normal'), _(u'Alta')]
+        return vocab
 
 class TaskFolderView(dexterity.DisplayForm):
     grok.context(ITaskFolder)
@@ -224,7 +228,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
     def responses(self):
         context = aq_inner(self.context)
         items = []
-        folder = IResponseContainer(self.context)
+        folder = IResponseContainer(context)
         for id, response in enumerate(folder):
             if response is None:
                 # Has been removed.
@@ -245,7 +249,16 @@ class CreateResponse(grok.View, BaseView):
         form = self.request.form
         context = aq_inner(self.context)
         response_text = form.get('response', u'')
-        new_response = Response(response_text)
+        responsible = form.get('responsible', u'')
+        if responsible:
+            if responsible == 'nobody':
+                context.responsible = ''
+            else:
+                context.responsible = responsible
+            task_has_changed = True
+            new_response = Response(response_text, responsible)
+        else:
+            new_response = Response(response_text)
         folder = IResponseContainer(self.context)
 
         task_has_changed = False
@@ -266,14 +279,6 @@ class CreateResponse(grok.View, BaseView):
             context.priority = priority
             task_has_changed = True
 
-        responsible = form.get('responsible', u'')
-        if responsible:
-            if responsible == 'nobody':
-                context.responsible = ''
-            else:
-                context.responsible = responsible
-            task_has_changed = True
-
         day = form.get('date-day', None)
         month = form.get('date-month', None)
         if len(month) == 1:
@@ -291,10 +296,12 @@ class CreateResponse(grok.View, BaseView):
 
         options = [
             ('priority', _(u'Priority'), 'available_priority'),
-#            ('responsible', _(u'Responsible'),'available_responsibles'),
+            ('responsible', _(u'Responsible'),'available_responsibles'),
         ]
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
+
+        #TODO: improve changes information
         changes = {}
         for option, title, vocab in options:
             new = form.get(option, u'')

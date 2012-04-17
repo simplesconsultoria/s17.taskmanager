@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-04-12 20:11+0000\n"
+"POT-Creation-Date: 2012-04-17 20:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ../browser.py:99
+#: ../browser.py:113
 #: ../content.py:48
 msgid "Alta"
 msgstr ""
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Assigned"
 msgstr ""
 
-#: ../browser.py:99
+#: ../browser.py:113
 #: ../content.py:48
 msgid "Baixa"
 msgstr ""
@@ -40,7 +40,7 @@ msgstr ""
 msgid "Body text"
 msgstr ""
 
-#: ../browser.py:352
+#: ../browser.py:385
 msgid "Changes saved to response id ${response_id}."
 msgstr ""
 
@@ -56,49 +56,49 @@ msgstr ""
 msgid "Comment about the last transition"
 msgstr ""
 
-#: ../templates/task_view.pt:153
+#: ../templates/task_view.pt:181
 msgid "Delete"
 msgstr ""
 
-#: ../templates/task_view.pt:143
+#: ../templates/task_view.pt:171
 msgid "Edit"
 msgstr ""
 
-#: ../templates/task_view.pt:121
+#: ../templates/task_view.pt:144
 msgid "Edit task"
 msgstr ""
 
 #: ../content.py:68
-#: ../templates/task_view.pt:62
+#: ../templates/task_view.pt:65
 msgid "End date"
 msgstr ""
 
 #: ../content.py:61
-#: ../templates/task_view.pt:57
+#: ../templates/task_view.pt:60
 msgid "Initial date"
 msgstr ""
 
-#: ../browser.py:82
+#: ../browser.py:96
 msgid "No change"
 msgstr ""
 
-#: ../browser.py:377
+#: ../browser.py:410
 msgid "No response selected for removal."
 msgstr ""
 
-#: ../browser.py:340
+#: ../browser.py:373
 msgid "No response selected for saving."
 msgstr ""
 
-#: ../browser.py:285
+#: ../browser.py:318
 msgid "No response text added and no issue changes made."
 msgstr ""
 
-#: ../browser.py:63
+#: ../browser.py:77
 msgid "Nobody"
 msgstr ""
 
-#: ../browser.py:99
+#: ../browser.py:113
 #: ../content.py:48
 msgid "Normal"
 msgstr ""
@@ -115,14 +115,14 @@ msgstr ""
 msgid "Previous transition"
 msgstr ""
 
-#: ../browser.py:267
+#: ../browser.py:298
 #: ../content.py:45
-#: ../templates/task_view.pt:39
+#: ../templates/task_view.pt:42
 msgid "Priority"
 msgstr ""
 
 #: ../content.py:75
-#: ../templates/task_view.pt:66
+#: ../templates/task_view.pt:69
 msgid "Provided date"
 msgstr ""
 
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Reject the task"
 msgstr ""
 
-#: ../browser.py:399
+#: ../browser.py:432
 msgid "Removed response id ${response_id}."
 msgstr ""
 
@@ -146,32 +146,37 @@ msgstr ""
 msgid "Reopen"
 msgstr ""
 
-#: ../browser.py:344
+#: ../browser.py:377
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr ""
 
-#: ../browser.py:392
+#: ../browser.py:425
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr ""
 
-#: ../browser.py:384
+#: ../browser.py:417
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr ""
 
+#: ../browser.py:299
 #: ../content.py:16
-#: ../templates/task_view.pt:53
+#: ../templates/task_view.pt:56
 msgid "Responsible"
 msgstr ""
 
-#: ../templates/task_view.pt:32
+#: ../templates/task_view.pt:35
 msgid "State"
 msgstr ""
 
-#: ../templates/task_view.pt:43
+#: ../templates/task_view.pt:79
+msgid "Stop watching this task"
+msgstr ""
+
+#: ../templates/task_view.pt:46
 msgid "Submitted by"
 msgstr ""
 
-#: ../templates/task_view.pt:49
+#: ../templates/task_view.pt:52
 msgid "Submitted on"
 msgstr ""
 
@@ -187,11 +192,11 @@ msgstr ""
 msgid "Task Name"
 msgstr ""
 
-#: ../templates/task_view.pt:23
+#: ../templates/task_view.pt:26
 msgid "Task details"
 msgstr ""
 
-#: ../browser.py:238
+#: ../browser.py:273
 msgid "Task state"
 msgstr ""
 
@@ -203,6 +208,10 @@ msgstr ""
 msgid "The ID of the user who performed the previous transition"
 msgstr ""
 
+#: ../templates/task_view.pt:85
+msgid "Watch this task"
+msgstr ""
+
 #: ../profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "When the previous transition was performed"
 msgstr ""
@@ -211,12 +220,56 @@ msgstr ""
 msgid "Who can add tasks?"
 msgstr ""
 
-#: ../browser.py:371
+#: ../browser.py:404
 msgid "You are not allowed to delete responses."
 msgstr ""
 
-#: ../browser.py:334
+#: ../browser.py:367
 msgid "You are not allowed to edit responses."
+msgstr ""
+
+#: ../notifications.py:43
+msgid "[No subject]"
+msgstr ""
+
+#. Default: "Re: ${task_title}"
+#: ../notifications.py:254
+msgid "email_new_response_subject_template"
+msgstr ""
+
+#. Default: "A new response has been given to the task **${task_title}**\nby **${response_author}**.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n${changes}\n\n${response_details}\n\n* This is an automated email, please do not reply - ${from_name}"
+#: ../notifications.py:225
+msgid "email_new_response_template"
+msgstr ""
+
+#. Default: "[New task: ${task_title}]"
+#: ../notifications.py:159
+msgid "email_new_task_subject_template"
+msgstr ""
+
+#. Default: "A new task has been submitted by **${task_author}**.\n\nTask Information\n----------------\n\nTask\n  ${task_title} (${task_url})\n\n\n**Task Details**::\n\n${task_details}\n\n\n* This is an automated email, please do not reply - ${from_name}"
+#: ../notifications.py:129
+msgid "email_new_task_template"
+msgstr ""
+
+#. Default: "No details in the task "
+#: ../notifications.py:128
+msgid "email_null_task_details"
+msgstr ""
+
+#. Default: "[Resolved #${task_title}]"
+#: ../notifications.py:307
+msgid "email_task_closed_subject_template"
+msgstr ""
+
+#. Default: "The task **${task_title}** has been marked as resolved by **${response_author}**.\nPlease visit the task and either confirm that it has been\nsatisfactorily resolved or re-open it.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n\n* This is an automated email, please do not reply - ${from_name}"
+#: ../notifications.py:280
+msgid "email_task_closed_template"
+msgstr ""
+
+#. Default: "Response Details"
+#: ../notifications.py:207
+msgid "heading_response_details"
 msgstr ""
 
 #. Default: "You are not allowed to edit this response."
@@ -230,72 +283,72 @@ msgid "label_return_to_issue"
 msgstr ""
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: ../templates/task_view.pt:197
+#: ../templates/task_view.pt:225
 msgid "login_suggestion_response"
 msgstr ""
 
 #. Default: "No responses can be added."
-#: ../templates/task_view.pt:188
+#: ../templates/task_view.pt:216
 msgid "msg_no_responses_can_be_added"
 msgstr ""
 
 #. Default: "Added by"
-#: ../templates/task_view.pt:162
+#: ../templates/task_view.pt:190
 msgid "task_added_by"
 msgstr ""
 
 #. Default: "on"
-#: ../templates/task_view.pt:167
+#: ../templates/task_view.pt:195
 msgid "task_added_on"
 msgstr ""
 
 #. Default: "Files"
-#: ../templates/task_view.pt:94
+#: ../templates/task_view.pt:117
 msgid "task_files"
 msgstr ""
 
 #. Default: "Select a change of state in the task this response is for, if applicable"
-#: ../templates/task_view.pt:250
+#: ../templates/task_view.pt:278
 msgid "task_help_issueTransition"
 msgstr ""
 
 #. Default: "Select the priority for this task"
-#: ../templates/task_view.pt:281
+#: ../templates/task_view.pt:309
 msgid "task_help_newPriority"
 msgstr ""
 
 #. Default: "Select the responsible for this task"
-#: ../templates/task_view.pt:309
+#: ../templates/task_view.pt:337
 msgid "task_help_newResponsible"
 msgstr ""
 
 #. Default: "Please enter your response below"
-#: ../templates/task_view.pt:222
+#: ../templates/task_view.pt:250
 msgid "task_help_response"
 msgstr ""
 
 #. Default: "Images"
-#: ../templates/task_view.pt:76
+#: ../templates/task_view.pt:99
 msgid "task_images"
 msgstr ""
 
 #. Default: "Change task state"
-#: ../templates/task_view.pt:245
+#: ../templates/task_view.pt:273
 msgid "task_label_issueTransition"
 msgstr ""
 
 #. Default: "Change task priority"
-#: ../templates/task_view.pt:276
+#: ../templates/task_view.pt:304
 msgid "task_label_newPriority"
 msgstr ""
 
 #. Default: "Change responsible"
-#: ../templates/task_view.pt:304
+#: ../templates/task_view.pt:332
 msgid "task_label_newResponsible"
 msgstr ""
 
 #. Default: "Response"
-#: ../templates/task_view.pt:219
+#: ../templates/task_view.pt:247
 msgid "task_label_response"
 msgstr ""
 
@@ -325,7 +378,7 @@ msgid "tasksfolder_title"
 msgstr ""
 
 #. Default: "Add response"
-#: ../templates/task_view.pt:213
+#: ../templates/task_view.pt:241
 msgid "title_add_response"
 msgstr ""
 
