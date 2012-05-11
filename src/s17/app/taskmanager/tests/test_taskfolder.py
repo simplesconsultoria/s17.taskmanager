@@ -57,8 +57,6 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue(IAttributeUUID.providedBy(self.obj))
 
     def test_allowed_content_types(self):
-        #setRoles(self.portal, TEST_USER_ID, ['Manager'])
-
         expected = ['s17.app.taskmanager.task']
         allowed_types = [t.getId() for t in self.obj.allowedContentTypes()]
         self.assertListEqual(expected, allowed_types)
