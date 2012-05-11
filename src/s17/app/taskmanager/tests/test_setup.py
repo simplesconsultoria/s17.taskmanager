@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import unittest2 as unittest
 
 from zope.site.hooks import setSite
@@ -11,9 +12,6 @@ from plone.app.testing import setRoles
 from s17.app.taskmanager.testing import INTEGRATION_TESTING
 from s17.app.taskmanager.config import PROJECTNAME
 
-DEPENDENCIES = (
-    'collective.upload',
-    )
 
 class BaseTestCase(unittest.TestCase):
     """base test case to be used by other tests"""
@@ -21,7 +19,7 @@ class BaseTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUpUser(self):
-        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer',])
+        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer'])
         login(self.portal, TEST_USER_NAME)
 
     def setUp(self):
@@ -43,9 +41,9 @@ class TestInstall(BaseTestCase):
                         '%s not installed' % PROJECTNAME)
 
     def test_dependencies_installed(self):
-        for p in DEPENDENCIES:
-            self.assertTrue(self.qi.isProductInstalled(p),
-                '%s not installed' % p)
+        self.assertTrue(self.qi.isProductInstalled('collective.upload'),
+                        'collective.upload not installed')
+
 
 class TestUninstall(BaseTestCase):
     """ensure product is properly uninstalled"""
@@ -56,7 +54,3 @@ class TestUninstall(BaseTestCase):
 
     def test_uninstalled(self):
         self.assertFalse(self.qi.isProductInstalled(PROJECTNAME))
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

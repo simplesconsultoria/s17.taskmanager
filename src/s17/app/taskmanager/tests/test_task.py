@@ -57,12 +57,11 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue(IAttributeUUID.providedBy(self.obj))
 
     def test_allowed_content_types(self):
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        #setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
-        types = ['Image', 'File']
+        expected = ['Image', 'File']
         allowed_types = [t.getId() for t in self.obj.allowedContentTypes()]
-        for t in types:
-            self.assertTrue(t in allowed_types)
+        self.assertListEqual(expected, allowed_types)
 
         # trying to add any other content type raises an error
         self.assertRaises(ValueError,
@@ -73,7 +72,3 @@ class IntegrationTest(unittest.TestCase):
             self.obj.invokeFactory('File', 'file')
         except Unauthorized:
             self.fail()
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)
