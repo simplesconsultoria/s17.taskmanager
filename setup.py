@@ -13,6 +13,7 @@ long_description = open("README.txt").read() + "\n" + \
 setup(name='s17.app.taskmanager',
       version=version,
       description="",
+      long_description=long_description,
       classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
@@ -44,8 +45,8 @@ setup(name='s17.app.taskmanager',
         'plone.app.relationfield',
         'plone.namedfile[blobs]',
         'plone.principalsource',
-        'collective.watcherlist>=0.3',
-        'collective.upload>=1.0b1',
+        'collective.watcherlist',
+        'collective.upload>=1.0b2',
         ],
       extras_require={
         'test': ['plone.app.testing'],
