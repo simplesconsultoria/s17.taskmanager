@@ -9,7 +9,6 @@ long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
                    open(os.path.join("docs", "HISTORY.txt")).read()
 
-
 setup(name='s17.app.taskmanager',
       version=version,
       description="",
@@ -26,6 +25,7 @@ setup(name='s17.app.taskmanager',
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 2.7",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='python plone zope simples_consultoria',
