@@ -1,7 +1,7 @@
 Changelog
 ----------
 
-1.0a3 (unreleased)
+1.0a3 (2012-06-08)
 ^^^^^^^^^^^^^^^^^^
 
 - Improved history for changes in the task. [lepri]
