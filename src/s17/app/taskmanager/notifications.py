@@ -120,7 +120,7 @@ class NewTaskMail(BaseMail):
         if taskCreatorInfo:
             taskAuthor = taskCreatorInfo['fullname'] or taskCreator
 
-        taskText = context.text
+        taskText = context.text.raw
         if taskText:
             paras = taskText.splitlines()
             taskDetails = '\n\n'.join([wrapper.fill(p) for p in paras])

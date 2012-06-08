@@ -45,11 +45,12 @@ class ITask(form.Schema):
         title=_(u'Priority'),
         description=_(''),
         required=True,
-        values= [_(u'Baixa'), _(u'Normal'), _(u'Alta')],
+        values= [ _(u'Alta'), _(u'Normal'), _(u'Baixa')],
+        default=_(u'Normal'),
     )
 
     text = RichText(
-        title=_(u'Body text'),
+        title=_(u'Task Detail'),
         description=_(''),
         default_mime_type='text/structured',
         output_mime_type='text/html',
@@ -77,6 +78,6 @@ class ITask(form.Schema):
         required=False,
     )
 
-@form.default_value(field=ITask['provided_date'])
-def provided_date_default_value(data):
-    return datetime.today()
+#@form.default_value(field=ITask['provided_date'])
+#def provided_date_default_value(data):
+#    return datetime.today()
