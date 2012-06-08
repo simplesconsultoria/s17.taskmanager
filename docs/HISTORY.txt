@@ -4,7 +4,9 @@ Changelog
 1.0a3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Improved history for changes in the task. [lepri]
+- Improved view for task [lepri]
+- Added icon for task content [lepri]
 
 
 1.0a2 (2012-05-21)
