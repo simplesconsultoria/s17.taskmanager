@@ -120,9 +120,9 @@ class NewTaskMail(BaseMail):
         if taskCreatorInfo:
             taskAuthor = taskCreatorInfo['fullname'] or taskCreator
 
-        taskText = context.text.raw
+        taskText = context.text
         if taskText:
-            paras = taskText.splitlines()
+            paras = taskText.raw.splitlines()
             taskDetails = '\n\n'.join([wrapper.fill(p) for p in paras])
         else:
             taskDetails = _('email_null_task_details',u"""No details in the task """)
