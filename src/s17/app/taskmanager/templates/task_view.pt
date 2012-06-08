@@ -194,18 +194,36 @@
                       tal:content="creator/name_or_id" />
                     <span i18n:translate="task_added_on">on</span>
                 <span class="contact-user"
-                      tal:content="python:toLocalizedTime(response.date, long_format=True)" />
-                    <div tal:repeat="delta response/changes">
-                        <span i18n:translate="" tal:content="string:${delta/name}" />:
-                    <span class="taskChange"
-                          i18n:translate=""
-                          i18n:domain="plone"
-                          tal:content="delta/before" />
-                        &#8594;
-                    <span class="taskChange"
-                          i18n:translate=""
-                          i18n:domain="plone"
-                          tal:content="delta/after" />
+                      tal:content="python:toLocalizedTime(response.date, long_format=True)"/>
+                    <div tal:repeat="delta response/changes"
+                         tal:define="DateTime python:modules['DateTime'].DateTime">
+                        <div tal:condition="python:delta['id'] != 'provided_date'">
+                            <span i18n:translate="" tal:content="string:${delta/name}" />:
+                            <span class="taskChange"
+                                  i18n:translate=""
+                                  i18n:domain="plone"
+                                  tal:content="delta/before" />
+                                &#8594;
+                            <span class="taskChange"
+                                  i18n:translate=""
+                                  i18n:domain="plone"
+                                  tal:content="delta/after" />
+                        </div>
+                        <div tal:condition="python:delta['id'] == 'provided_date'"
+                             tal:define="before python:delta['before'];
+                                         after python:delta['after'];">
+                            <span i18n:translate="" tal:content="string:${delta/name}" />:
+                            <span class="taskChange"
+                                  i18n:translate=""
+                                  i18n:domain="plone"
+                                  tal:content=" python:toLocalizedTime(DateTime(before.isoformat()))" />
+                            &#8594;
+                            <span class="taskChange"
+                                  i18n:translate=""
+                                  i18n:domain="plone"
+                                  tal:content="python: toLocalizedTime(DateTime(after.isoformat()))" />
+                        </div>
+
                     </div>
                 </div>
                 <span tal:replace="structure html" />
@@ -254,9 +272,12 @@
                     <div>
                         <tal:block define="inputname string:response;
                                    inputvalue string:;
-                                   member python:context.portal_membership.getAuthenticatedMember();
-                                   editor python:member.getProperty('wysiwyg_editor', 'plone_wysiwyg').lower();
                                    portal context/@@plone_portal_state/portal;
+                                   member context/@@plone_portal_state/member;
+                                   site_properties context/portal_properties/site_properties;
+                                   default_editor python:site_properties.getProperty('default_editor').lower();
+                                   user_editor python:member.getProperty('wysiwyg_editor', 'plone_wysiwyg').lower();
+                                   editor python:user_editor or default_editor;
                                    portal_url context/@@plone_portal_state/portal_url;
                                    here_url context/@@plone_context_state/object_url;
                                    support python: path('nocall:here/%s_wysiwyg_support|here/%s/wysiwyg_support|here/portal_skins/plone_wysiwyg/wysiwyg_support' % (editor, editor));"
@@ -268,7 +289,7 @@
 
                 </div>
 
-                <div class="field"
+                <div style="float: left; width: 49%;"
                      tal:condition="view/transitions_for_display">
                     <label for="transition"
                            i18n:translate="task_label_issueTransition">
@@ -300,7 +321,7 @@
                 </div>
 
 
-                <div class="field">
+                <div style="float: right; width: 49%;">
                     <label for="priority"
                            i18n:translate="task_label_newPriority">
                         Change task priority
@@ -327,7 +348,9 @@
                     </tal:options>
                 </div>
 
-                <div class="field"
+                <div class="visualClear"><!----></div>
+
+                <div style="float: left; width: 49%;"
                      tal:condition="view/responsibles_for_display">
                     <label for="responsible"
                            i18n:translate="task_label_newResponsible">
@@ -356,11 +379,13 @@
                     </tal:options>
                 </div>
 
-                <div id="provided_date"
-                     class="field z3cformInlineValidation kssattr-fieldname-form.widgets.provided_date">
+                <div style="float: right; width: 49%;"
+                     id="expected_date"
+                     class="z3cformInlineValidation kssattr-fieldname-form.widgets.expected_date">
 
-                    <label class="horizontal" for="provided_date">
-                        Provided date
+                    <label class="horizontal" for="expected_date"
+                           i18n:translate="">
+                        Expected date
                     </label>
                     <input type="text"
                            value=""
@@ -412,6 +437,9 @@
                         }
                     </script>
                 </div>
+
+                <div class="visualClear"><!----></div>
+
                 <div class="formControls">
                     <input class="standalone" value="Submit" type="submit"
                            i18n:domain="plone" i18n:attributes="value"/>

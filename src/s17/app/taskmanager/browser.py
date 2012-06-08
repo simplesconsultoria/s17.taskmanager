@@ -110,7 +110,7 @@ class BaseView:
     def priority_for_display(self):
         """Get the available priorities for this issue.
         """
-        vocab = [_(u'Baixa'), _(u'Normal'), _(u'Alta')]
+        vocab = [_(u'Alta'), _(u'Normal'), _(u'Baixa')]
         options = []
         for value in vocab:
             checked = (value == self.priority) and "checked" or ""
@@ -120,13 +120,18 @@ class BaseView:
 
     @property
     def available_priority(self):
-        vocab = [_(u'Baixa'), _(u'Normal'), _(u'Alta')]
+        vocab = [_(u'Alta'), _(u'Normal'), _(u'Baixa')]
         return vocab
 
     @property
     def available_responsibles(self):
-        vocab = [_(u'Baixa'), _(u'Normal'), _(u'Alta')]
-        return vocab
+        context = aq_inner(self.context)
+        users_factory = getUtility(IVocabularyFactory, name=u"plone.principalsource.Users")
+        users = users_factory(context)
+        if users:
+            return [value.token for value in users]
+        else:
+            return []
 
 class TaskFolderView(dexterity.DisplayForm):
     grok.context(ITaskFolder)
@@ -248,6 +253,11 @@ class CreateResponse(grok.View, BaseView):
     def render(self):
         form = self.request.form
         context = aq_inner(self.context)
+
+        task_has_changed = False
+
+        current_responsible = context.__getattribute__('responsible')
+
         response_text = form.get('response', u'')
         responsible = form.get('responsible', u'')
         if responsible:
@@ -261,7 +271,27 @@ class CreateResponse(grok.View, BaseView):
             new_response = Response(response_text)
         folder = IResponseContainer(self.context)
 
-        task_has_changed = False
+        options = [
+            ('priority', _(u'Priority'), 'available_priority'),
+            ('responsible', _(u'Responsible'),'available_responsibles'),
+            ]
+
+        # Changes that need to be applied to the issue (apart from
+        # workflow changes that need to be handled separately).
+
+        changes = {}
+        for option, title, vocab in options:
+            new = form.get(option, u'')
+            if new and new in self.__getattribute__(vocab):
+                current = context.__getattribute__(option)
+                if option == 'responsible':
+                    current = current_responsible
+                if current != new:
+                    changes[option] = new
+                    new_response.add_change(option, title,
+                        current, new)
+                    task_has_changed = True
+
         transition = form.get('transition', u'')
         if transition and transition in self.available_transitions:
             wftool = getToolByName(context, 'portal_workflow')
@@ -291,27 +321,11 @@ class CreateResponse(grok.View, BaseView):
             date = '%s/%s/%s' %(day,month,year)
             formatter = self.request.locale.dates.getFormatter("date", "short")
             dateobj = formatter.parse(date)
+            current = context.__getattribute__('provided_date')
             context.provided_date = dateobj
+            changes['provided_date'] = dateobj
+            new_response.add_change('provided_date', _(u'Expected date'), current, dateobj)
             task_has_changed = True
-
-        options = [
-            ('priority', _(u'Priority'), 'available_priority'),
-            ('responsible', _(u'Responsible'),'available_responsibles'),
-        ]
-        # Changes that need to be applied to the issue (apart from
-        # workflow changes that need to be handled separately).
-
-        #TODO: improve changes information
-        changes = {}
-        for option, title, vocab in options:
-            new = form.get(option, u'')
-            if new and new in self.__getattribute__(vocab):
-                current = context.__getattribute__(option)
-                if current != new:
-                    changes[option] = new
-                    new_response.add_change(option, title,
-                        current, new)
-                    task_has_changed = True
 
         if len(response_text) == 0 and not task_has_changed:
             status = IStatusMessage(self.request)
