@@ -254,7 +254,7 @@ ${response_details}
         subject = _(
             'email_new_response_subject_template',
             u"Re: ${task_title}",
-            mapping=dict(issue_title=su(context.title)))
+            mapping=dict(task_title=su(context.title)))
         # Ensure that the subject is unicode and translate it too.
         subject = su(subject)
         subject = translate(subject, 's17.app.taskmanager', context=self.request)

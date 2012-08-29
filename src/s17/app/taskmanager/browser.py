@@ -74,7 +74,10 @@ class BaseView:
         context = aq_inner(self.context)
         users_factory = getUtility(IVocabularyFactory, name=u"plone.principalsource.Users")
         users = users_factory(context)
-        options = [{'checked':'','value':'nobody','label':_('Nobody')},]
+        if not self.res:
+            options = [{'checked':'checked','value':'nobody','label':_('Nobody')},]
+        else:
+            options = [{'checked':'','value':'nobody','label':_('Nobody')},]
         for value in users:
             values = {}
             values['checked'] = (value.token == self.res) and "checked" or ""
@@ -272,7 +275,7 @@ class CreateResponse(grok.View, BaseView):
         folder = IResponseContainer(self.context)
 
         options = [
-            ('priority', _(u'Priority'), 'available_priority'),
+#            ('priority', _(u'Priority'), 'available_priority'),
             ('responsible', _(u'Responsible'),'available_responsibles'),
             ]
 

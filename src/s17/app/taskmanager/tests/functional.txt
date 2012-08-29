@@ -55,9 +55,10 @@ As admin, we create a Panel Tasks to include the tasks in there:
     >>> 'Item criado' in browser.contents
     True
 
+
 Adding a task
 --------------
-Now we add some ideas in the painel tasks.
+Now we add some tasks in the painel tasks.
     >>> browser.getLink(id='s17-app-taskmanager-task').click()
     >>> browser.getControl('Nome da tarefa').value = 'Uma tarefa'
     >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
@@ -66,32 +67,31 @@ Now we add some ideas in the painel tasks.
     >>> ctrl.value = ['someuser']
     >>> ctrl = browser.getControl(name='form.widgets.priority:list')
     >>> ctrl.options
-    ['Low', 'Normal', 'High']
+    ['Alta', 'Normal', 'Baixa']
     >>> ctrl.value = ['Normal']
     >>> browser.getControl(name='form.widgets.text').value = "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin eget dui. Phasellus tristique adipiscing justo. Vestibulum mattis, lorem vitae tristique molestie, turpis mi congue ligula, eget placerat libero mi quis massa. Proin pretium dictum nulla.</p>"
     >>> browser.getControl('Salvar').click()
     >>> 'Item criado' in browser.contents
     True
 
-An idea can contain images:
+Add response:
 
     >>> browser.getLink('Página Inicial').click()
     >>> browser.getLink('Painel de Tarefas').click()
     >>> browser.getLink('Uma tarefa').click()
-    >>> browser.getLink('Imagem').click()
-    >>> from zope.app.file.tests.test_image import zptlogo
-    >>> ctrl = browser.getControl(name='image_file')
-    >>> ctrl.add_file(StringIO(zptlogo), 'image/gif', 'zpt.gif')
-    >>> browser.getControl('Salvar').click()
-    >>> 'Alterações salvas' in browser.contents
-    True
-
-An idea can contain files:
-
-    >>> browser.getLink('Uma tarefa').click()
-    >>> browser.getLink('Arquivo').click()
-    >>> ctrl = browser.getControl(name='file_file')
-    >>> ctrl.add_file(StringIO('File contents'), 'text/plain', 'test.txt')
-    >>> browser.getControl('Salvar').click()
+    >>> browser.getControl(name='response').value = "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin eget dui. Phasellus tristique adipiscing justo. Vestibulum mattis, lorem vitae tristique molestie, turpis mi congue ligula, eget placerat libero mi quis massa. Proin pretium dictum nulla.</p>"
+    >>> ctrl = browser.getControl(name='transition')
+    >>> ctrl.options
+    ['', 'close', 'assign', 'reject']
+    >>> ctrl.value = ['close']
+    >>> ctrl = browser.getControl(name='responsible')
+    >>> ctrl.options
+    ['nobody', 'someuser', 'test_user_1_']
+    >>> ctrl.value = ['test_user_1_']
+    >>> ctrl = browser.getControl(name='priority')
+    >>> ctrl.options
+    ['Alta', 'Normal', 'Baixa']
+    >>> ctrl.value = ['Alta']
+    >>> browser.getControl('Enviar').click()
     >>> 'Alterações salvas' in browser.contents
     True
