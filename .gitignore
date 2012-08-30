@@ -4,10 +4,10 @@
 *.pyc
 .installed.cfg
 .mr.developer.cfg
+library-settings.txt
 bin/
 develop-eggs/
 downloads/
 eggs/
 parts/
 var/
-
