@@ -36,7 +36,7 @@
                 icon=""
                 i18n:translate="">Assign</action>
         <guard>
-            <guard-permission>Review portal content</guard-permission>
+            <guard-permission>Modify portal content</guard-permission>
         </guard>
     </transition>
     <transition transition_id="close"
@@ -51,7 +51,7 @@
                 icon=""
                 i18n:translate="">Close</action>
         <guard>
-            <guard-permission>Review portal content</guard-permission>
+            <guard-permission>Modify portal content</guard-permission>
         </guard>
     </transition>
     <transition transition_id="reject"
@@ -66,7 +66,7 @@
                 icon=""
                 i18n:translate="">Reject</action>
         <guard>
-            <guard-permission>Review portal content</guard-permission>
+            <guard-permission>Modify portal content</guard-permission>
         </guard>
     </transition>
     <transition transition_id="reopen"
@@ -81,7 +81,7 @@
                 icon=""
                 i18n:translate="">Reopen</action>
         <guard>
-            <guard-permission>Review portal content</guard-permission>
+            <guard-permission>Modify portal content</guard-permission>
         </guard>
     </transition>
     <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
