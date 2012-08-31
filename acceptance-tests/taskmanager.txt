@@ -8,14 +8,17 @@ Suite Setup  Setup
 
 *** Test cases ***
 
-Test Add User
+Test Add User 1
     Goto Homepage
     Add User  someuser  Some User  someuser@email.com  password
 
+Test Add User 2
+    Goto Homepage
+    Add User  someuser2  Some User2  someuser2@email.com  password
+
 Test Add Task Folder
     Goto Homepage
-    Add Panel Tasks  Tasks
-
+    Add Panel Tasks  Tasks  someuser  someuser2
 
 *** Keywords ***
 
@@ -30,18 +33,20 @@ Add User
     Input Text  form.fullname  ${full_name}
     Input Text  form.username  ${user_name}
     Input Text  form.email  ${email}
-    Input Text  form.password  ${password}
-    Input Text  form.password_ctl  ${password}
+    Input Password  form.password  ${password}
+    Input Password  form.password_ctl  ${password}
     Click Button  Register
     Page Should Contain  ${full_name}
 
 Add Panel Tasks
-    [arguments]  ${title}
+    [arguments]  ${title}  ${responsible}  ${can_add_tasks}
 
     Open Add New Menu
     Click Link  css=a#s17-app-taskmanager-taskfolder
     Page Should Contain  Add Panel tasks
     Input Text  css=input#form-widgets-IBasic-title  ${title}
+    Select From List   xpath=//select[@name="form.widgets.responsible:list"]  ${responsible}
+    Select From List   xpath=//select[@name="form.widgets.can_add_tasks.from"]  ${can_add_tasks}
     Click Button  Save
     Page Should Contain  Item created
 
