@@ -259,7 +259,10 @@ class CreateResponse(grok.View, BaseView):
 
         task_has_changed = False
 
-        current_responsible = context.__getattribute__('responsible')
+        try:
+            current_responsible = context.__getattribute__('responsible')
+        except AttributeError:
+            current_responsible = None
 
         response_text = form.get('response', u'')
         responsible = form.get('responsible', u'')
@@ -275,7 +278,7 @@ class CreateResponse(grok.View, BaseView):
         folder = IResponseContainer(self.context)
 
         options = [
-#            ('priority', _(u'Priority'), 'available_priority'),
+            ('priority', _(u'Priority'), 'available_priority'),
             ('responsible', _(u'Responsible'),'available_responsibles'),
             ]
 
@@ -286,7 +289,10 @@ class CreateResponse(grok.View, BaseView):
         for option, title, vocab in options:
             new = form.get(option, u'')
             if new and new in self.__getattribute__(vocab):
-                current = context.__getattribute__(option)
+                try:
+                    current = context.__getattribute__(option)
+                except AttributeError:
+                    current = None
                 if option == 'responsible':
                     current = current_responsible
                 if current != new:

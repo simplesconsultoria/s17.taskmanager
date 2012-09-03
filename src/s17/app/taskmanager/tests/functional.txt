@@ -93,5 +93,5 @@ Add response:
     ['Alta', 'Normal', 'Baixa']
     >>> ctrl.value = ['Alta']
     >>> browser.getControl('Enviar').click()
-    >>> 'Alterações salvas' in browser.contents
+    >>> 'Adicionado por' in browser.contents
     True
