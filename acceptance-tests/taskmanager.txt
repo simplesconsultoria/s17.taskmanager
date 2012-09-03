@@ -37,6 +37,22 @@ Test Add Second Task
     Click Link  Tasks
     Add Task  Second Task  someuser  Baixa
 
+Test Add Response Fist Task
+    Goto Homepage
+    Log Out
+    Log In  someuser  password
+    Click Link  Tasks
+    Click Link  First Task
+    Add Response  assign  someuser2  Alta
+
+Test Add Response Second Task
+    Goto Homepage
+    Log Out
+    Log In  someuser2  password
+    Click Link  Tasks
+    Click Link  Second Task
+    Add Response  assign  someuser  Baixa
+
 *** Keywords ***
 
 Setup
@@ -79,6 +95,15 @@ Add Task
     Select From List  xpath=//select[@name="form.widgets.priority:list"]  ${priority}
     Click Button  Save
     Page Should Contain  Item created
+
+Add Response
+    [arguments]  ${state}  ${responsible}  ${priority}
+
+    Select Radio Button  transition  ${state}
+    Select Radio Button  responsible  ${responsible}
+    Select Radio Button  priority  ${priority}
+    Click Button  Submit
+    Page Should Contain  Added by
 
 
 
