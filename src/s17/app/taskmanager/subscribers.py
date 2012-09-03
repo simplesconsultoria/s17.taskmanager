@@ -5,11 +5,14 @@ from datetime import date
 
 from collective.watcherlist.interfaces import IWatcherList
 
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
+
+from AccessControl import getSecurityManager
 
 from Products.CMFCore.interfaces import IActionSucceededEvent
+from Products.CMFCore.utils import getToolByName
 
-from s17.app.taskmanager.content import ITask
+from s17.app.taskmanager.content import ITask, ITaskFolder
 from s17.app.taskmanager.adapters import IResponse
 
 
@@ -34,6 +37,9 @@ def added_response(object, event):
     watchers = IWatcherList(task)
     if object.responsible:
         watchers.watchers.append(object.responsible)
+        for user in task.users_with_local_role('Manager'):
+            task.manage_delLocalRoles(userids=[user])
+        task.manage_setLocalRoles(task.responsible, ['Manager'],)
     if ITask.providedBy(task):
         send_response_notification_mail(task)
 
@@ -42,12 +48,15 @@ def added_response(object, event):
 def set_task_initial_date(task, event):
     ''' This subscriber will set the initial date
         for the task and send email for the
-        author and for the responsible for the task
+        author and for the responsible for the task.
+        And create a local role enable responsible to
+        add tasks
     '''
     watchers = IWatcherList(task)
     watchers.toggle_watching()
     if task.responsible:
         watchers.watchers.append(task.responsible)
+        task.manage_setLocalRoles(task.responsible, ['Manager'],)
     task.initial_date = date.today()
     send_task_notification_mail(task)
 
@@ -60,3 +69,30 @@ def set_task_end_date(task, event):
     if event.action in ['close', ]:
         task.end_date = date.today()
         send_closed_task_mail(task)
+
+@grok.subscribe(ITaskFolder, IObjectAddedEvent)
+def set_add_taskfolder_local_role(taskfolder, event):
+    ''' This subscriber will create a local role enable responsible to
+        add tasks
+    '''
+    if taskfolder.can_add_tasks:
+        for user in taskfolder.can_add_tasks:
+            taskfolder.manage_setLocalRoles(user, ['Owner'],)
+    if taskfolder.responsible:
+        taskfolder.manage_setLocalRoles(taskfolder.responsible, ['Manager'],)
+
+@grok.subscribe(ITaskFolder, IObjectModifiedEvent)
+def set_edit_taskfolder_local_role(taskfolder, event):
+    ''' This subscriber will create a local role enable responsible to
+        add tasks
+    '''
+    for user in taskfolder.users_with_local_role('Owner'):
+        taskfolder.manage_delLocalRoles(userids=[user])
+    if taskfolder.can_add_tasks:
+        for user in taskfolder.can_add_tasks:
+            taskfolder.manage_setLocalRoles(user, ['Owner'],)
+
+    for user in taskfolder.users_with_local_role('Manager'):
+        taskfolder.manage_delLocalRoles(userids=[user])
+    if taskfolder.responsible:
+        taskfolder.manage_setLocalRoles(taskfolder.responsible, ['Manager'],)
