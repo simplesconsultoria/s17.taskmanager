@@ -71,34 +71,5 @@ class BrowserLayerTest(unittest.TestCase):
 
         self.assertFalse(responsibles != view.responsibles_for_display)
 
-#        import pdb;pdb.set_trace()
-
-
-#
-#        self.assertEquals(0, len(view.download()))
-#        self.assertEquals(0, len(view.uploaded()))
-#
-#        # add a file as customer; skip permissions
-#        _createObjectByType('File', self.client, 'file-not-marked')
-#        _file = self.client['file-not-marked']
-#        self.assertFalse(ISOAPFileMarker.providedBy(_file))
-#
-#        self.assertEquals(0, len(view.download()))
-#        self.assertEquals(1, len(view.uploaded()))
-#
-#        self.make_user_member_of_soap()
-#        self.assertEquals(1, len(view.download()))
-#        self.assertEquals(0, len(view.uploaded()))
-#
-#        # add a file as Soap staff
-#        _createObjectByType('File', self.client, 'file-marked')
-#        _file = self.client['file-marked']
-#        alsoProvides(_file, ISOAPFileMarker)
-#        _file.reindexObject()
-#        self.assertTrue(ISOAPFileMarker.providedBy(_file))
-#
-#        self.assertEquals(1, len(view.download()))
-#        self.assertEquals(1, len(view.uploaded()))
-
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)

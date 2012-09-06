@@ -18,9 +18,6 @@ class Fixture(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
         self.applyProfile(portal, 's17.app.taskmanager:default')
-        pl = portal.portal_languages
-        if pl.getDefaultLanguage() != 'pt-br':
-            pl.setDefaultLanguage('pt-br')
 
         from zope.component import getGlobalSiteManager
         from s17.app.taskmanager.subscribers import set_task_initial_date
