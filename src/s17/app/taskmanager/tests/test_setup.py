@@ -2,39 +2,18 @@
 
 import unittest2 as unittest
 
-from zope.site.hooks import setSite
-
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import login
-from plone.app.testing import setRoles
-
 from s17.app.taskmanager.testing import INTEGRATION_TESTING
 from s17.app.taskmanager.config import PROJECTNAME
 
 
-class BaseTestCase(unittest.TestCase):
-    """base test case to be used by other tests"""
+class InstallTestCase(unittest.TestCase):
+    """ensure product is properly installed"""
 
     layer = INTEGRATION_TESTING
 
-    def setUpUser(self):
-        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer'])
-        login(self.portal, TEST_USER_NAME)
-
     def setUp(self):
-        portal = self.layer['portal']
-        setSite(portal)
-        self.portal = portal
-        self.qi = getattr(self.portal, 'portal_quickinstaller')
-        self.pp = getattr(self.portal, 'portal_properties')
-        self.wt = getattr(self.portal, 'portal_workflow')
-        self.st = getattr(self.portal, 'portal_setup')
-        self.setUpUser()
-
-
-class TestInstall(BaseTestCase):
-    """ensure product is properly installed"""
+        self.portal = self.layer['portal']
+        self.qi = self.portal['portal_quickinstaller']
 
     def test_installed(self):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
@@ -45,15 +24,15 @@ class TestInstall(BaseTestCase):
                         'collective.upload not installed')
 
 
-class TestUninstall(BaseTestCase):
+class UninstallTestCase(unittest.TestCase):
     """ensure product is properly uninstalled"""
 
+    layer = INTEGRATION_TESTING
+
     def setUp(self):
-        BaseTestCase.setUp(self)
+        self.portal = self.layer['portal']
+        self.qi = self.portal['portal_quickinstaller']
         self.qi.uninstallProducts(products=[PROJECTNAME])
 
     def test_uninstalled(self):
         self.assertFalse(self.qi.isProductInstalled(PROJECTNAME))
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

@@ -69,6 +69,3 @@ class IntegrationTest(unittest.TestCase):
             self.obj.invokeFactory('s17.app.taskmanager.task', 'foo')
         except Unauthorized:
             self.fail()
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

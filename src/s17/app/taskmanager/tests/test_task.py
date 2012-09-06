@@ -75,6 +75,3 @@ class IntegrationTest(unittest.TestCase):
             self.obj.invokeFactory('File', 'file')
         except Unauthorized:
             self.fail()
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)
