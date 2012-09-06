@@ -80,7 +80,7 @@ Add Panel Tasks
     Input Text  css=input#form-widgets-IBasic-title  ${title}
     Select From List  xpath=//select[@name="form.widgets.responsible:list"]  ${responsible}
     Select From List  xpath=//select[@name="form.widgets.can_add_tasks.from"]  ${can_add_tasks}
-    Click Button  xpath=//button[@name="from2toButton"]  don't wait
+    Click Button  xpath=//button[@name="from2toButton"]
     Click Button  Save
     Page Should Contain  Item created
 

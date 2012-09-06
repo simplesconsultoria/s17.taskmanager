@@ -25,4 +25,3 @@ Changelog
 ^^^^^^^^^^^^^^^^^^
 
  - Initial release.
-
