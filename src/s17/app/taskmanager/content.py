@@ -8,6 +8,7 @@ from plone.app.textfield import RichText
 
 from s17.app.taskmanager import MessageFactory as _
 
+
 class ITaskFolder(form.Schema):
 
     responsible = schema.Choice(
@@ -21,8 +22,9 @@ class ITaskFolder(form.Schema):
         title=_(u'Who can add tasks?'),
         description=_(''),
         required=False,
-        value_type = schema.Choice(vocabulary='plone.principalsource.Principals'),
+        value_type=schema.Choice(vocabulary='plone.principalsource.Principals'),
     )
+
 
 class ITask(form.Schema):
 
@@ -43,7 +45,7 @@ class ITask(form.Schema):
         title=_(u'Priority'),
         description=_(''),
         required=True,
-        values= [ _(u'Alta'), _(u'Normal'), _(u'Baixa')],
+        values=[_(u'Alta'), _(u'Normal'), _(u'Baixa')],
         default=_(u'Normal'),
     )
 
@@ -75,7 +77,3 @@ class ITask(form.Schema):
         description=_(''),
         required=False,
     )
-
-#@form.default_value(field=ITask['provided_date'])
-#def provided_date_default_value(data):
-#    return datetime.today()

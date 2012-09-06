@@ -6,14 +6,16 @@ from s17.app.taskmanager.config import PRODUCTS
 
 PROJECT = 's17.app.taskmanager'
 
+
 def get_package_name(name):
     return name[9:] if name.startswith('Products') else name
+
 
 def fromZero(context):
     ''' Upgrade from Zero to version 1000
     '''
 
-    qi = getToolByName(context,'portal_quickinstaller')
+    qi = getToolByName(context, 'portal_quickinstaller')
 
     # Install dependencies for this upgrade
     # List package names

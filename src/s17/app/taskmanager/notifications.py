@@ -21,6 +21,7 @@ wrapper = textwrap.TextWrapper(initial_indent='    ', subsequent_indent='    ')
 
 grok.templatedir("templates")
 
+
 class BaseMail(grok.View):
     grok.baseclass()
 
@@ -93,7 +94,7 @@ class NewTaskMail(BaseMail):
             paras = taskText.raw.splitlines()
             taskDetails = '\n\n'.join([wrapper.fill(p) for p in paras])
         else:
-            taskDetails = _('email_null_task_details',u"""No details in the task """)
+            taskDetails = _('email_null_task_details', u"""No details in the task """)
         mail_text = _(
             'email_new_task_template',
             u"""A new task has been submitted by **${task_author}**.
@@ -132,6 +133,7 @@ ${task_details}
         subject = su(subject)
         subject = translate(subject, 's17.app.taskmanager', context=self.request)
         return subject
+
 
 class NewResponseMail(BaseMail):
     grok.context(ITask)

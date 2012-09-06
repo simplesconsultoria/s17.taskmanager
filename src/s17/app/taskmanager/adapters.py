@@ -22,6 +22,7 @@ from s17.app.taskmanager.content import ITask
 class IResponseContainer(Interface):
     pass
 
+
 class IResponse(Interface):
 
     text = Attribute("Text of this response")

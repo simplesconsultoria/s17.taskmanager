@@ -39,6 +39,7 @@ class WatcherView(grok.View):
         watchers.toggle_watching()
         self.request.RESPONSE.redirect(context.absolute_url())
 
+
 class BaseView:
 
     @Lazy
@@ -75,9 +76,9 @@ class BaseView:
         users_factory = getUtility(IVocabularyFactory, name=u"plone.principalsource.Users")
         users = users_factory(context)
         if not self.res:
-            options = [{'checked':'checked','value':'nobody','label':_('Nobody')},]
+            options = [{'checked':'checked', 'value':'nobody', 'label':_('Nobody')}, ]
         else:
-            options = [{'checked':'','value':'nobody','label':_('Nobody')},]
+            options = [{'checked':'', 'value':'nobody', 'label':_('Nobody')}, ]
         for value in users:
             values = {}
             values['checked'] = (value.token == self.res) and "checked" or ""
@@ -92,7 +93,7 @@ class BaseView:
         """Display the available transitions for this issue.
         """
         context = aq_inner(self.context)
-        if not self.memship.checkPermission('Modify portal content',context):
+        if not self.memship.checkPermission('Modify portal content', context):
             return []
         wftool = getToolByName(context, 'portal_workflow')
         transitions = []
@@ -136,6 +137,7 @@ class BaseView:
         else:
             return []
 
+
 class TaskFolderView(dexterity.DisplayForm):
     grok.context(ITaskFolder)
     grok.name("view")
@@ -159,8 +161,9 @@ class TaskFolderView(dexterity.DisplayForm):
     def tasks(self):
         ''' function to return all tasks in the container
         '''
-        ct = getToolByName(self.context,'portal_catalog')
-        tasks = ct(object_provides=ITask.__identifier__, path='/'.join(self.context.getPhysicalPath()))
+        ct = getToolByName(self.context, 'portal_catalog')
+        tasks = ct(object_provides=ITask.__identifier__,
+            path='/'.join(self.context.getPhysicalPath()))
         if tasks:
             return [dict(title=task.Title,
                          url=task.getURL(),
@@ -171,6 +174,7 @@ class TaskFolderView(dexterity.DisplayForm):
         else:
             return None
 
+
 class TaskView(dexterity.DisplayForm, BaseView):
     grok.context(ITask)
     grok.name("view")
@@ -178,17 +182,18 @@ class TaskView(dexterity.DisplayForm, BaseView):
     grok.require("zope2.View")
 
     def images(self):
-        ct = getToolByName(self.context,'portal_catalog')
-        images = ct(object_provides=IATImage.__identifier__,path = '/'.join(self.context.getPhysicalPath()))
+        ct = getToolByName(self.context, 'portal_catalog')
+        images = ct(object_provides=IATImage.__identifier__, path='/'.join(self.context.getPhysicalPath()))
         if images:
-            images = [ image.getObject() for image in images ]
+            images = [image.getObject() for image in images]
             return images
         else:
             return None
 
     def files(self):
-        ct = getToolByName(self.context,'portal_catalog')
-        files = ct(object_provides=IATFile.__identifier__,path = '/'.join(self.context.getPhysicalPath()))
+        ct = getToolByName(self.context, 'portal_catalog')
+        files = ct(object_provides=IATFile.__identifier__,
+            path='/'.join(self.context.getPhysicalPath()))
         if files:
             return files
         else:
@@ -213,11 +218,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
         month_names = calendar.getMonthNames()
 
         for i, month in enumerate(month_names):
-            yield dict(
-                name     = month,
-                value    = i+1,
-                selected = i+1 == selected)
-
+            yield dict(name=month, value=i + 1, selected=i + 1 == selected)
 
     def responsible(self):
         """ Return the fullname of the responsible for the task
@@ -247,6 +248,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
                 html=html)
             items.append(info)
         return items
+
 
 class CreateResponse(grok.View, BaseView):
     grok.context(ITask)
@@ -279,7 +281,7 @@ class CreateResponse(grok.View, BaseView):
 
         options = [
             ('priority', _(u'Priority'), 'available_priority'),
-            ('responsible', _(u'Responsible'),'available_responsibles'),
+            ('responsible', _(u'Responsible'), 'available_responsibles'),
             ]
 
         # Changes that need to be applied to the issue (apart from
@@ -331,7 +333,7 @@ class CreateResponse(grok.View, BaseView):
             year = year[2:]
 
         if day and month and year:
-            date = '%s/%s/%s' %(day,month,year)
+            date = '%s/%s/%s' % (day, month, year)
             formatter = self.request.locale.dates.getFormatter("date", "short")
             dateobj = formatter.parse(date)
             current = context.__getattribute__('provided_date')

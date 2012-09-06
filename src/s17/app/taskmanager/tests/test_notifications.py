@@ -46,6 +46,7 @@ CLOSED_TASK_MESSAGE = u'The task **Task** has been marked as resolved by ' \
 
 CLOSED_TASK_SUBJECT = u'[Resolved #Task]'
 
+
 class TestNotifications(unittest.TestCase):
     """Test email notifications
     """
@@ -93,13 +94,13 @@ class TestNotifications(unittest.TestCase):
     def test_new_response_mail(self):
         new_response_mail = getMultiAdapter((self.task, self.request),
             name=u'new-response-mail')
-        create_response =  getMultiAdapter((self.task, self.request),
+        create_response = getMultiAdapter((self.task, self.request),
             name=u'create_response')
 
         self.request.form['responsible'] = 'someuser'
         create_response.render()
 
-        self.request.set('response_id',0)
+        self.request.set('response_id', 0)
 
         for item in new_response_mail.prepare_email_message().items():
             self.assertTrue(item in MAIL_ITEMS)
@@ -116,6 +117,7 @@ class TestNotifications(unittest.TestCase):
 
         self.assertTrue(closed_task_mail.plain == CLOSED_TASK_MESSAGE)
         self.assertTrue(closed_task_mail.subject == CLOSED_TASK_SUBJECT)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)

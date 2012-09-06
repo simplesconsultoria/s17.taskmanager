@@ -29,8 +29,8 @@ class BrowserLayerTest(unittest.TestCase):
         self.task = folder['task']
 
     def test_views_registered_task(self):
-        views = ['view','create_response','edit_response','save_response',\
-                 'delete_response','watching']
+        views = ['view', 'create_response', 'edit_response', 'save_response',
+                 'delete_response', 'watching']
         registered = [v.name for v in registration.getViews(IDefaultBrowserLayer)]
         # empty set only if all 'views' are 'registered'
         self.assertEquals(set(views) - set(registered), set([]))
@@ -63,6 +63,7 @@ class BrowserLayerTest(unittest.TestCase):
                          'label': 'test-user'}]
 
         self.assertFalse(responsibles != view.responsibles_for_display)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)

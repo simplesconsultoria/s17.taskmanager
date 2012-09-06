@@ -9,6 +9,7 @@ from Products.GenericSetup.upgrade import listUpgradeSteps
 _PROJECT = 's17.app.taskmanager'
 _PROFILE_ID = 's17.app.taskmanager:default'
 
+
 def get_package_dependencies():
     """ XXX: document me!
     """
@@ -30,6 +31,7 @@ def get_package_dependencies():
             )
             dependencies.append(package)
     return dependencies
+
 
 def run_upgrades(context):
     ''' Run Upgrade steps

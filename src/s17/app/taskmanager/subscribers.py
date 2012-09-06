@@ -17,9 +17,11 @@ def send_response_notification_mail(task):
     watchers = IWatcherList(task)
     watchers.send('new-response-mail')
 
+
 def send_task_notification_mail(task):
     watchers = IWatcherList(task)
     watchers.send('new-task-mail')
+
 
 def send_closed_task_mail(task):
     watchers = IWatcherList(task)
@@ -67,6 +69,7 @@ def set_task_end_date(task, event):
         task.end_date = date.today()
         send_closed_task_mail(task)
 
+
 @grok.subscribe(ITaskFolder, IObjectAddedEvent)
 def set_add_taskfolder_local_role(taskfolder, event):
     ''' This subscriber will create a local role enable responsible to
@@ -77,6 +80,7 @@ def set_add_taskfolder_local_role(taskfolder, event):
             taskfolder.manage_setLocalRoles(user, ['Owner'],)
     if taskfolder.responsible:
         taskfolder.manage_setLocalRoles(taskfolder.responsible, ['Manager'],)
+
 
 @grok.subscribe(ITaskFolder, IObjectModifiedEvent)
 def set_edit_taskfolder_local_role(taskfolder, event):
