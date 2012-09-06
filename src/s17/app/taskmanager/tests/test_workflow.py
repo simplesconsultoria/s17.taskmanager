@@ -2,6 +2,8 @@
 
 import unittest2 as unittest
 
+from Products.CMFCore.WorkflowCore import WorkflowException
+
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import setRoles
@@ -53,16 +55,65 @@ class WorkflowTest(unittest.TestCase):
 
     def test_workflow_all_stages(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.fail(NotImplemented)
+        self.wt.doActionFor(self.obj, 'assign')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'assigned')
+        self.wt.doActionFor(self.obj, 'close')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'closed')
+
+    def test_tasks_can_be_reopened(self):
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.wt.doActionFor(self.obj, 'close')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'closed')
+        self.wt.doActionFor(self.obj, 'reopen')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'opened')
+        self.wt.doActionFor(self.obj, 'reject')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'closed')
+        self.wt.doActionFor(self.obj, 'reopen')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'opened')
+        self.wt.doActionFor(self.obj, 'assign')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'assigned')
+        self.wt.doActionFor(self.obj, 'close')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'closed')
+        self.wt.doActionFor(self.obj, 'reopen')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'opened')
+        self.wt.doActionFor(self.obj, 'close')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'closed')
 
     def test_workflow_direct(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.fail(NotImplemented)
+        self.wt.doActionFor(self.obj, 'close')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'closed')
 
     def test_workflow_transitions_not_allowed(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.fail(NotImplemented)
 
-    def test_workflow_permissions(self):
-        setRoles(self.portal, TEST_USER_ID, ['Member'])
-        self.fail(NotImplemented)
+        self.wt.doActionFor(self.obj, 'assign')
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'assigned')
+        # We cannot open a assigned task
+        self.assertRaises(WorkflowException,
+            self.wt.doActionFor,
+            self.obj, 'reopen')
+
+        # We can however, close it
+        self.wt.doActionFor(self.obj, 'close')
+
+        review_state = self.wt.getInfoFor(self.obj, 'review_state')
+        self.assertEqual(review_state, 'closed')
+
+        # we cannot assigned a closed task
+
+        self.assertRaises(WorkflowException,
+            self.wt.doActionFor,
+            self.obj, 'assign')
