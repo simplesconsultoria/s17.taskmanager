@@ -21,10 +21,14 @@ class Fixture(PloneSandboxLayer):
         pl = portal.portal_languages
         if pl.getDefaultLanguage() != 'pt-br':
             pl.setDefaultLanguage('pt-br')
+
         from zope.component import getGlobalSiteManager
         from s17.app.taskmanager.subscribers import set_task_initial_date
+        from s17.app.taskmanager.subscribers import added_response
+
         gsm = getGlobalSiteManager()
         gsm.unregisterHandler(set_task_initial_date)
+        gsm.unregisterHandler(added_response)
 
 FIXTURE = Fixture()
 INTEGRATION_TESTING = IntegrationTesting(

@@ -74,7 +74,32 @@ Now we add some tasks in the painel tasks.
     >>> 'Item criado' in browser.contents
     True
 
+Edit task:
+
+    >>> browser.getLink('Página Inicial').click()
+    >>> browser.getLink('Painel de Tarefas').click()
+    >>> browser.getLink('Uma tarefa').click()
+    >>> browser.getControl('Editar tarefa').click()
+    >>> ctrl = browser.getControl(name='form.widgets.priority:list')
+    >>> ctrl.options
+    ['Alta', 'Normal', 'Baixa']
+    >>> ctrl.value = ['Baixa']
+    >>> browser.getControl('Salvar').click()
+    >>> 'Alterações salvas' in browser.contents
+    True
+
 Add response:
+
+First, we'll add a new response without any information:
+
+    >>> browser.getLink('Página Inicial').click()
+    >>> browser.getLink('Painel de Tarefas').click()
+    >>> browser.getLink('Uma tarefa').click()
+    >>> browser.getControl(name='submit-response').click()
+    >>> 'Erro' in browser.contents
+    True
+
+The real response:
 
     >>> browser.getLink('Página Inicial').click()
     >>> browser.getLink('Painel de Tarefas').click()
@@ -84,14 +109,45 @@ Add response:
     >>> ctrl.options
     ['', 'close', 'assign', 'reject']
     >>> ctrl.value = ['close']
-    >>> ctrl = browser.getControl(name='responsible')
-    >>> ctrl.options
-    ['nobody', 'someuser', 'test_user_1_']
-    >>> ctrl.value = ['test_user_1_']
     >>> ctrl = browser.getControl(name='priority')
     >>> ctrl.options
     ['Alta', 'Normal', 'Baixa']
     >>> ctrl.value = ['Alta']
-    >>> browser.getControl('Enviar').click()
+    >>> browser.getControl(name='submit-response').click()
     >>> 'Adicionado por' in browser.contents
     True
+
+Edit response:
+
+First, we need to log in with another user
+
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = 'someuser'
+    >>> browser.getControl(name='__ac_password').value = 'secret'
+    >>> browser.getControl(name='submit').click()
+
+    >>> 'Você agora está autenticado' in browser.contents
+    True
+
+Now we'll edit the response
+
+    >>> browser.getLink('Página Inicial').click()
+    >>> browser.getLink('Painel de Tarefas').click()
+    >>> browser.getLink('Uma tarefa').click()
+    >>> browser.getControl(name='edit-response').click()
+    >>> 'Editar resposta' in browser.contents
+    True
+    >>> browser.getControl('Enviar').click()
+    >>> 'Alterações salvas para a resposta com id 0' in browser.contents
+    True
+
+Delete reponse:
+
+    >>> browser.getLink('Página Inicial').click()
+    >>> browser.getLink('Painel de Tarefas').click()
+    >>> browser.getLink('Uma tarefa').click()
+    >>> browser.getControl(name='delete-response').click()
+    >>> 'Resposta com o id 0 removida' in browser.contents
+    True
+
+

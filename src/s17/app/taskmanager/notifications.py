@@ -25,12 +25,6 @@ class BaseMail(grok.View):
     grok.baseclass()
 
     @property
-    def html(self):
-        """The html version of the e-mail.
-        """
-        return u''
-
-    @property
     def plain(self):
         """The plain text version of the e-mail.
         """
@@ -44,31 +38,17 @@ class BaseMail(grok.View):
 
     def render(self):
         """Render the e-mail.
-
-        You can use this to test the e-mail in the browser.  By
-        default you see the html version.
-
-        To view the subject, visit .../@@your-view?type=subject
-
-        To view the plain text version, visit
-        .../@@your-view?type=plain
         """
-        type_ = self.request.get('type', '')
-        if type_ == 'plain':
-            return self.plain
-        elif type_ == 'subject':
-            return self.subject
-        return self.html
+
+        return self.plain
 
     def prepare_email_message(self):
         plain = self.plain
-        html = self.html
-        if not plain and not html:
+        if not plain:
             return None
 
         # We definitely want unicode at this point.
         plain = su(plain)
-        html = su(html)
 
         # We must choose the body charset manually.  Note that the
         # goal and effect of this loop is to determine the
@@ -76,30 +56,18 @@ class BaseMail(grok.View):
         for body_charset in 'US-ASCII', get_charset(), 'UTF-8':
             try:
                 plain.encode(body_charset)
-                html.encode(body_charset)
             except UnicodeEncodeError:
                 pass
             else:
                 break
             # Encoding should work now; let's replace errors just in case.
         plain = plain.encode(body_charset, 'replace')
-        html = html.encode(body_charset, 'xmlcharrefreplace')
 
         text_part = MIMEText(plain, 'plain', body_charset)
-        html_part = MIMEText(html, 'html', body_charset)
 
-        # No sense in sending plain text and html when we only have
-        # one of those:
-        if not plain:
-            return html_part
-        if not html:
-            return text_part
-
-        # Okay, we send both plain text and html
         email_msg = MIMEMultipart('alternative')
         email_msg.epilogue = ''
         email_msg.attach(text_part)
-        email_msg.attach(html_part)
         return email_msg
 
 
@@ -173,7 +141,7 @@ class NewResponseMail(BaseMail):
     @property
     def plain(self):
         """When a response is created, send a notification email to all
-        tracker managers, unless emailing is turned off.
+        tracker managers
         """
         response_id = self.request.get('response_id', -1)
         context = aq_inner(self.context)

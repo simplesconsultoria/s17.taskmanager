@@ -266,11 +266,11 @@ class CreateResponse(grok.View, BaseView):
 
         response_text = form.get('response', u'')
         responsible = form.get('responsible', u'')
-        if responsible:
+        if responsible and responsible != current_responsible:
             if responsible == 'nobody':
-                context.responsible = ''
+                responsible = ''
             else:
-                context.responsible = responsible
+                responsible = responsible
             task_has_changed = True
             new_response = Response(response_text, responsible)
         else:
@@ -313,14 +313,18 @@ class CreateResponse(grok.View, BaseView):
                 before, after)
             task_has_changed = True
 
+        try:
+            current_priority = context.__getattribute__('priority')
+        except AttributeError:
+            current_priority = None
         priority = form.get('priority', u'')
-        if priority and priority in self.available_priority:
+        if priority and priority in self.available_priority and priority != current_priority:
             context.priority = priority
             task_has_changed = True
 
         day = form.get('date-day', None)
         month = form.get('date-month', None)
-        if len(month) == 1:
+        if month and len(month) == 1:
             month = '0' + month
         year = form.get('date-year', None)
         if year and len(year) == 4:

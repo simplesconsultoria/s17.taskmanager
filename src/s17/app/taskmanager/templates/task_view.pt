@@ -168,7 +168,8 @@
                           tal:attributes="action string:@@edit_response"
                           tal:condition="view/can_edit_response">
                         <input type="hidden" name="response_id" tal:attributes="value id" />
-                        <input class="standalone"
+                        <input name="edit-response"
+                               class="standalone"
                                type="submit"
                                i18n:attributes="value"
                                value="Edit"
@@ -178,7 +179,8 @@
                           tal:attributes="action string:@@delete_response"
                           tal:condition="view/can_delete_response">
                         <input type="hidden" name="response_id" tal:attributes="value id" />
-                        <input class="destructive"
+                        <input name="delete-response"
+                               class="destructive"
                                type="submit"
                                i18n:attributes="value"
                                value="Delete"
@@ -441,7 +443,7 @@
                 <div class="visualClear"><!----></div>
 
                 <div class="formControls">
-                    <input class="standalone" value="Submit" type="submit"
+                    <input name='submit-response' class="standalone" value="Submit" type="submit"
                            i18n:domain="plone" i18n:attributes="value"/>
                 </div>
             </form>
