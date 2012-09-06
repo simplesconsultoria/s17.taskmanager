@@ -56,6 +56,11 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue(IReferenceable.providedBy(self.obj))
         self.assertTrue(IAttributeUUID.providedBy(self.obj))
 
+    def test_multiple_upload_is_enabled(self):
+        fti = queryUtility(IDexterityFTI, name=ctype)
+        behavior = 'collective.upload.behaviors.IMultipleUpload'
+        self.assertTrue(behavior in fti.behaviors)
+
     def test_allowed_content_types(self):
         expected = ['File', 'Image']
         allowed_types = [t.getId() for t in self.obj.allowedContentTypes()]
