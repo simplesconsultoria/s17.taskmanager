@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import logging
-
-from five import grok
-
 from AccessControl import getSecurityManager
 
 from DateTime import DateTime

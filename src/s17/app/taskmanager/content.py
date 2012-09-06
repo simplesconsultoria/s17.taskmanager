@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from datetime import datetime
-
-from plone.directives import form, dexterity
+from plone.directives import form
 
 from zope import schema
 

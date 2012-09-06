@@ -2,15 +2,9 @@
 
 import unittest2 as unittest
 
-from zope.interface import alsoProvides, directlyProvides
-
-from plone.app.customerize import registration
-
 from zope.component import getMultiAdapter
 
 from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import login
 from plone.app.testing import setRoles
 
 from s17.app.taskmanager.notifications import BaseMail

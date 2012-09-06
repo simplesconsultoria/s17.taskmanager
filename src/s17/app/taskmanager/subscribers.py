@@ -7,10 +7,7 @@ from collective.watcherlist.interfaces import IWatcherList
 
 from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
 
-from AccessControl import getSecurityManager
-
 from Products.CMFCore.interfaces import IActionSucceededEvent
-from Products.CMFCore.utils import getToolByName
 
 from s17.app.taskmanager.content import ITask, ITaskFolder
 from s17.app.taskmanager.adapters import IResponse
