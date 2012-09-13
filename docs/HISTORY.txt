@@ -4,7 +4,9 @@ Changelog
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Added the script rebuild_i18n.sh. [lepri]
+- Improved the internationalization in the vocabularies and javascripts [lepri]
+- Some adjusts in task view [lepri]
 
 
 1.0a3 (2012-06-08)
