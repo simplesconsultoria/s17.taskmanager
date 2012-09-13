@@ -69,6 +69,9 @@ def set_task_end_date(task, event):
         task.end_date = date.today()
         send_closed_task_mail(task)
 
+    if event.action in ['reopen', ]:
+        task.end_date = None
+
 
 @grok.subscribe(ITaskFolder, IObjectAddedEvent)
 def set_add_taskfolder_local_role(taskfolder, event):

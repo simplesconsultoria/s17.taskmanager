@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s17.app.taskmanager\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-04-17 17:16-0300\n"
+"PO-Revision-Date: 2012-09-13 15:17-0300\n"
 "Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <lepri@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -14,227 +14,176 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: s17.app.taskmanager\n"
 
-#: ../browser.py:113
-#: ../content.py:48
-msgid "Alta"
-msgstr "Alta"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Assign"
-msgstr "Atribuir"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Assigned"
-msgstr "Atribuído"
-
-#: ../browser.py:113
-#: ../content.py:48
-msgid "Baixa"
-msgstr "Baixa"
-
-#: ../content.py:52
-msgid "Body text"
-msgstr "Corpo do texto"
-
-#: ../browser.py:385
+#: s17/app/taskmanager/browser.py:511
 msgid "Changes saved to response id ${response_id}."
 msgstr "Alterações salvas para a resposta com id ${response_id}."
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Close"
-msgstr "Fechar"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Closed"
-msgstr "Fechado"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Comment about the last transition"
-msgstr "Comentário sobre a última transação"
-
-#: ../templates/task_view.pt:181
+#: s17/app/taskmanager/templates/task_view.pt:182
 msgid "Delete"
-msgstr "Excluir"
+msgstr "Apagar"
 
-#: ../templates/task_view.pt:171
+#: s17/app/taskmanager/templates/task_view.pt:171
 msgid "Edit"
 msgstr "Editar"
 
-#: ../templates/task_view.pt:144
+#: s17/app/taskmanager/templates/task_view.pt:142
 msgid "Edit task"
 msgstr "Editar tarefa"
 
-#: ../content.py:68
-#: ../templates/task_view.pt:65
+#: s17/app/taskmanager/content.py:76
+#: s17/app/taskmanager/templates/task_view.pt:65
 msgid "End date"
 msgstr "Data final"
 
-#: ../content.py:61
-#: ../templates/task_view.pt:60
+#: s17/app/taskmanager/browser.py:439
+#: s17/app/taskmanager/content.py:83
+#: s17/app/taskmanager/templates/task_view.pt:69
+msgid "Expected date"
+msgstr "Data estimada"
+
+#: s17/app/taskmanager/browser.py:119
+#: s17/app/taskmanager/content.py:14
+msgid "High"
+msgstr "Alta"
+
+#: s17/app/taskmanager/content.py:69
+#: s17/app/taskmanager/templates/task_view.pt:60
 msgid "Initial date"
 msgstr "Data inicial"
 
-#: ../browser.py:96
+#: s17/app/taskmanager/browser.py:119
+#: s17/app/taskmanager/content.py:16
+msgid "Low"
+msgstr "Baixa"
+
+#: s17/app/taskmanager/browser.py:102
 msgid "No change"
 msgstr "Sem alterações"
 
-#: ../browser.py:410
+#: s17/app/taskmanager/browser.py:536
 msgid "No response selected for removal."
 msgstr "Nenhuma resposta selecionada para remoção."
 
-#: ../browser.py:373
+#: s17/app/taskmanager/browser.py:499
 msgid "No response selected for saving."
 msgstr "Nenhuma resposta selecionada para salvar."
 
-#: ../browser.py:318
+#: s17/app/taskmanager/browser.py:444
 msgid "No response text added and no issue changes made."
 msgstr "Não foi adicionado um texto à resposta e nenhuma alteração foi realizada na tarefa."
 
-#: ../browser.py:77
+#: s17/app/taskmanager/browser.py:81
 msgid "Nobody"
 msgstr "Ninguém"
 
-#: ../browser.py:113
-#: ../content.py:48
+#: s17/app/taskmanager/browser.py:119
+#: s17/app/taskmanager/content.py:15
 msgid "Normal"
 msgstr "Normal"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Opened"
-msgstr "Aberto"
-
-#: ../profiles/default/types/s17.app.taskmanager.taskfolder.xml
+#: s17/app/taskmanager/profiles/default/types/s17.app.taskmanager.taskfolder.xml
 msgid "Panel tasks"
 msgstr "Painel de tarefas"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Previous transition"
-msgstr "Transação anterior"
-
-#: ../browser.py:298
-#: ../content.py:45
-#: ../templates/task_view.pt:42
+#: s17/app/taskmanager/browser.py:376
+#: s17/app/taskmanager/content.py:52
+#: s17/app/taskmanager/templates/task_view.pt:42
 msgid "Priority"
 msgstr "Prioridade"
 
-#: ../content.py:75
-#: ../templates/task_view.pt:69
-msgid "Provided date"
-msgstr "Data prevista"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Provides access to workflow history"
-msgstr "Fornece acesso ao histórico do workflow"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reject"
-msgstr "Rejeitar"
-
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reject the task"
-msgstr "Rejeitar a tarefa"
-
-#: ../browser.py:432
+#: s17/app/taskmanager/browser.py:558
 msgid "Removed response id ${response_id}."
 msgstr "Resposta com o id ${response_id} removida."
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Reopen"
-msgstr "Reabrir"
-
-#: ../browser.py:377
+#: s17/app/taskmanager/browser.py:503
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr "Resposta não mais existe; talvez ela tenha sido removida por outro usuário."
 
-#: ../browser.py:425
+#: s17/app/taskmanager/browser.py:551
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr "Resposta com o id ${response_id} não existe de modo que não pode ser removida."
 
-#: ../browser.py:417
+#: s17/app/taskmanager/browser.py:543
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr "Resposta com o id ${response_id} não é inteiro de modo que não pode ser removida."
 
-#: ../browser.py:299
-#: ../content.py:16
-#: ../templates/task_view.pt:56
+#: s17/app/taskmanager/browser.py:377
+#: s17/app/taskmanager/content.py:22
+#: s17/app/taskmanager/templates/task_view.pt:56
 msgid "Responsible"
 msgstr "Responsável"
 
-#: ../templates/task_view.pt:35
+#: s17/app/taskmanager/templates/task_view.pt:35
 msgid "State"
 msgstr "Estado"
 
-#: ../templates/task_view.pt:79
+#: s17/app/taskmanager/templates/task_view.pt:79
 msgid "Stop watching this task"
-msgstr "Parar de observar esta tarefa"
+msgstr "Para de observar esta tarefa"
 
-#: ../templates/task_view.pt:46
+#: s17/app/taskmanager/templates/task_view.pt:46
 msgid "Submitted by"
-msgstr "Submetida por"
+msgstr "Enviado por"
 
-#: ../templates/task_view.pt:52
+#: s17/app/taskmanager/templates/task_view.pt:52
 msgid "Submitted on"
-msgstr "Submetida em"
+msgstr "Enviado em"
 
-#: ../profiles/default/types/s17.app.taskmanager.task.xml
+#: s17/app/taskmanager/profiles/default/types/s17.app.taskmanager.task.xml
 msgid "Task"
 msgstr "Tarefa"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "Task Manager Workflow"
-msgstr "Workflow do Gerenciador de Tarefas"
+#: s17/app/taskmanager/content.py:60
+msgid "Task Detail"
+msgstr "Detalhe da tarefa"
 
-#: ../content.py:32
+#: s17/app/taskmanager/content.py:39
 msgid "Task Name"
 msgstr "Nome da tarefa"
 
-#: ../templates/task_view.pt:26
+#: s17/app/taskmanager/templates/task_view.pt:26
 msgid "Task details"
-msgstr "Detalhes da tarefa"
+msgstr "Detalhe da tarefa"
 
-#: ../browser.py:273
+#: s17/app/taskmanager/browser.py:407
 msgid "Task state"
 msgstr "Estado da tarefa"
 
-#: ../templates/taskfolder_view.pt:15
+#: s17/app/taskmanager/templates/taskfolder_view.pt:15
 msgid "Tasks"
 msgstr "Tarefas"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "The ID of the user who performed the previous transition"
-msgstr "O ID do usuário que realizou a transação anterior"
+#: s17/app/taskmanager/templates/task_view.pt:148
+msgid "Upload multiple files or images"
+msgstr "Enviar arquivos ou imagens"
 
-#: ../templates/task_view.pt:85
+#: s17/app/taskmanager/templates/task_view.pt:85
 msgid "Watch this task"
 msgstr "Observar esta tarefa"
 
-#: ../profiles/default/workflows/taskmanager_workflow/definition.xml
-msgid "When the previous transition was performed"
-msgstr "Quando a transação anterior foi realizada"
-
-#: ../content.py:23
+#: s17/app/taskmanager/content.py:29
 msgid "Who can add tasks?"
 msgstr "Quem pode adicionar tarefas?"
 
-#: ../browser.py:404
+#: s17/app/taskmanager/browser.py:530
 msgid "You are not allowed to delete responses."
 msgstr "Você não pode apagar respostas."
 
-#: ../browser.py:367
+#: s17/app/taskmanager/browser.py:493
 msgid "You are not allowed to edit responses."
 msgstr "Você não pode editar respostas."
 
-#: ../notifications.py:43
+#: s17/app/taskmanager/notifications.py:38
 msgid "[No subject]"
 msgstr "[Sem assunto]"
 
 #. Default: "Re: ${task_title}"
-#: ../notifications.py:254
+#: s17/app/taskmanager/notifications.py:224
 msgid "email_new_response_subject_template"
 msgstr "Re: ${task_title}"
 
 #. Default: "A new response has been given to the task **${task_title}**\nby **${response_author}**.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n${changes}\n\n${response_details}\n\n* This is an automated email, please do not reply - ${from_name}"
-#: ../notifications.py:225
+#: s17/app/taskmanager/notifications.py:195
 msgid "email_new_response_template"
 msgstr ""
 "Uma nova resposta foi dada à tarefa **${task_title}**\n"
@@ -253,12 +202,12 @@ msgstr ""
 "* Este é um email automático, por favor, não responda - ${from_name}"
 
 #. Default: "[New task: ${task_title}]"
-#: ../notifications.py:159
+#: s17/app/taskmanager/notifications.py:128
 msgid "email_new_task_subject_template"
 msgstr "[Nova tarefa: ${task_title}]"
 
 #. Default: "A new task has been submitted by **${task_author}**.\n\nTask Information\n----------------\n\nTask\n  ${task_title} (${task_url})\n\n\n**Task Details**::\n\n${task_details}\n\n\n* This is an automated email, please do not reply - ${from_name}"
-#: ../notifications.py:129
+#: s17/app/taskmanager/notifications.py:98
 msgid "email_new_task_template"
 msgstr ""
 "Uma nova tarefa foi adicionada por **${task_author}**.\n"
@@ -278,17 +227,18 @@ msgstr ""
 "* Este é um email automático, por favor, não responda - ${from_name}"
 
 #. Default: "No details in the task "
-#: ../notifications.py:128
+#: s17/app/taskmanager/notifications.py:97
 msgid "email_null_task_details"
 msgstr "Nenhum detalhe na tarefa"
 
-#. Default: "[Resolved #${task_title}"
-#: ../notifications.py:307
+#. Default: "[Resolved #${task_title}]"
+#: s17/app/taskmanager/notifications.py:277
+#, fuzzy
 msgid "email_task_closed_subject_template"
 msgstr "[Resolvida #${task_title}]"
 
 #. Default: "The task **${task_title}** has been marked as resolved by **${response_author}**.\nPlease visit the task and either confirm that it has been\nsatisfactorily resolved or re-open it.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n\n* This is an automated email, please do not reply - ${from_name}"
-#: ../notifications.py:280
+#: s17/app/taskmanager/notifications.py:250
 msgid "email_task_closed_template"
 msgstr ""
 "A Tarefa **${task_title}** foi marcada como fechada por **${response_author}**.\n"
@@ -305,127 +255,127 @@ msgstr ""
 "Este é um email automático, por favor, não responda - ${from_name}"
 
 #. Default: "Response Details"
-#: ../notifications.py:207
+#: s17/app/taskmanager/notifications.py:177
 msgid "heading_response_details"
 msgstr "Detalhes da Resposta"
 
 #. Default: "You are not allowed to edit this response."
-#: ../templates/edit_response.pt:38
+#: s17/app/taskmanager/templates/edit_response.pt:38
 msgid "label_edit_response_not_allowed"
 msgstr "Você não pode editar esta resposta."
 
 #. Default: "Return to issue."
-#: ../templates/edit_response.pt:28
+#: s17/app/taskmanager/templates/edit_response.pt:28
 msgid "label_return_to_issue"
 msgstr "Retornar à tarefa."
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: ../templates/task_view.pt:225
+#: s17/app/taskmanager/templates/task_view.pt:246
 msgid "login_suggestion_response"
-msgstr "Se for possível, por favor, se autentique antes de enviar esta reação."
+msgstr "Se puder, logue-se antes de submeter uma reação."
 
 #. Default: "No responses can be added."
-#: ../templates/task_view.pt:216
+#: s17/app/taskmanager/templates/task_view.pt:237
 msgid "msg_no_responses_can_be_added"
-msgstr "Não é possível adicionar respostas."
+msgstr "Nenhuma resposta pode ser adicionada"
 
 #. Default: "Added by"
-#: ../templates/task_view.pt:190
+#: s17/app/taskmanager/templates/task_view.pt:192
 msgid "task_added_by"
 msgstr "Adicionado por"
 
 #. Default: "on"
-#: ../templates/task_view.pt:195
+#: s17/app/taskmanager/templates/task_view.pt:197
 msgid "task_added_on"
 msgstr "em"
 
 #. Default: "Files"
-#: ../templates/task_view.pt:117
+#: s17/app/taskmanager/templates/task_view.pt:115
 msgid "task_files"
-msgstr "Arquivos"
+msgstr "Aquivos"
 
 #. Default: "Select a change of state in the task this response is for, if applicable"
-#: ../templates/task_view.pt:278
+#: s17/app/taskmanager/templates/task_view.pt:302
 msgid "task_help_issueTransition"
-msgstr "Selecione a troca de situação da tarefa a que esta resposta se refere, se aplicável."
+msgstr "Selecione a mudança do estado, caso seja aplicável"
 
 #. Default: "Select the priority for this task"
-#: ../templates/task_view.pt:309
+#: s17/app/taskmanager/templates/task_view.pt:323
 msgid "task_help_newPriority"
-msgstr "Selecione a prioridade para esta tarefa."
+msgstr "Selecione a prioridade para a tarefa"
 
 #. Default: "Select the responsible for this task"
-#: ../templates/task_view.pt:337
+#: s17/app/taskmanager/templates/task_view.pt:346
 msgid "task_help_newResponsible"
-msgstr "Selecione o responsável pela esta tarefa"
+msgstr "Selecione o responsável pela tarefa"
 
 #. Default: "Please enter your response below"
-#: ../templates/task_view.pt:250
+#: s17/app/taskmanager/templates/task_view.pt:271
 msgid "task_help_response"
-msgstr "Por favor, informe a sua resposta abaixo."
+msgstr "Por favor, insira a resposta abaixo"
 
 #. Default: "Images"
-#: ../templates/task_view.pt:99
+#: s17/app/taskmanager/templates/task_view.pt:99
 msgid "task_images"
 msgstr "Imagens"
 
 #. Default: "Change task state"
-#: ../templates/task_view.pt:273
+#: s17/app/taskmanager/templates/task_view.pt:297
 msgid "task_label_issueTransition"
-msgstr "Altera o estado da tarefa"
+msgstr "Alterar o estado da tarefa"
 
 #. Default: "Change task priority"
-#: ../templates/task_view.pt:304
+#: s17/app/taskmanager/templates/task_view.pt:318
 msgid "task_label_newPriority"
-msgstr "Altera a prioridade da tarefa"
+msgstr "Alterar a prioridade da tarefa"
 
 #. Default: "Change responsible"
-#: ../templates/task_view.pt:332
+#: s17/app/taskmanager/templates/task_view.pt:341
 msgid "task_label_newResponsible"
-msgstr "Altera o responsável"
+msgstr "Alterar o responsável"
 
 #. Default: "Response"
-#: ../templates/task_view.pt:247
+#: s17/app/taskmanager/templates/task_view.pt:268
 msgid "task_label_response"
 msgstr "Resposta"
 
 #. Default: "Priority"
-#: ../templates/taskfolder_view.pt:28
+#: s17/app/taskmanager/templates/taskfolder_view.pt:28
 msgid "tasksfolder_table_priority"
 msgstr "Prioridade"
 
 #. Default: "Responsible"
-#: ../templates/taskfolder_view.pt:25
+#: s17/app/taskmanager/templates/taskfolder_view.pt:25
 msgid "tasksfolder_table_responsible"
 msgstr "Responsável"
 
 #. Default: "Status"
-#: ../templates/taskfolder_view.pt:22
+#: s17/app/taskmanager/templates/taskfolder_view.pt:22
 msgid "tasksfolder_table_status"
 msgstr "Status"
 
 #. Default: "Task"
-#: ../templates/taskfolder_view.pt:19
+#: s17/app/taskmanager/templates/taskfolder_view.pt:19
 msgid "tasksfolder_table_task"
 msgstr "Tarefa"
 
 #. Default: "Tasks"
-#: ../templates/taskfolder_view.pt:13
+#: s17/app/taskmanager/templates/taskfolder_view.pt:13
 msgid "tasksfolder_title"
 msgstr "Tarefas"
 
 #. Default: "Add response"
-#: ../templates/task_view.pt:241
+#: s17/app/taskmanager/templates/task_view.pt:262
 msgid "title_add_response"
 msgstr "Adicionar resposta"
 
 #. Default: "Edit response"
-#: ../templates/edit_response.pt:35
+#: s17/app/taskmanager/templates/edit_response.pt:35
 msgid "title_edit_response"
 msgstr "Editar resposta"
 
 #. Default: "Error: no response found for editing"
-#: ../templates/edit_response.pt:24
+#: s17/app/taskmanager/templates/edit_response.pt:24
 msgid "title_error_no_response"
 msgstr "Erro: Nenhuma resposta encontrada para edição"
 

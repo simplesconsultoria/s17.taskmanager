@@ -38,15 +38,9 @@
                        tal:content="task/title">
                     </a>
                 </td>
-                <td tal:content="task/status">
-                    status
-                </td>
-                <td tal:content="task/responsible">
-                    responsible
-                </td>
-                <td tal:content="task/priority">
-                    priority
-                </td>
+                <td tal:content="task/status"></td>
+                <td tal:content="task/responsible"></td>
+                <td tal:content="task/priority"></td>
             </tr>
         </table>
 

@@ -99,9 +99,9 @@ Add Task
 Add Response
     [arguments]  ${state}  ${responsible}  ${priority}
 
-    Select Radio Button  transition  ${state}
-    Select Radio Button  responsible  ${responsible}
-    Select Radio Button  priority  ${priority}
+    Select From List  xpath=//select[@name="transition"]  ${state}
+    Select From List  xpath=//select[@name="responsible"]  ${responsible}
+    Select From List  xpath=//select[@name="priority"]  ${priority}
     Click Button  Submit
     Page Should Contain  Added by
 

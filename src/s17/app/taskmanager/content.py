@@ -8,6 +8,14 @@ from plone.app.textfield import RichText
 
 from s17.app.taskmanager import MessageFactory as _
 
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+
+priorities = SimpleVocabulary(
+    [SimpleTerm(value=1, title=_(u'High')),
+     SimpleTerm(value=2, title=_(u'Normal')),
+     SimpleTerm(value=3, title=_(u'Low'))]
+)
+
 
 class ITaskFolder(form.Schema):
 
@@ -45,8 +53,8 @@ class ITask(form.Schema):
         title=_(u'Priority'),
         description=_(''),
         required=True,
-        values=[_(u'Alta'), _(u'Normal'), _(u'Baixa')],
-        default=_(u'Normal'),
+        vocabulary=priorities,
+        default=2,
     )
 
     text = RichText(
@@ -73,7 +81,7 @@ class ITask(form.Schema):
     )
 
     provided_date = schema.Date(
-        title=_(u'Provided date'),
+        title=_(u'Expected date'),
         description=_(''),
         required=False,
     )

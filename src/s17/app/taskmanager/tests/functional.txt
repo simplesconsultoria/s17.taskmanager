@@ -67,8 +67,8 @@ Now we add some tasks in the painel tasks.
     >>> ctrl.value = ['someuser']
     >>> ctrl = browser.getControl(name='form.widgets.priority:list')
     >>> ctrl.options
-    ['Alta', 'Normal', 'Baixa']
-    >>> ctrl.value = ['Normal']
+    ['1', '2', '3']
+    >>> ctrl.value = ['2']
     >>> browser.getControl(name='form.widgets.text').value = "<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin eget dui. Phasellus tristique adipiscing justo. Vestibulum mattis, lorem vitae tristique molestie, turpis mi congue ligula, eget placerat libero mi quis massa. Proin pretium dictum nulla.</p>"
     >>> browser.getControl('Save').click()
     >>> 'Item created' in browser.contents
@@ -82,8 +82,8 @@ Edit task:
     >>> browser.getControl('Edit task').click()
     >>> ctrl = browser.getControl(name='form.widgets.priority:list')
     >>> ctrl.options
-    ['Alta', 'Normal', 'Baixa']
-    >>> ctrl.value = ['Baixa']
+    ['1', '2', '3']
+    >>> ctrl.value = ['3']
     >>> browser.getControl('Save').click()
     >>> 'Changes saved' in browser.contents
     True
@@ -111,8 +111,8 @@ The real response:
     >>> ctrl.value = ['close']
     >>> ctrl = browser.getControl(name='priority')
     >>> ctrl.options
-    ['Alta', 'Normal', 'Baixa']
-    >>> ctrl.value = ['Alta']
+    ['1', '2', '3']
+    >>> ctrl.value = ['1']
     >>> browser.getControl(name='submit-response').click()
     >>> 'Added by' in browser.contents
     True

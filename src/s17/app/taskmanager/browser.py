@@ -24,6 +24,7 @@ from s17.app.taskmanager.content import ITask, ITaskFolder
 from s17.app.taskmanager.adapters import Response, IResponseContainer
 from s17.app.taskmanager import MessageFactory as _
 
+from datetime import date
 
 grok.templatedir("templates")
 
@@ -114,17 +115,17 @@ class BaseView:
     def priority_for_display(self):
         """Get the available priorities for this issue.
         """
-        vocab = [_(u'Alta'), _(u'Normal'), _(u'Baixa')]
+        vocab = {1: _(u'High'), 2: _(u'Normal'), 3: _(u'Low')}
         options = []
         for value in vocab:
             checked = (value == self.priority) and "checked" or ""
-            options.append(dict(value=value, label=value,
+            options.append(dict(value=value, label=vocab[value],
                 checked=checked))
         return options
 
     @property
     def available_priority(self):
-        vocab = [_(u'Alta'), _(u'Normal'), _(u'Baixa')]
+        vocab = {1: _(u'High'), 2: _(u'Normal'), 3: _(u'Low')}
         return vocab
 
     @property
@@ -181,6 +182,19 @@ class TaskView(dexterity.DisplayForm, BaseView):
     grok.template('task_view')
     grok.require("zope2.View")
 
+    calendar_type = 'gregorian'
+
+    popup_calendar_icon = '.css("background","url(popup_calendar.gif)")'\
+                          '.css("height", "16px")'\
+                          '.css("width", "16px")'\
+                          '.css("display", "inline-block")'\
+                          '.css("vertical-align", "middle")'
+    value = ('', '', '')
+
+    jquerytools_dateinput_config = 'selectors: true, '\
+                                   'trigger: true, '\
+                                   'yearRange: [-10, 10]'
+
     def images(self):
         ct = getToolByName(self.context, 'portal_catalog')
         images = ct(object_provides=IATImage.__identifier__, path='/'.join(self.context.getPhysicalPath()))
@@ -206,6 +220,84 @@ class TaskView(dexterity.DisplayForm, BaseView):
         context = aq_inner(self.context)
         watchers = IWatcherList(context)
         return watchers.isWatching()
+
+    @property
+    def year(self):
+        year = self.request.get('date-year', None)
+        if year is not None:
+            return year
+        try:
+            year = self.context.provided_date.strftime('%Y')
+            return year
+        except:
+            return self.value[0]
+
+    @property
+    def month(self):
+        month = self.request.get('date-month', None)
+        if month:
+            return month
+        try:
+            month = self.context.provided_date.strftime('%m')
+            return month
+        except:
+            return self.value[1]
+
+    @property
+    def day(self):
+        day = self.request.get('date-day', None)
+        if day is not None:
+            return day
+        try:
+            day = self.context.provided_date.strftime('%d')
+            return day
+        except:
+            return self.value[2]
+
+    def show_jquerytools_dateinput_js(self):
+        language = getattr(self.request, 'LANGUAGE', 'en')
+        calendar = self.request.locale.dates.calendars[self.calendar_type]
+        localize = 'jQuery.tools.dateinput.localize("' + language + '", {'
+        localize += 'months: "%s",' % ','.join(calendar.getMonthNames())
+        localize += 'shortMonths: "%s",' % ','.join(calendar.getMonthAbbreviations())
+        localize += 'days: "%s",' % ','.join(calendar.getDayNames())
+        localize += 'shortDays: "%s"' % ','.join(calendar.getDayAbbreviations())
+        localize += '});'
+
+        config = 'lang: "%s", ' % language
+        value_date = self.value[:3]
+        if '' not in value_date:
+            config += 'value: new Date("%s/%s/%s"), ' % (value_date)
+
+        config += 'change: function() { ' \
+                    'var value = this.getValue("yyyy-m-dd").split("-"); \n' \
+                    'jQuery("#%(id)s-year").val(value[0]); \n' \
+                    'jQuery("#%(id)s-month").val(value[1]); \n' \
+                    'jQuery("#%(id)s-day").val(value[2]); \n' \
+                '}, ' % dict(id='date')
+        config += self.jquerytools_dateinput_config
+
+        return '''
+            <input type="hidden" name="%(name)s-calendar"
+                   id="%(id)s-calendar" />
+            <script type="text/javascript">
+                if (jQuery().dateinput) {
+                    %(localize)s
+                    jQuery("#%(id)s-calendar").dateinput({%(config)s}).unbind('change')
+                        .bind('onShow', function (event) {
+                            var trigger_offset = jQuery(this).next().offset();
+                            jQuery(this).data('dateinput').getCalendar().offset(
+                                {top: trigger_offset.top+20, left: trigger_offset.left}
+                            );
+                        });
+                    jQuery("#%(id)s-calendar").next()%(popup_calendar_icon)s;
+                }
+            </script>''' % dict(
+                id='date', name='date',
+                day=self.day, month=self.month, year=self.year,
+                config=config, language=language, localize=localize,
+                popup_calendar_icon=self.popup_calendar_icon,
+            )
 
     @property
     def months(self):
@@ -249,6 +341,10 @@ class TaskView(dexterity.DisplayForm, BaseView):
             items.append(info)
         return items
 
+    def get_priority(self):
+        priority = self.context.priority
+        return self.available_priority[priority]
+
 
 class CreateResponse(grok.View, BaseView):
     grok.context(ITask)
@@ -265,7 +361,6 @@ class CreateResponse(grok.View, BaseView):
             current_responsible = context.__getattribute__('responsible')
         except AttributeError:
             current_responsible = None
-
         response_text = form.get('response', u'')
         responsible = form.get('responsible', u'')
         if responsible and responsible != current_responsible:
@@ -273,6 +368,7 @@ class CreateResponse(grok.View, BaseView):
                 responsible = ''
             else:
                 responsible = responsible
+            self.context.responsible = responsible
             task_has_changed = True
             new_response = Response(response_text, responsible)
         else:
@@ -329,14 +425,17 @@ class CreateResponse(grok.View, BaseView):
         if month and len(month) == 1:
             month = '0' + month
         year = form.get('date-year', None)
-        if year and len(year) == 4:
-            year = year[2:]
 
         if day and month and year:
-            date = '%s/%s/%s' % (day, month, year)
-            formatter = self.request.locale.dates.getFormatter("date", "short")
-            dateobj = formatter.parse(date)
-            current = context.__getattribute__('provided_date')
+            value = []
+            value.append(year)
+            value.append(month)
+            value.append(day)
+            dateobj = date(*map(int, value))
+            try:
+                current = context.__getattribute__('provided_date')
+            except AttributeError:
+                current = None
             context.provided_date = dateobj
             changes['provided_date'] = dateobj
             new_response.add_change('provided_date', _(u'Expected date'), current, dateobj)
