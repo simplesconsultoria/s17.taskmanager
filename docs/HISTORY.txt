@@ -4,6 +4,7 @@ Changelog
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Deprecate use on Plone 4.1; we will support only Plone>=4.2 [lepri]
 - Fix package i18n [lepri]
 - Rename content type from "s17.app.taskmanager.taskfolder" to "TaskPanel". [lepri]
 - Rename content type from "s17.app.taskmanager.task" to "Task". [lepri]
