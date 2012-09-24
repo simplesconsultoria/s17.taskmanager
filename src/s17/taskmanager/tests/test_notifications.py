@@ -20,7 +20,7 @@ NEW_TASK_MESSAGE = u'A new task has been submitted by **test_user_1_**.\n\n' \
                    u'Task\n  ' \
                    u'Task (http://nohost/plone/tasks/task)\n\n\n' \
                    u'**Task Details**::\n\n' \
-                   u'No details in the task \n\n\n' \
+                   u'email_null_task_details\n\n\n' \
                    u'* This is an automated email, please do not reply - '
 
 NEW_TASK_SUBJECT = u'[New task: Task]'
@@ -58,10 +58,10 @@ class TestNotifications(unittest.TestCase):
         self.request = self.layer['request']
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('s17.taskmanager.taskfolder',\
+        self.portal.invokeFactory('TaskPanel',\
             'tasks', title='Tasks')
         folder = self.portal['tasks']
-        folder.invokeFactory('s17.taskmanager.task',\
+        folder.invokeFactory('Task',\
             'task', title='Task')
         self.task = folder['task']
 

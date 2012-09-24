@@ -17,7 +17,7 @@ from plone.uuid.interfaces import IAttributeUUID
 from s17.taskmanager.content import ITask
 from s17.taskmanager.testing import INTEGRATION_TESTING
 
-ctype = 's17.taskmanager.task'
+ctype = 'Task'
 
 
 class IntegrationTest(unittest.TestCase):
@@ -27,7 +27,7 @@ class IntegrationTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('s17.taskmanager.taskfolder', 'test-folder')
+        self.portal.invokeFactory('TaskPanel', 'test-folder')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
 

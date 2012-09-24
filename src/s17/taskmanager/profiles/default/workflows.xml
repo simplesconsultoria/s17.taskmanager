@@ -2,7 +2,7 @@
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
     <object name="taskmanager_workflow" meta_type="Workflow"/>
     <bindings>
-        <type type_id="s17.taskmanager.task">
+        <type type_id="Task">
             <bound-workflow workflow_id="taskmanager_workflow"/>
         </type>
     </bindings>

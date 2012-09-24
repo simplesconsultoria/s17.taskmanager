@@ -44,7 +44,7 @@ Adding a Panel tasks
 As admin, we create a Panel Tasks to include the tasks in there:
 
     >>> browser.open(portal_url)
-    >>> browser.getLink('Panel tasks').click()
+    >>> browser.getLink('Task Panel').click()
     >>> browser.getControl('Title').value = 'Panel Tasks'
     >>> browser.getControl('Description').value = 'A panel tasks'
     >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
@@ -59,7 +59,8 @@ As admin, we create a Panel Tasks to include the tasks in there:
 Adding a task
 --------------
 Now we add some tasks in the painel tasks.
-    >>> browser.getLink(id='s17.taskmanager-task').click()
+
+    >>> browser.getLink(id='task').click()
     >>> browser.getControl('Task Name').value = 'A task'
     >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
     >>> ctrl.options

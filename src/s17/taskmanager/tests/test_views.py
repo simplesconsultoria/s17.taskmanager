@@ -21,10 +21,10 @@ class BrowserLayerTest(unittest.TestCase):
         self.request = self.layer['request']
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('s17.taskmanager.taskfolder',\
+        self.portal.invokeFactory('TaskPanel',\
             'tasks', title='Tasks')
         folder = self.portal['tasks']
-        folder.invokeFactory('s17.taskmanager.task',\
+        folder.invokeFactory('Task',\
             'task', title='Task')
         self.task = folder['task']
 

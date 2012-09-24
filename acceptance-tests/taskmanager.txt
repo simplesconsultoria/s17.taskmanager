@@ -75,7 +75,7 @@ Add Panel Tasks
     [arguments]  ${title}  ${responsible}  ${can_add_tasks}
 
     Open Add New Menu
-    Click Link  css=a#s17.taskmanager-taskfolder
+    Click Link  css=a#taskpanel
     Page Should Contain  Add Panel tasks
     Input Text  css=input#form-widgets-IBasic-title  ${title}
     Select From List  xpath=//select[@name="form.widgets.responsible:list"]  ${responsible}
@@ -88,7 +88,7 @@ Add Task
     [arguments]  ${title}  ${responsible}  ${priority}
 
     Open Add New Menu
-    Click Link  css=a#s17.taskmanager-task
+    Click Link  css=a#task
     Page Should Contain  Add Task
     Input Text  css=input#form-widgets-title  ${title}
     Select From List  xpath=//select[@name="form.widgets.responsible:list"]  ${responsible}
