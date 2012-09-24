@@ -4,6 +4,7 @@ Changelog
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Fix package i18n [lepri]
 - Rename content type from "s17.app.taskmanager.taskfolder" to "TaskPanel". [lepri]
 - Rename content type from "s17.app.taskmanager.task" to "Task". [lepri]
 - Rename package from s17.app.taskmanager to s17.taskmanager [lepri]
