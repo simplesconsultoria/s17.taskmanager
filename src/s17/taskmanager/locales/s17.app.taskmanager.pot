@@ -14,330 +14,330 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: s17/app/taskmanager/content.py:23
+#: s17.taskmanager/content.py:23
 msgid ""
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:511
+#: s17.taskmanager/browser.py:511
 msgid "Changes saved to response id ${response_id}."
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:182
+#: s17.taskmanager/templates/task_view.pt:182
 msgid "Delete"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:171
+#: s17.taskmanager/templates/task_view.pt:171
 msgid "Edit"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:142
+#: s17.taskmanager/templates/task_view.pt:142
 msgid "Edit task"
 msgstr ""
 
-#: s17/app/taskmanager/content.py:76
-#: s17/app/taskmanager/templates/task_view.pt:65
+#: s17.taskmanager/content.py:76
+#: s17.taskmanager/templates/task_view.pt:65
 msgid "End date"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:439
-#: s17/app/taskmanager/content.py:83
-#: s17/app/taskmanager/templates/task_view.pt:69
+#: s17.taskmanager/browser.py:439
+#: s17.taskmanager/content.py:83
+#: s17.taskmanager/templates/task_view.pt:69
 msgid "Expected date"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:119
-#: s17/app/taskmanager/content.py:14
+#: s17.taskmanager/browser.py:119
+#: s17.taskmanager/content.py:14
 msgid "High"
 msgstr ""
 
-#: s17/app/taskmanager/content.py:69
-#: s17/app/taskmanager/templates/task_view.pt:60
+#: s17.taskmanager/content.py:69
+#: s17.taskmanager/templates/task_view.pt:60
 msgid "Initial date"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:119
-#: s17/app/taskmanager/content.py:16
+#: s17.taskmanager/browser.py:119
+#: s17.taskmanager/content.py:16
 msgid "Low"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:102
+#: s17.taskmanager/browser.py:102
 msgid "No change"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:536
+#: s17.taskmanager/browser.py:536
 msgid "No response selected for removal."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:499
+#: s17.taskmanager/browser.py:499
 msgid "No response selected for saving."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:444
+#: s17.taskmanager/browser.py:444
 msgid "No response text added and no issue changes made."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:81
+#: s17.taskmanager/browser.py:81
 msgid "Nobody"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:119
-#: s17/app/taskmanager/content.py:15
+#: s17.taskmanager/browser.py:119
+#: s17.taskmanager/content.py:15
 msgid "Normal"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/types/s17.app.taskmanager.taskfolder.xml
+#: s17.taskmanager/profiles/default/types/s17.taskmanager.taskfolder.xml
 msgid "Panel tasks"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:376
-#: s17/app/taskmanager/content.py:52
-#: s17/app/taskmanager/templates/task_view.pt:42
+#: s17.taskmanager/browser.py:376
+#: s17.taskmanager/content.py:52
+#: s17.taskmanager/templates/task_view.pt:42
 msgid "Priority"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:558
+#: s17.taskmanager/browser.py:558
 msgid "Removed response id ${response_id}."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:503
+#: s17.taskmanager/browser.py:503
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:551
+#: s17.taskmanager/browser.py:551
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:543
+#: s17.taskmanager/browser.py:543
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:377
-#: s17/app/taskmanager/content.py:22
-#: s17/app/taskmanager/templates/task_view.pt:56
+#: s17.taskmanager/browser.py:377
+#: s17.taskmanager/content.py:22
+#: s17.taskmanager/templates/task_view.pt:56
 msgid "Responsible"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:35
+#: s17.taskmanager/templates/task_view.pt:35
 msgid "State"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:79
+#: s17.taskmanager/templates/task_view.pt:79
 msgid "Stop watching this task"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:46
+#: s17.taskmanager/templates/task_view.pt:46
 msgid "Submitted by"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:52
+#: s17.taskmanager/templates/task_view.pt:52
 msgid "Submitted on"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/types/s17.app.taskmanager.task.xml
+#: s17.taskmanager/profiles/default/types/s17.taskmanager.task.xml
 msgid "Task"
 msgstr ""
 
-#: s17/app/taskmanager/content.py:60
+#: s17.taskmanager/content.py:60
 msgid "Task Detail"
 msgstr ""
 
-#: s17/app/taskmanager/content.py:39
+#: s17.taskmanager/content.py:39
 msgid "Task Name"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:26
+#: s17.taskmanager/templates/task_view.pt:26
 msgid "Task details"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:407
+#: s17.taskmanager/browser.py:407
 msgid "Task state"
 msgstr ""
 
-#: s17/app/taskmanager/templates/taskfolder_view.pt:15
+#: s17.taskmanager/templates/taskfolder_view.pt:15
 msgid "Tasks"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:148
+#: s17.taskmanager/templates/task_view.pt:148
 msgid "Upload multiple files or images"
 msgstr ""
 
-#: s17/app/taskmanager/templates/task_view.pt:85
+#: s17.taskmanager/templates/task_view.pt:85
 msgid "Watch this task"
 msgstr ""
 
-#: s17/app/taskmanager/content.py:29
+#: s17.taskmanager/content.py:29
 msgid "Who can add tasks?"
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:530
+#: s17.taskmanager/browser.py:530
 msgid "You are not allowed to delete responses."
 msgstr ""
 
-#: s17/app/taskmanager/browser.py:493
+#: s17.taskmanager/browser.py:493
 msgid "You are not allowed to edit responses."
 msgstr ""
 
-#: s17/app/taskmanager/notifications.py:38
+#: s17.taskmanager/notifications.py:38
 msgid "[No subject]"
 msgstr ""
 
 #. Default: "Re: ${task_title}"
-#: s17/app/taskmanager/notifications.py:224
+#: s17.taskmanager/notifications.py:224
 msgid "email_new_response_subject_template"
 msgstr ""
 
 #. Default: "A new response has been given to the task **${task_title}**\nby **${response_author}**.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n${changes}\n\n${response_details}\n\n* This is an automated email, please do not reply - ${from_name}"
-#: s17/app/taskmanager/notifications.py:195
+#: s17.taskmanager/notifications.py:195
 msgid "email_new_response_template"
 msgstr ""
 
 #. Default: "[New task: ${task_title}]"
-#: s17/app/taskmanager/notifications.py:128
+#: s17.taskmanager/notifications.py:128
 msgid "email_new_task_subject_template"
 msgstr ""
 
 #. Default: "A new task has been submitted by **${task_author}**.\n\nTask Information\n----------------\n\nTask\n  ${task_title} (${task_url})\n\n\n**Task Details**::\n\n${task_details}\n\n\n* This is an automated email, please do not reply - ${from_name}"
-#: s17/app/taskmanager/notifications.py:98
+#: s17.taskmanager/notifications.py:98
 msgid "email_new_task_template"
 msgstr ""
 
 #. Default: "No details in the task "
-#: s17/app/taskmanager/notifications.py:97
+#: s17.taskmanager/notifications.py:97
 msgid "email_null_task_details"
 msgstr ""
 
 #. Default: "[Resolved #${task_title}]"
-#: s17/app/taskmanager/notifications.py:277
+#: s17.taskmanager/notifications.py:277
 msgid "email_task_closed_subject_template"
 msgstr ""
 
 #. Default: "The task **${task_title}** has been marked as resolved by **${response_author}**.\nPlease visit the task and either confirm that it has been\nsatisfactorily resolved or re-open it.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n\n* This is an automated email, please do not reply - ${from_name}"
-#: s17/app/taskmanager/notifications.py:250
+#: s17.taskmanager/notifications.py:250
 msgid "email_task_closed_template"
 msgstr ""
 
 #. Default: "Response Details"
-#: s17/app/taskmanager/notifications.py:177
+#: s17.taskmanager/notifications.py:177
 msgid "heading_response_details"
 msgstr ""
 
 #. Default: "You are not allowed to edit this response."
-#: s17/app/taskmanager/templates/edit_response.pt:38
+#: s17.taskmanager/templates/edit_response.pt:38
 msgid "label_edit_response_not_allowed"
 msgstr ""
 
 #. Default: "Return to issue."
-#: s17/app/taskmanager/templates/edit_response.pt:28
+#: s17.taskmanager/templates/edit_response.pt:28
 msgid "label_return_to_issue"
 msgstr ""
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: s17/app/taskmanager/templates/task_view.pt:246
+#: s17.taskmanager/templates/task_view.pt:246
 msgid "login_suggestion_response"
 msgstr ""
 
 #. Default: "No responses can be added."
-#: s17/app/taskmanager/templates/task_view.pt:237
+#: s17.taskmanager/templates/task_view.pt:237
 msgid "msg_no_responses_can_be_added"
 msgstr ""
 
 #. Default: "Added by"
-#: s17/app/taskmanager/templates/task_view.pt:192
+#: s17.taskmanager/templates/task_view.pt:192
 msgid "task_added_by"
 msgstr ""
 
 #. Default: "on"
-#: s17/app/taskmanager/templates/task_view.pt:197
+#: s17.taskmanager/templates/task_view.pt:197
 msgid "task_added_on"
 msgstr ""
 
 #. Default: "Files"
-#: s17/app/taskmanager/templates/task_view.pt:115
+#: s17.taskmanager/templates/task_view.pt:115
 msgid "task_files"
 msgstr ""
 
 #. Default: "Select a change of state in the task this response is for, if applicable"
-#: s17/app/taskmanager/templates/task_view.pt:302
+#: s17.taskmanager/templates/task_view.pt:302
 msgid "task_help_issueTransition"
 msgstr ""
 
 #. Default: "Select the priority for this task"
-#: s17/app/taskmanager/templates/task_view.pt:323
+#: s17.taskmanager/templates/task_view.pt:323
 msgid "task_help_newPriority"
 msgstr ""
 
 #. Default: "Select the responsible for this task"
-#: s17/app/taskmanager/templates/task_view.pt:346
+#: s17.taskmanager/templates/task_view.pt:346
 msgid "task_help_newResponsible"
 msgstr ""
 
 #. Default: "Please enter your response below"
-#: s17/app/taskmanager/templates/task_view.pt:271
+#: s17.taskmanager/templates/task_view.pt:271
 msgid "task_help_response"
 msgstr ""
 
 #. Default: "Images"
-#: s17/app/taskmanager/templates/task_view.pt:99
+#: s17.taskmanager/templates/task_view.pt:99
 msgid "task_images"
 msgstr ""
 
 #. Default: "Change task state"
-#: s17/app/taskmanager/templates/task_view.pt:297
+#: s17.taskmanager/templates/task_view.pt:297
 msgid "task_label_issueTransition"
 msgstr ""
 
 #. Default: "Change task priority"
-#: s17/app/taskmanager/templates/task_view.pt:318
+#: s17.taskmanager/templates/task_view.pt:318
 msgid "task_label_newPriority"
 msgstr ""
 
 #. Default: "Change responsible"
-#: s17/app/taskmanager/templates/task_view.pt:341
+#: s17.taskmanager/templates/task_view.pt:341
 msgid "task_label_newResponsible"
 msgstr ""
 
 #. Default: "Response"
-#: s17/app/taskmanager/templates/task_view.pt:268
+#: s17.taskmanager/templates/task_view.pt:268
 msgid "task_label_response"
 msgstr ""
 
 #. Default: "Priority"
-#: s17/app/taskmanager/templates/taskfolder_view.pt:28
+#: s17.taskmanager/templates/taskfolder_view.pt:28
 msgid "tasksfolder_table_priority"
 msgstr ""
 
 #. Default: "Responsible"
-#: s17/app/taskmanager/templates/taskfolder_view.pt:25
+#: s17.taskmanager/templates/taskfolder_view.pt:25
 msgid "tasksfolder_table_responsible"
 msgstr ""
 
 #. Default: "Status"
-#: s17/app/taskmanager/templates/taskfolder_view.pt:22
+#: s17.taskmanager/templates/taskfolder_view.pt:22
 msgid "tasksfolder_table_status"
 msgstr ""
 
 #. Default: "Task"
-#: s17/app/taskmanager/templates/taskfolder_view.pt:19
+#: s17.taskmanager/templates/taskfolder_view.pt:19
 msgid "tasksfolder_table_task"
 msgstr ""
 
 #. Default: "Tasks"
-#: s17/app/taskmanager/templates/taskfolder_view.pt:13
+#: s17.taskmanager/templates/taskfolder_view.pt:13
 msgid "tasksfolder_title"
 msgstr ""
 
 #. Default: "Add response"
-#: s17/app/taskmanager/templates/task_view.pt:262
+#: s17.taskmanager/templates/task_view.pt:262
 msgid "title_add_response"
 msgstr ""
 
 #. Default: "Edit response"
-#: s17/app/taskmanager/templates/edit_response.pt:35
+#: s17.taskmanager/templates/edit_response.pt:35
 msgid "title_edit_response"
 msgstr ""
 
 #. Default: "Error: no response found for editing"
-#: s17/app/taskmanager/templates/edit_response.pt:24
+#: s17.taskmanager/templates/edit_response.pt:24
 msgid "title_error_no_response"
 msgstr ""
 

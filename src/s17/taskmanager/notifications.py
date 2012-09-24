@@ -13,9 +13,9 @@ from collective.watcherlist.utils import get_charset
 from zope.app.component.hooks import getSite
 from zope.i18n import translate
 
-from s17.app.taskmanager import MessageFactory as _
-from s17.app.taskmanager.adapters import IResponseContainer
-from s17.app.taskmanager.content import ITask
+from s17.taskmanager import MessageFactory as _
+from s17.taskmanager.adapters import IResponseContainer
+from s17.taskmanager.content import ITask
 
 wrapper = textwrap.TextWrapper(initial_indent='    ', subsequent_indent='    ')
 
@@ -119,7 +119,7 @@ ${task_details}
                 task_url=su(context.absolute_url()),
                 from_name=su(fromName)))
         # Translate the body text
-        mail_text = translate(mail_text, 's17.app.taskmanager', context=self.request)
+        mail_text = translate(mail_text, 's17.taskmanager', context=self.request)
         return mail_text
 
     @property
@@ -131,7 +131,7 @@ ${task_details}
             mapping=dict(task_title=su(context.title)))
         # Make the subject unicode and translate it too.
         subject = su(subject)
-        subject = translate(subject, 's17.app.taskmanager', context=self.request)
+        subject = translate(subject, 's17.taskmanager', context=self.request)
         return subject
 
 
@@ -177,7 +177,7 @@ class NewResponseMail(BaseMail):
             header = _(
                 'heading_response_details',
                 u"Response Details")
-            header = translate(header, 's17.app.taskmanager', context=self.request)
+            header = translate(header, 's17.taskmanager', context=self.request)
             responseDetails = u"**%s**::\n\n\n%s" % (header, responseDetails)
 
         changes = u''
@@ -187,9 +187,9 @@ class NewResponseMail(BaseMail):
             name = su(change.get('name'))
             # Some changes are workflow changes, which can be translated.
             # Note that workflow changes are in the plone domain.
-            before = translate(before, 's17.app.taskmanager', context=self.request)
-            after = translate(after, 's17.app.taskmanager', context=self.request)
-            name = translate(name, 's17.app.taskmanager', context=self.request)
+            before = translate(before, 's17.taskmanager', context=self.request)
+            after = translate(after, 's17.taskmanager', context=self.request)
+            name = translate(name, 's17.taskmanager', context=self.request)
             changes += u"- %s: %s -> %s\n" % (name, before, after)
 
         mail_text = _(
@@ -215,7 +215,7 @@ ${response_details}
                 task_url=su(context.absolute_url()),
                 changes=changes,
                 from_name=fromName))
-        mail_text = translate(mail_text, 's17.app.taskmanager', context=self.request)
+        mail_text = translate(mail_text, 's17.taskmanager', context=self.request)
         return mail_text
 
     @property
@@ -227,7 +227,7 @@ ${response_details}
             mapping=dict(task_title=su(context.title)))
         # Ensure that the subject is unicode and translate it too.
         subject = su(subject)
-        subject = translate(subject, 's17.app.taskmanager', context=self.request)
+        subject = translate(subject, 's17.taskmanager', context=self.request)
         return subject
 
 
@@ -268,7 +268,7 @@ Task
                 from_name=su(fromName)))
 
         # Translate the body text
-        mail_text = translate(mail_text, 's17.app.taskmanager', context=self.request)
+        mail_text = translate(mail_text, 's17.taskmanager', context=self.request)
         return mail_text
 
     @property
@@ -280,5 +280,5 @@ Task
             mapping=dict(task_title=su(context.title)))
         # Make the subject unicode and translate it too.
         subject = su(subject)
-        subject = translate(subject, 's17.app.taskmanager', context=self.request)
+        subject = translate(subject, 's17.taskmanager', context=self.request)
         return subject

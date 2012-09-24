@@ -9,9 +9,9 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import setRoles
 from plone.app.testing import login
 
-from s17.app.taskmanager.testing import INTEGRATION_TESTING
+from s17.taskmanager.testing import INTEGRATION_TESTING
 
-ctype = 's17.app.taskmanager.task'
+ctype = 's17.taskmanager.task'
 workflow_id = 'taskmanager_workflow'
 
 
@@ -33,7 +33,7 @@ class WorkflowTest(unittest.TestCase):
         portal_membership = self.portal['portal_membership']
         self.checkPermission = portal_membership.checkPermission
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('s17.app.taskmanager.taskfolder', 'test-folder')
+        self.portal.invokeFactory('s17.taskmanager.taskfolder', 'test-folder')
         self.folder = self.portal['test-folder']
         setRoles(self.portal, TEST_USER_ID, ['Member'])
 

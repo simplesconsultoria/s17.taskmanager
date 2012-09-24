@@ -7,7 +7,7 @@ def uninstall(portal, reinstall=False):
     if not reinstall:
         # normal uninstall
         setup_tool = getToolByName(portal, 'portal_setup')
-        profile = 'profile-s17.app.taskmanager:uninstall'
+        profile = 'profile-s17.taskmanager:uninstall'
         setup_tool.runAllImportStepsFromProfile(profile)
 
         return "Ran all uninstall steps."

@@ -14,10 +14,10 @@ from plone.app.referenceablebehavior.referenceable import IReferenceable
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.uuid.interfaces import IAttributeUUID
 
-from s17.app.taskmanager.content import ITaskFolder
-from s17.app.taskmanager.testing import INTEGRATION_TESTING
+from s17.taskmanager.content import ITaskFolder
+from s17.taskmanager.testing import INTEGRATION_TESTING
 
-ctype = 's17.app.taskmanager.taskfolder'
+ctype = 's17.taskmanager.taskfolder'
 
 
 class IntegrationTest(unittest.TestCase):
@@ -57,7 +57,7 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue(IAttributeUUID.providedBy(self.obj))
 
     def test_allowed_content_types(self):
-        expected = ['s17.app.taskmanager.task']
+        expected = ['s17.taskmanager.task']
         allowed_types = [t.getId() for t in self.obj.allowedContentTypes()]
         self.assertListEqual(expected, allowed_types)
 
@@ -66,6 +66,6 @@ class IntegrationTest(unittest.TestCase):
                           self.obj.invokeFactory, 'Document', 'foo')
 
         try:
-            self.obj.invokeFactory('s17.app.taskmanager.task', 'foo')
+            self.obj.invokeFactory('s17.taskmanager.task', 'foo')
         except Unauthorized:
             self.fail()

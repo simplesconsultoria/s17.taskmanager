@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="s17.app.taskmanager">
+      i18n:domain="s17.taskmanager">
 <body>
 
 <head>
@@ -13,7 +13,7 @@
     <metal:css fill-slot="style_slot">
         <link type="text/css"
               rel="stylesheet"
-              href="++resource++s17.app.taskmanager/taskmanager.css" />
+              href="++resource++s17.taskmanager/taskmanager.css" />
     </metal:css>
 </head>
 

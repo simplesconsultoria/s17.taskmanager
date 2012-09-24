@@ -12,16 +12,16 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
-        import s17.app.taskmanager
-        self.loadZCML(package=s17.app.taskmanager)
+        import s17.taskmanager
+        self.loadZCML(package=s17.taskmanager)
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
-        self.applyProfile(portal, 's17.app.taskmanager:default')
+        self.applyProfile(portal, 's17.taskmanager:default')
 
         from zope.component import getGlobalSiteManager
-        from s17.app.taskmanager.subscribers import set_task_initial_date
-        from s17.app.taskmanager.subscribers import added_response
+        from s17.taskmanager.subscribers import set_task_initial_date
+        from s17.taskmanager.subscribers import added_response
 
         gsm = getGlobalSiteManager()
         gsm.unregisterHandler(set_task_initial_date)
@@ -30,9 +30,9 @@ class Fixture(PloneSandboxLayer):
 FIXTURE = Fixture()
 INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
-    name='s17.app.taskmanager:Integration',
+    name='s17.taskmanager:Integration',
     )
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,),
-    name='s17.app.taskmanager:Functional',
+    name='s17.taskmanager:Functional',
     )

@@ -1,8 +1,8 @@
 #! /bin/sh
 
 PATH=bin:$PATH
-I18NDOMAIN="s17.app.taskmanager"
-BASE_DIRECTORY="src/s17/app/taskmanager"
+I18NDOMAIN="s17.taskmanager"
+BASE_DIRECTORY="src/s17.taskmanager"
 
 # Synchronise the templates and scripts with the .pot.
 i18ndude rebuild-pot --pot ${BASE_DIRECTORY}/locales/${I18NDOMAIN}.pot \

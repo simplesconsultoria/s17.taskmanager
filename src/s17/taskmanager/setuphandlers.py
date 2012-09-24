@@ -6,8 +6,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.upgrade import listUpgradeSteps
 
 
-_PROJECT = 's17.app.taskmanager'
-_PROFILE_ID = 's17.app.taskmanager:default'
+_PROJECT = 's17.taskmanager'
+_PROFILE_ID = 's17.taskmanager:default'
 
 
 def get_package_dependencies():
@@ -36,7 +36,7 @@ def get_package_dependencies():
 def run_upgrades(context):
     ''' Run Upgrade steps
     '''
-    if context.readDataFile('s17.app.taskmanager-default.txt') is None:
+    if context.readDataFile('s17.taskmanager-default.txt') is None:
         return
     logger = logging.getLogger(_PROJECT)
     site = context.getSite()

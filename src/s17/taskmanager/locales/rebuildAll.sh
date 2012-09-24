@@ -4,8 +4,8 @@
 set -e
 
 # first, create some pot containing anything
-i18ndude rebuild-pot --pot s17.app.taskmanager.pot --create s17.app.taskmanager --merge manual.pot ..
+i18ndude rebuild-pot --pot s17.taskmanager.pot --create s17.taskmanager --merge manual.pot ..
 
 # finally, update the po files
-i18ndude sync --pot s17.app.taskmanager.pot  `find . -iregex '.*\.po$'|grep -v plone`
+i18ndude sync --pot s17.taskmanager.pot  `find . -iregex '.*\.po$'|grep -v plone`
 

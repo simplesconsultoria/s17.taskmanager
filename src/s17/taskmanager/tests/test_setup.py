@@ -2,8 +2,8 @@
 
 import unittest2 as unittest
 
-from s17.app.taskmanager.testing import INTEGRATION_TESTING
-from s17.app.taskmanager.config import PROJECTNAME
+from s17.taskmanager.testing import INTEGRATION_TESTING
+from s17.taskmanager.config import PROJECTNAME
 
 
 class InstallTestCase(unittest.TestCase):

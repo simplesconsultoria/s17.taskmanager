@@ -9,7 +9,7 @@ from plone.app.testing import setRoles
 
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-from s17.app.taskmanager.testing import INTEGRATION_TESTING
+from s17.taskmanager.testing import INTEGRATION_TESTING
 
 
 class BrowserLayerTest(unittest.TestCase):
@@ -21,10 +21,10 @@ class BrowserLayerTest(unittest.TestCase):
         self.request = self.layer['request']
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('s17.app.taskmanager.taskfolder',\
+        self.portal.invokeFactory('s17.taskmanager.taskfolder',\
             'tasks', title='Tasks')
         folder = self.portal['tasks']
-        folder.invokeFactory('s17.app.taskmanager.task',\
+        folder.invokeFactory('s17.taskmanager.task',\
             'task', title='Task')
         self.task = folder['task']
 

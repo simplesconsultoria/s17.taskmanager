@@ -2,32 +2,32 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="s17.app.taskmanager">
+    i18n_domain="s17.taskmanager">
 
     <genericsetup:registerProfile
         name="default"
-        title="s17.app.taskmanager: Install"
+        title="s17.taskmanager: Install"
         directory="profiles/default"
-        description="s17.app.taskmanager"
+        description="s17.taskmanager"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title; description"
         />
 
     <genericsetup:registerProfile
         name="uninstall"
-        title="Uninstall s17.app.taskmanager"
+        title="Uninstall s17.taskmanager"
         directory="profiles/uninstall"
-        description="Uninstall s17.app.taskmanager"
+        description="Uninstall s17.taskmanager"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title; description"
         />
 
 
     <genericsetup:importStep
-        name="s17.app.taskmanager-upgrades"
-        title="s17.app.taskmanager: Upgrades"
+        name="s17.taskmanager-upgrades"
+        title="s17.taskmanager: Upgrades"
         description="Run available upgrades for this package."
-        handler="s17.app.taskmanager.setuphandlers.run_upgrades">
+        handler="s17.taskmanager.setuphandlers.run_upgrades">
     </genericsetup:importStep>
 
     <include package=".upgrades" />

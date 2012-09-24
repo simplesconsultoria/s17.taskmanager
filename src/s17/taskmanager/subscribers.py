@@ -9,8 +9,8 @@ from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEve
 
 from Products.CMFCore.interfaces import IActionSucceededEvent
 
-from s17.app.taskmanager.content import ITask, ITaskFolder
-from s17.app.taskmanager.adapters import IResponse
+from s17.taskmanager.content import ITask, ITaskFolder
+from s17.taskmanager.adapters import IResponse
 
 
 def send_response_notification_mail(task):

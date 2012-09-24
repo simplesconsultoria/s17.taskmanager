@@ -9,7 +9,7 @@ long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
                    open(os.path.join("docs", "HISTORY.txt")).read()
 
-setup(name='s17.app.taskmanager',
+setup(name='s17.taskmanager',
       version=version,
       description="",
       long_description=long_description,

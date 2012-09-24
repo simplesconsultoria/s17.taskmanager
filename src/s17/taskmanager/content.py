@@ -6,7 +6,7 @@ from zope import schema
 
 from plone.app.textfield import RichText
 
-from s17.app.taskmanager import MessageFactory as _
+from s17.taskmanager import MessageFactory as _
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 

@@ -16,7 +16,7 @@ from zope.interface import Attribute
 from zope.interface import Interface
 from zope.interface import implements
 
-from s17.app.taskmanager.content import ITask
+from s17.taskmanager.content import ITask
 
 
 class IResponseContainer(Interface):

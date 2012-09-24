@@ -59,7 +59,7 @@ As admin, we create a Panel Tasks to include the tasks in there:
 Adding a task
 --------------
 Now we add some tasks in the painel tasks.
-    >>> browser.getLink(id='s17-app-taskmanager-task').click()
+    >>> browser.getLink(id='s17.taskmanager-task').click()
     >>> browser.getControl('Task Name').value = 'A task'
     >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
     >>> ctrl.options

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from Products.CMFCore.utils import getToolByName
-from s17.app.taskmanager.config import PRODUCTS
+from s17.taskmanager.config import PRODUCTS
 
 
-PROJECT = 's17.app.taskmanager'
+PROJECT = 's17.taskmanager'
 
 
 def get_package_name(name):

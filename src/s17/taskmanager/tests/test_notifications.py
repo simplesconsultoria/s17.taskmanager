@@ -7,8 +7,8 @@ from zope.component import getMultiAdapter
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
-from s17.app.taskmanager.notifications import BaseMail
-from s17.app.taskmanager.testing import INTEGRATION_TESTING
+from s17.taskmanager.notifications import BaseMail
+from s17.taskmanager.testing import INTEGRATION_TESTING
 
 
 MAIL_ITEMS = [('MIME-Version', '1.0'),
@@ -58,10 +58,10 @@ class TestNotifications(unittest.TestCase):
         self.request = self.layer['request']
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('s17.app.taskmanager.taskfolder',\
+        self.portal.invokeFactory('s17.taskmanager.taskfolder',\
             'tasks', title='Tasks')
         folder = self.portal['tasks']
-        folder.invokeFactory('s17.app.taskmanager.task',\
+        folder.invokeFactory('s17.taskmanager.task',\
             'task', title='Task')
         self.task = folder['task']
 

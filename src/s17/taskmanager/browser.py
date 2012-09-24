@@ -20,9 +20,9 @@ from Products.ATContentTypes.interfaces import IATFile
 from Products.ATContentTypes.interfaces import IATImage
 from Products.statusmessages.interfaces import IStatusMessage
 
-from s17.app.taskmanager.content import ITask, ITaskFolder
-from s17.app.taskmanager.adapters import Response, IResponseContainer
-from s17.app.taskmanager import MessageFactory as _
+from s17.taskmanager.content import ITask, ITaskFolder
+from s17.taskmanager.adapters import Response, IResponseContainer
+from s17.taskmanager import MessageFactory as _
 
 from datetime import date
 
@@ -403,10 +403,10 @@ class CreateResponse(grok.View, BaseView):
         if transition and transition in self.available_transitions:
             wftool = getToolByName(context, 'portal_workflow')
             before = wftool.getInfoFor(context, 'review_state')
-            before = wftool.getTitleForStateOnType(before, 's17.app.taskmanager.task')
+            before = wftool.getTitleForStateOnType(before, 's17.taskmanager.task')
             wftool.doActionFor(context, transition)
             after = wftool.getInfoFor(context, 'review_state')
-            after = wftool.getTitleForStateOnType(after, 's17.app.taskmanager.task')
+            after = wftool.getTitleForStateOnType(after, 's17.taskmanager.task')
             new_response.add_change('review_state', _(u'Task state'),
                 before, after)
             task_has_changed = True
@@ -444,7 +444,7 @@ class CreateResponse(grok.View, BaseView):
         if len(response_text) == 0 and not task_has_changed:
             status = IStatusMessage(self.request)
             msg = _(u"No response text added and no issue changes made.")
-            msg = translate(msg, 's17.app.taskmanager', context=self.request)
+            msg = translate(msg, 's17.taskmanager', context=self.request)
             status.addStatusMessage(msg, type='error')
         else:
             # Apply changes to issue
@@ -493,18 +493,18 @@ class SaveResponse(grok.View, BaseView):
         status = IStatusMessage(self.request)
         if not self.can_edit_response:
             msg = _(u"You are not allowed to edit responses.")
-            msg = translate(msg, 's17.app.taskmanager', context=self.request)
+            msg = translate(msg, 's17.taskmanager', context=self.request)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = form.get('response_id', None)
             if response_id is None:
                 msg = _(u"No response selected for saving.")
-                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='error')
             elif folder[response_id] is None:
                 msg = _(u"Response does not exist anymore; perhaps it was "
                         "removed by another user.")
-                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='error')
             else:
                 response = folder[response_id]
@@ -512,7 +512,7 @@ class SaveResponse(grok.View, BaseView):
                 response.text = response_text
                 msg = _(u"Changes saved to response id ${response_id}.",
                     mapping=dict(response_id=response_id))
-                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='info')
                 modified(response, context)
         self.request.response.redirect(context.absolute_url())
@@ -530,13 +530,13 @@ class DeleteResponse(grok.View, BaseView):
 
         if not self.can_delete_response:
             msg = _(u"You are not allowed to delete responses.")
-            msg = translate(msg, 's17.app.taskmanager', context=self.request)
+            msg = translate(msg, 's17.taskmanager', context=self.request)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = self.request.form.get('response_id', None)
             if response_id is None:
                 msg = _(u"No response selected for removal.")
-                msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='error')
             else:
                 try:
@@ -545,7 +545,7 @@ class DeleteResponse(grok.View, BaseView):
                     msg = _(u"Response id ${response_id} is no integer so it "
                             "cannot be removed.",
                         mapping=dict(response_id=response_id))
-                    msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                    msg = translate(msg, 's17.taskmanager', context=self.request)
                     status.addStatusMessage(msg, type='error')
                     self.request.response.redirect(context.absolute_url())
                     return
@@ -553,12 +553,12 @@ class DeleteResponse(grok.View, BaseView):
                     msg = _(u"Response id ${response_id} does not exist so it "
                             "cannot be removed.",
                         mapping=dict(response_id=response_id))
-                    msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                    msg = translate(msg, 's17.taskmanager', context=self.request)
                     status.addStatusMessage(msg, type='error')
                 else:
                     folder.delete(response_id)
                     msg = _(u"Removed response id ${response_id}.",
                         mapping=dict(response_id=response_id))
-                    msg = translate(msg, 's17.app.taskmanager', context=self.request)
+                    msg = translate(msg, 's17.taskmanager', context=self.request)
                     status.addStatusMessage(msg, type='info')
         self.request.response.redirect(context.absolute_url())

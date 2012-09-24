@@ -3,7 +3,7 @@
 set -e
 
 # first, create some pot containing anything
-i18ndude rebuild-pot --pot s17.app.taskmanager-plone.pot --create plone --merge plone-manual.pot ../*
+i18ndude rebuild-pot --pot s17.taskmanager-plone.pot --create plone --merge plone-manual.pot ../*
 
 # finally, update the po files
-i18ndude sync --pot s17.app.taskmanager-plone.pot `find . -iregex '.*plone-.*\.po$'`
+i18ndude sync --pot s17.taskmanager-plone.pot `find . -iregex '.*plone-.*\.po$'`

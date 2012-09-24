@@ -17,59 +17,59 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Assign"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Assigned"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Close"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Closed"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Comment about the last transition"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Opened"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Previous transition"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Provides access to workflow history"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Reject"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Reject the task"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Reopen"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "Task Manager Workflow"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "The ID of the user who performed the previous transition"
 msgstr ""
 
-#: s17/app/taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
+#: s17.taskmanager/profiles/default/workflows/taskmanager_workflow/definition.xml
 msgid "When the previous transition was performed"
 msgstr ""
 
