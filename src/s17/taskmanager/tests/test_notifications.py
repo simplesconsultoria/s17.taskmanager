@@ -20,7 +20,7 @@ NEW_TASK_MESSAGE = u'A new task has been submitted by **test_user_1_**.\n\n' \
                    u'Task\n  ' \
                    u'Task (http://nohost/plone/tasks/task)\n\n\n' \
                    u'**Task Details**::\n\n' \
-                   u'email_null_task_details\n\n\n' \
+                   u'No details in the task \n\n\n' \
                    u'* This is an automated email, please do not reply - '
 
 NEW_TASK_SUBJECT = u'[New task: Task]'
