@@ -1,7 +1,7 @@
 Installation
 ------------
 
-To enable this product,on a buildout based installation:
+To enable this product on a buildout based installation:
 
 1. Edit your buildout.cfg and add ``s17.taskmanager`` to the list of eggs
    to install ::
@@ -10,15 +10,6 @@ To enable this product,on a buildout based installation:
     ...
     eggs =
         s17.taskmanager
-
-2. If you are using Plone 4.1, you may need to extend a Dexterity known good
-   set (KGS) to make sure that you get the right versions of the packages that
-   make up Dexterity ::
-
-    [buildout]
-    ...
-    extends =
-        http://good-py.appspot.com/release/dexterity/1.2.1
 
 After updating the configuration you need to run the ''bin/buildout'', which
 will take care of updating your system.

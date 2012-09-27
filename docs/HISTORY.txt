@@ -4,21 +4,32 @@ Changelog
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Deprecate use on Plone 4.1; we will support only Plone>=4.2 [lepri]
-- Fix package i18n [lepri]
-- Rename content type from "s17.app.taskmanager.taskfolder" to "TaskPanel". [lepri]
+- Deprecate use on Plone 4.1; we will support only Plone>=4.2. [lepri]
+
+- Fix package i18n. [lepri]
+
+- Rename content type from "s17.app.taskmanager.taskfolder" to "TaskPanel".
+  [lepri]
+
 - Rename content type from "s17.app.taskmanager.task" to "Task". [lepri]
-- Rename package from s17.app.taskmanager to s17.taskmanager [lepri]
+
+- Rename package from s17.app.taskmanager to s17.taskmanager. [lepri]
+
 - Added the script rebuild_i18n.sh. [lepri]
-- Improved the internationalization in the vocabularies and javascripts [lepri]
+
+- Improved the internationalization in the vocabularies and javascripts.
+  [lepri]
+
 - Some adjusts in task view [lepri]
 
 1.0a3 (2012-06-08)
 ^^^^^^^^^^^^^^^^^^
 
 - Improved history for changes in the task. [lepri]
-- Improved view for task [lepri]
-- Added icon for task content [lepri]
+
+- Improved view for task. [lepri]
+
+- Added icon for task content. [lepri]
 
 
 1.0a2 (2012-05-21)
