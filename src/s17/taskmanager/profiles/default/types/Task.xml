@@ -6,7 +6,6 @@
   <property name="title" i18n:translate="">Task</property>
   <property name="description" i18n:translate=""></property>
   <property name="content_icon">++resource++s17.taskmanager/task_icon.png</property>
-  <property name="factory">s17.taskmanager.task</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
