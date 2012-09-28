@@ -4,6 +4,8 @@ Changelog
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Test Plone 4.3 compatibility. [hvelarde]
+
 - Deprecate use on Plone 4.1; we will support only Plone>=4.2. [lepri]
 
 - Fix package i18n. [lepri]
@@ -21,6 +23,7 @@ Changelog
   [lepri]
 
 - Some adjusts in task view [lepri]
+
 
 1.0a3 (2012-06-08)
 ^^^^^^^^^^^^^^^^^^
