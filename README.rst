@@ -31,3 +31,4 @@ Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 .. _`POI`: http://plone.org/products/poi
 .. _`Redmine`: http://www.redmine.org/
 .. _`opening a support ticket`: simplesconsultoria/s17.taskmanager/issues
+
