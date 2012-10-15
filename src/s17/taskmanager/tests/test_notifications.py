@@ -106,6 +106,7 @@ class TestNotifications(unittest.TestCase):
             self.assertTrue(item in MAIL_ITEMS)
 
         self.assertTrue(new_response_mail.plain == NEW_RESPONSE_MESSAGE)
+        print new_response_mail.plain
         self.assertTrue(new_response_mail.subject == NEW_RESPONSE_SUBJECT)
 
     def test_closed_task_mail(self):
