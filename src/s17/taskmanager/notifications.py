@@ -10,7 +10,7 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from collective.watcherlist.utils import su
 from collective.watcherlist.utils import get_charset
-from zope.app.component.hooks import getSite
+from zope.site.hooks import getSite
 from zope.i18n import translate
 
 from s17.taskmanager import MessageFactory as _
