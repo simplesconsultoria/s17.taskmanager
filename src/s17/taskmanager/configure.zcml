@@ -23,4 +23,11 @@
              factory="collective.watcherlist.watchers.WatcherList"
              />
 
+    <!-- five.grok 1.3.2 will not register this by itself -->
+    <browser:resourceDirectory
+        name="s17.taskmanager"
+        directory="static"
+        />
+
+
 </configure>
