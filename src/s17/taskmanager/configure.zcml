@@ -7,9 +7,13 @@
     xmlns:grok="http://namespaces.zope.org/grok"
     i18n_domain="s17.taskmanager">
 
-    <includeDependencies package="." />
-
-    <include package="five.grok" />
+  <five:registerPackage package="." />
+  <include package="plone.app.dexterity" />
+  <include package="plone.app.referenceablebehavior" />
+  <include package="five.grok" />
+  <include package="plone.principalsource" />
+  <include package="collective.upload" />
+  <include package="collective.watcherlist" />
 
     <grok:grok package="." />
 

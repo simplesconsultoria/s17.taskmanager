@@ -70,8 +70,4 @@ setup(name='s17.taskmanager',
               'robotsuite',
           ],
       },
-      entry_points="""
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
       )
