@@ -32,7 +32,7 @@ class BrowserLayerTest(unittest.TestCase):
                  'delete_response', 'watching']
         registered = [v.name for v in registration.getViews(IDefaultBrowserLayer)]
         # empty set only if all 'views' are 'registered'
-        self.assertEquals(set(views) - set(registered), set([]))
+        self.assertEqual(set(views) - set(registered), set([]))
 
     def test_watcher_view(self):
         name = '@@watching'

@@ -44,7 +44,7 @@ class IntegrationTest(unittest.TestCase):
     def test_schema(self):
         fti = queryUtility(IDexterityFTI, name=ctype)
         schema = fti.lookupSchema()
-        self.assertEquals(ITask, schema)
+        self.assertEqual(ITask, schema)
 
     def test_factory(self):
         fti = queryUtility(IDexterityFTI, name=ctype)
