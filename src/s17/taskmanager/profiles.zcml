@@ -30,5 +30,5 @@
     </genericsetup:importStep>
 
     <include package=".upgrades" />
-    
+
 </configure>
