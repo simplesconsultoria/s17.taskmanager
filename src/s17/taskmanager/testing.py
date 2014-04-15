@@ -1,10 +1,24 @@
 # -*- coding: utf-8 -*-
 
+from plone import api
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
 from plone.testing.z2 import ZSERVER_FIXTURE
+
+
+def create_test_users():
+    test_users = [
+        ('manager', 'manager@foo.com', 'manager'),
+        ('user1', 'user1@foo.com', 'user1'),
+        ('user2', 'user2@foo.com', 'user2'),
+    ]
+
+    for username, email, password in test_users:
+        if api.user.get(username=username) is None:
+            api.user.create(username=username, email=email, password=password)
+    api.group.add_user(groupname='Site Administrators', username='manager')
 
 
 class Fixture(PloneSandboxLayer):
@@ -17,6 +31,7 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=s17.taskmanager)
 
     def setUpPloneSite(self, portal):
+        create_test_users()
         # Install into Plone site using portal_setup
         self.applyProfile(portal, 's17.taskmanager:default')
 

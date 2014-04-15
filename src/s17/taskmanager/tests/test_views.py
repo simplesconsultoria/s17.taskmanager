@@ -4,6 +4,7 @@ import unittest
 
 from plone.app.customerize import registration
 
+from plone import api
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
@@ -46,20 +47,15 @@ class BrowserLayerTest(unittest.TestCase):
         self.assertTrue(view.render() is None)
 
     def test_create_response_view(self):
-        name = '@@create_response'
-        try:
-            self.task.unrestrictedTraverse(name)
-        except AttributeError:
-            self.fail('%s has no view %s' % (self.task, name))
-
-        view = self.task.restrictedTraverse(name)
+        view = api.content.get_view('create_response', self.task, self.request)
         view.update()
-
-        responsibles = [{'checked': 'checked',
-                         'value': 'nobody',
-                         'label': u'Nobody'},
-                        {'checked': '',
-                         'value': 'test_user_1_',
-                         'label': 'test-user'}]
-
-        self.assertFalse(responsibles != view.responsibles_for_display)
+        responsibles = view.responsibles_for_display
+        # first we check the structure
+        self.assertDictEqual(
+            responsibles[0],
+            {'checked': 'checked', 'value': 'nobody', 'label': u'Nobody'},
+        )
+        # then we check all users created are also there
+        responsibles = [r['value'] for r in responsibles]
+        expected = ['nobody', 'manager', 'user1', 'user2']
+        self.assertListEqual(responsibles, expected)

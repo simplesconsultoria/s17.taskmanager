@@ -49,7 +49,7 @@ As admin, we create a Panel Tasks to include the tasks in there:
     >>> browser.getControl('Summary').value = 'A panel tasks'
     >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
     >>> ctrl.options
-    ['--NOVALUE--', 'someuser', 'test_user_1_']
+    ['--NOVALUE--', 'manager', 'someuser', 'user1', 'user2']
     >>> ctrl.value = ['someuser']
     >>> browser.getControl('Save').click()
     >>> 'Item created' in browser.contents
@@ -64,7 +64,7 @@ Now we add some tasks in the painel tasks.
     >>> browser.getControl('Task Name').value = 'A task'
     >>> ctrl = browser.getControl(name='form.widgets.responsible:list')
     >>> ctrl.options
-    ['--NOVALUE--', 'someuser', 'test_user_1_']
+    ['--NOVALUE--', 'manager', 'someuser', 'user1', 'user2']
     >>> ctrl.value = ['someuser']
     >>> ctrl = browser.getControl(name='form.widgets.priority:list')
     >>> ctrl.options

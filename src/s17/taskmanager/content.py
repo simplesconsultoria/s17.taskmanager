@@ -23,14 +23,14 @@ class ITaskFolder(form.Schema):
         title=_(u'Responsible'),
         description=_(''),
         required=False,
-        vocabulary='plone.principalsource.Users',
+        vocabulary='plone.app.vocabularies.Users',
     )
 
     can_add_tasks = schema.List(
         title=_(u'Who can add tasks?'),
         description=_(''),
         required=False,
-        value_type=schema.Choice(vocabulary='plone.principalsource.Principals'),
+        value_type=schema.Choice(vocabulary='plone.app.vocabularies.Groups'),
     )
 
 
@@ -46,7 +46,7 @@ class ITask(form.Schema):
         title=_(u'Responsible'),
         description=_(''),
         required=False,
-        vocabulary='plone.principalsource.Users',
+        vocabulary='plone.app.vocabularies.Users',
     )
 
     priority = schema.Choice(
