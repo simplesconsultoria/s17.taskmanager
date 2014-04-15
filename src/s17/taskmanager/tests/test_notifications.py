@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import unittest2 as unittest
+import unittest
 
 from zope.component import getMultiAdapter
 
@@ -117,7 +117,3 @@ class TestNotifications(unittest.TestCase):
 
         self.assertTrue(closed_task_mail.plain == CLOSED_TASK_MESSAGE)
         self.assertTrue(closed_task_mail.subject == CLOSED_TASK_SUBJECT)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

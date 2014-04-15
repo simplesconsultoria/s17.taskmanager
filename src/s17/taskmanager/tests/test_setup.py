@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import unittest2 as unittest
+import unittest
 
 from s17.taskmanager.testing import INTEGRATION_TESTING
 from s17.taskmanager.config import PROJECTNAME

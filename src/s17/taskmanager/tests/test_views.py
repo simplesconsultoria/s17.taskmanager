@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import unittest2 as unittest
+import unittest
 
 from plone.app.customerize import registration
 
@@ -63,7 +63,3 @@ class BrowserLayerTest(unittest.TestCase):
                          'label': 'test-user'}]
 
         self.assertFalse(responsibles != view.responsibles_for_display)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)
