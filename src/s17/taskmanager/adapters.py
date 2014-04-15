@@ -8,8 +8,8 @@ from persistent import Persistent
 from persistent.list import PersistentList
 
 from zope.annotation.interfaces import IAnnotations
-from zope.app.container.contained import ObjectAddedEvent
-from zope.app.container.contained import ObjectRemovedEvent
+from zope.container.contained import ObjectAddedEvent
+from zope.container.contained import ObjectRemovedEvent
 from zope.component import adapts
 from zope.event import notify
 from zope.interface import Attribute
@@ -53,8 +53,6 @@ class ResponseContainer(Persistent):
 
     def __contains__(self, key):
         '''See interface IReadContainer
-
-        Taken from zope.app.container.btree.
 
         Reimplement this method, since has_key() returns the key if available,
         while we expect True or False.
