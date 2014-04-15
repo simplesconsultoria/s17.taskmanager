@@ -58,11 +58,9 @@ class TestNotifications(unittest.TestCase):
         self.request = self.layer['request']
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('TaskPanel',\
-            'tasks', title='Tasks')
+        self.portal.invokeFactory('TaskPanel', 'tasks', title='Tasks')
         folder = self.portal['tasks']
-        folder.invokeFactory('Task',\
-            'task', title='Task')
+        folder.invokeFactory('Task', 'task', title='Task')
         self.task = folder['task']
 
     def _baseMail(self):
@@ -82,20 +80,20 @@ class TestNotifications(unittest.TestCase):
         self.assertTrue(mailer.prepare_email_message() is None)
 
     def test_new_task_mail(self):
-        new_task_mail = getMultiAdapter((self.task, self.request),
-            name=u'new-task-mail')
+        new_task_mail = getMultiAdapter(
+            (self.task, self.request), name=u'new-task-mail')
 
         for item in new_task_mail.prepare_email_message().items():
             self.assertTrue(item in MAIL_ITEMS)
 
-#        self.assertTrue(new_task_mail.plain == NEW_TASK_MESSAGE)
+        # self.assertTrue(new_task_mail.plain == NEW_TASK_MESSAGE)
         self.assertTrue(new_task_mail.subject == NEW_TASK_SUBJECT)
 
     def test_new_response_mail(self):
-        new_response_mail = getMultiAdapter((self.task, self.request),
-            name=u'new-response-mail')
-        create_response = getMultiAdapter((self.task, self.request),
-            name=u'create_response')
+        new_response_mail = getMultiAdapter(
+            (self.task, self.request), name=u'new-response-mail')
+        create_response = getMultiAdapter(
+            (self.task, self.request), name=u'create_response')
 
         self.request.form['responsible'] = 'someuser'
         create_response.render()
@@ -109,8 +107,8 @@ class TestNotifications(unittest.TestCase):
         self.assertTrue(new_response_mail.subject == NEW_RESPONSE_SUBJECT)
 
     def test_closed_task_mail(self):
-        closed_task_mail = getMultiAdapter((self.task, self.request),
-            name=u'closed-task-mail')
+        closed_task_mail = getMultiAdapter(
+            (self.task, self.request), name=u'closed-task-mail')
 
         for item in closed_task_mail.prepare_email_message().items():
             self.assertTrue(item in MAIL_ITEMS)

@@ -169,8 +169,8 @@ class NewResponseMail(BaseMail):
         # Indent the response details so they are correctly interpreted as
         # a literal block after the double colon behind the 'Response
         # Details' header.
-        wrapper = textwrap.TextWrapper(initial_indent=u'    ',
-            subsequent_indent=u'    ')
+        wrapper = textwrap.TextWrapper(
+            initial_indent=u'    ', subsequent_indent=u'    ')
         responseDetails = u'\n\n'.join([wrapper.fill(p) for p in paras])
 
         if responseDetails:

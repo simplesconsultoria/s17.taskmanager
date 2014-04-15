@@ -77,9 +77,13 @@ class BaseView:
         users_factory = getUtility(IVocabularyFactory, name=u'plone.app.vocabularies.Users')
         users = users_factory(context)
         if not self.res:
-            options = [{'checked':'checked', 'value':'nobody', 'label':_('Nobody')}, ]
+            options = [
+                {'checked': 'checked', 'value': 'nobody', 'label': _('Nobody')},
+            ]
         else:
-            options = [{'checked':'', 'value':'nobody', 'label':_('Nobody')}, ]
+            options = [
+                {'checked': '', 'value': 'nobody', 'label': _('Nobody')},
+            ]
         for value in users:
             values = {}
             values['checked'] = (value.token == self.res) and "checked" or ""
@@ -98,11 +102,11 @@ class BaseView:
             return []
         wftool = getToolByName(context, 'portal_workflow')
         transitions = []
-        transitions.append(dict(value='', label=_(u'No change'),
-            checked="checked"))
+        transitions.append(
+            dict(value='', label=_(u'No change'), checked='checked'))
         for tdef in wftool.getTransitionsFor(context):
-            transitions.append(dict(value=tdef['id'],
-                label=tdef['title_or_id'], checked=''))
+            transitions.append(
+                dict(value=tdef['id'], label=tdef['title_or_id'], checked=''))
         return transitions
 
     @property
@@ -119,8 +123,8 @@ class BaseView:
         options = []
         for value in vocab:
             checked = (value == self.priority) and "checked" or ""
-            options.append(dict(value=value, label=vocab[value],
-                checked=checked))
+            options.append(
+                dict(value=value, label=vocab[value], checked=checked))
         return options
 
     @property
@@ -163,15 +167,17 @@ class TaskFolderView(dexterity.DisplayForm):
         ''' function to return all tasks in the container
         '''
         ct = getToolByName(self.context, 'portal_catalog')
-        tasks = ct(object_provides=ITask.__identifier__,
-            path='/'.join(self.context.getPhysicalPath()))
+        tasks = ct(
+            object_provides=ITask.__identifier__,
+            path='/'.join(self.context.getPhysicalPath())
+        )
         if tasks:
             return [dict(title=task.Title,
                          url=task.getURL(),
                          status=task.review_state.capitalize(),
                          responsible=self.responsible(task.getObject()),
                          priority=task.getObject().priority,)
-                            for task in tasks]
+                    for task in tasks]
         else:
             return None
 
@@ -197,7 +203,10 @@ class TaskView(dexterity.DisplayForm, BaseView):
 
     def images(self):
         ct = getToolByName(self.context, 'portal_catalog')
-        images = ct(object_provides=IATImage.__identifier__, path='/'.join(self.context.getPhysicalPath()))
+        images = ct(
+            object_provides=IATImage.__identifier__,
+            path='/'.join(self.context.getPhysicalPath())
+        )
         if images:
             images = [image.getObject() for image in images]
             return images
@@ -206,8 +215,10 @@ class TaskView(dexterity.DisplayForm, BaseView):
 
     def files(self):
         ct = getToolByName(self.context, 'portal_catalog')
-        files = ct(object_provides=IATFile.__identifier__,
-            path='/'.join(self.context.getPhysicalPath()))
+        files = ct(
+            object_provides=IATFile.__identifier__,
+            path='/'.join(self.context.getPhysicalPath())
+        )
         if files:
             return files
         else:
@@ -270,11 +281,11 @@ class TaskView(dexterity.DisplayForm, BaseView):
             config += 'value: new Date("%s/%s/%s"), ' % (value_date)
 
         config += 'change: function() { ' \
-                    'var value = this.getValue("yyyy-m-dd").split("-"); \n' \
-                    'jQuery("#%(id)s-year").val(value[0]); \n' \
-                    'jQuery("#%(id)s-month").val(value[1]); \n' \
-                    'jQuery("#%(id)s-day").val(value[2]); \n' \
-                '}, ' % dict(id='date')
+                  'var value = this.getValue("yyyy-m-dd").split("-"); \n' \
+                  'jQuery("#%(id)s-year").val(value[0]); \n' \
+                  'jQuery("#%(id)s-month").val(value[1]); \n' \
+                  'jQuery("#%(id)s-day").val(value[2]); \n' \
+                  '}, ' % dict(id='date')
         config += self.jquerytools_dateinput_config
 
         return '''
@@ -292,12 +303,10 @@ class TaskView(dexterity.DisplayForm, BaseView):
                         });
                     jQuery("#%(id)s-calendar").next()%(popup_calendar_icon)s;
                 }
-            </script>''' % dict(
-                id='date', name='date',
-                day=self.day, month=self.month, year=self.year,
-                config=config, language=language, localize=localize,
-                popup_calendar_icon=self.popup_calendar_icon,
-            )
+            </script>''' % dict(id='date', name='date',
+                                day=self.day, month=self.month, year=self.year,
+                                config=config, language=language, localize=localize,
+                                popup_calendar_icon=self.popup_calendar_icon)
 
     @property
     def months(self):
@@ -335,9 +344,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
                 # Has been removed.
                 continue
             html = response.text or u''
-            info = dict(id=id,
-                response=response,
-                html=html)
+            info = dict(id=id, response=response, html=html)
             items.append(info)
         return items
 
@@ -351,7 +358,8 @@ class CreateResponse(grok.View, BaseView):
     grok.name("create_response")
     grok.require("zope2.View")
 
-    def render(self):
+    # FIXME: this method is way too complex (17)
+    def render(self):  # noqa
         form = self.request.form
         context = aq_inner(self.context)
 
@@ -378,7 +386,7 @@ class CreateResponse(grok.View, BaseView):
         options = [
             ('priority', _(u'Priority'), 'available_priority'),
             ('responsible', _(u'Responsible'), 'available_responsibles'),
-            ]
+        ]
 
         # Changes that need to be applied to the issue (apart from
         # workflow changes that need to be handled separately).
@@ -395,8 +403,7 @@ class CreateResponse(grok.View, BaseView):
                     current = current_responsible
                 if current != new:
                     changes[option] = new
-                    new_response.add_change(option, title,
-                        current, new)
+                    new_response.add_change(option, title, current, new)
                     task_has_changed = True
 
         transition = form.get('transition', u'')
@@ -407,8 +414,7 @@ class CreateResponse(grok.View, BaseView):
             wftool.doActionFor(context, transition)
             after = wftool.getInfoFor(context, 'review_state')
             after = wftool.getTitleForStateOnType(after, 's17.taskmanager.task')
-            new_response.add_change('review_state', _(u'Task state'),
-                before, after)
+            new_response.add_change('review_state', _(u'Task state'), before, after)
             task_has_changed = True
 
         try:
@@ -438,7 +444,8 @@ class CreateResponse(grok.View, BaseView):
                 current = None
             context.provided_date = dateobj
             changes['provided_date'] = dateobj
-            new_response.add_change('provided_date', _(u'Expected date'), current, dateobj)
+            new_response.add_change(
+                'provided_date', _(u'Expected date'), current, dateobj)
             task_has_changed = True
 
         if len(response_text) == 0 and not task_has_changed:
@@ -510,8 +517,10 @@ class SaveResponse(grok.View, BaseView):
                 response = folder[response_id]
                 response_text = form.get('response', u'')
                 response.text = response_text
-                msg = _(u"Changes saved to response id ${response_id}.",
-                    mapping=dict(response_id=response_id))
+                msg = _(
+                    u'Changes saved to response id ${response_id}.',
+                    mapping=dict(response_id=response_id)
+                )
                 msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='info')
                 modified(response, context)
@@ -542,23 +551,27 @@ class DeleteResponse(grok.View, BaseView):
                 try:
                     response_id = int(response_id)
                 except ValueError:
-                    msg = _(u"Response id ${response_id} is no integer so it "
-                            "cannot be removed.",
-                        mapping=dict(response_id=response_id))
+                    msg = _(
+                        u'Response id ${response_id} is no integer so it cannot be removed.',
+                        mapping=dict(response_id=response_id)
+                    )
                     msg = translate(msg, 's17.taskmanager', context=self.request)
                     status.addStatusMessage(msg, type='error')
                     self.request.response.redirect(context.absolute_url())
                     return
                 if response_id >= len(folder):
-                    msg = _(u"Response id ${response_id} does not exist so it "
-                            "cannot be removed.",
-                        mapping=dict(response_id=response_id))
+                    msg = _(
+                        u'Response id ${response_id} does not exist so it cannot be removed.',
+                        mapping=dict(response_id=response_id)
+                    )
                     msg = translate(msg, 's17.taskmanager', context=self.request)
                     status.addStatusMessage(msg, type='error')
                 else:
                     folder.delete(response_id)
-                    msg = _(u"Removed response id ${response_id}.",
-                        mapping=dict(response_id=response_id))
+                    msg = _(
+                        u'Removed response id ${response_id}.',
+                        mapping=dict(response_id=response_id)
+                    )
                     msg = translate(msg, 's17.taskmanager', context=self.request)
                     status.addStatusMessage(msg, type='info')
         self.request.response.redirect(context.absolute_url())

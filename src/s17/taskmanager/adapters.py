@@ -112,8 +112,7 @@ class ResponseContainer(Persistent):
         #
         # Also, now we can say the oldParent is the issue instead of
         # this adapter.
-        event = ObjectRemovedEvent(self[id], oldParent=self.context,
-            oldName=id)
+        event = ObjectRemovedEvent(self[id], oldParent=self.context, oldName=id)
         self.remove(id)
         notify(event)
 

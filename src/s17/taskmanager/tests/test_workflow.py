@@ -102,9 +102,8 @@ class WorkflowTest(unittest.TestCase):
         review_state = self.wt.getInfoFor(self.obj, 'review_state')
         self.assertEqual(review_state, 'assigned')
         # We cannot open a assigned task
-        self.assertRaises(WorkflowException,
-            self.wt.doActionFor,
-            self.obj, 'reopen')
+        self.assertRaises(
+            WorkflowException, self.wt.doActionFor, self.obj, 'reopen')
 
         # We can however, close it
         self.wt.doActionFor(self.obj, 'close')
@@ -114,6 +113,5 @@ class WorkflowTest(unittest.TestCase):
 
         # we cannot assigned a closed task
 
-        self.assertRaises(WorkflowException,
-            self.wt.doActionFor,
-            self.obj, 'assign')
+        self.assertRaises(
+            WorkflowException, self.wt.doActionFor, self.obj, 'assign')

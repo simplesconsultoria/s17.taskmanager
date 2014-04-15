@@ -22,11 +22,9 @@ class BrowserLayerTest(unittest.TestCase):
         self.request = self.layer['request']
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('TaskPanel',\
-            'tasks', title='Tasks')
+        self.portal.invokeFactory('TaskPanel', 'tasks', title='Tasks')
         folder = self.portal['tasks']
-        folder.invokeFactory('Task',\
-            'task', title='Task')
+        folder.invokeFactory('Task', 'task', title='Task')
         self.task = folder['task']
 
     def test_views_registered_task(self):
