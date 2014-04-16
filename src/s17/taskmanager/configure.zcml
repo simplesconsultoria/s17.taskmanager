@@ -14,24 +14,22 @@
   <include package="collective.upload" />
   <include package="collective.watcherlist" />
 
-    <grok:grok package="." />
+  <grok:grok package="." />
 
-    <include file="profiles.zcml"/>
+  <include file="profiles.zcml"/>
 
-    <i18n:registerTranslations directory="locales" />
+  <i18n:registerTranslations directory="locales" />
 
-    <adapter provides=".adapters.IResponseContainer"
-             factory=".adapters.ResponseContainer"
-             />
-    <adapter for=".content.ITask"
-             factory="collective.watcherlist.watchers.WatcherList"
-             />
+  <adapter
+      provides=".adapters.IResponseContainer"
+      factory=".adapters.ResponseContainer"
+      />
 
-    <!-- five.grok 1.3.2 will not register this by itself -->
-    <browser:resourceDirectory
-        name="s17.taskmanager"
-        directory="static"
-        />
+  <adapter
+      for=".content.ITask"
+      factory="collective.watcherlist.watchers.WatcherList"
+      />
 
+  <browser:resourceDirectory name="s17.taskmanager" directory="static" />
 
 </configure>
