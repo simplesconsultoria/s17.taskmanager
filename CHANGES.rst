@@ -1,14 +1,16 @@
 Changelog
-----------
+=========
+
+There's a frood who really knows where his towel is.
 
 1.0b2 (unreleased)
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - Nothing changed yet.
 
 
 1.0b1 (2012-09-28)
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - Test Plone 4.3 compatibility. [hvelarde]
 
@@ -32,7 +34,7 @@ Changelog
 
 
 1.0a3 (2012-06-08)
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - Improved history for changes in the task. [lepri]
 
@@ -42,12 +44,12 @@ Changelog
 
 
 1.0a2 (2012-05-21)
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - Fixed distribution. [hvelarde]
 
 
 1.0a1 (2012-05-21)
-^^^^^^^^^^^^^^^^^^
+------------------
 
 - Initial release.
