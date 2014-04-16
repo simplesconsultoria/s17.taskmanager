@@ -26,13 +26,13 @@ from s17.taskmanager import MessageFactory as _
 
 from datetime import date
 
-grok.templatedir("templates")
+grok.templatedir('templates')
 
 
 class WatcherView(grok.View):
     grok.context(ITask)
-    grok.name("watching")
-    grok.require("zope2.View")
+    grok.name('watching')
+    grok.require('zope2.View')
 
     def render(self):
         context = aq_inner(self.context)
@@ -86,7 +86,7 @@ class BaseView:
             ]
         for value in users:
             values = {}
-            values['checked'] = (value.token == self.res) and "checked" or ""
+            values['checked'] = (value.token == self.res) and 'checked' or ''
             values['value'] = value.token
             values['label'] = value.title
             options.append(values)
@@ -122,7 +122,7 @@ class BaseView:
         vocab = {1: _(u'High'), 2: _(u'Normal'), 3: _(u'Low')}
         options = []
         for value in vocab:
-            checked = (value == self.priority) and "checked" or ""
+            checked = (value == self.priority) and 'checked' or ''
             options.append(
                 dict(value=value, label=vocab[value], checked=checked))
         return options
@@ -145,9 +145,9 @@ class BaseView:
 
 class TaskFolderView(dexterity.DisplayForm):
     grok.context(ITaskFolder)
-    grok.name("view")
+    grok.name('view')
     grok.template('taskfolder_view')
-    grok.require("zope2.View")
+    grok.require('zope2.View')
 
     def responsible(self, obj):
         """ Return the fullname of the responsible for the task
@@ -184,9 +184,9 @@ class TaskFolderView(dexterity.DisplayForm):
 
 class TaskView(dexterity.DisplayForm, BaseView):
     grok.context(ITask)
-    grok.name("view")
+    grok.name('view')
     grok.template('task_view')
-    grok.require("zope2.View")
+    grok.require('zope2.View')
 
     calendar_type = 'gregorian'
 
@@ -288,7 +288,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
                   '}, ' % dict(id='date')
         config += self.jquerytools_dateinput_config
 
-        return '''
+        return """
             <input type="hidden" name="%(name)s-calendar"
                    id="%(id)s-calendar" />
             <script type="text/javascript">
@@ -303,7 +303,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
                         });
                     jQuery("#%(id)s-calendar").next()%(popup_calendar_icon)s;
                 }
-            </script>''' % dict(id='date', name='date',
+            </script>""" % dict(id='date', name='date',
                                 day=self.day, month=self.month, year=self.year,
                                 config=config, language=language, localize=localize,
                                 popup_calendar_icon=self.popup_calendar_icon)
@@ -355,8 +355,8 @@ class TaskView(dexterity.DisplayForm, BaseView):
 
 class CreateResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name("create_response")
-    grok.require("zope2.View")
+    grok.name('create_response')
+    grok.require('zope2.View')
 
     # FIXME: this method is way too complex (17)
     def render(self):  # noqa
@@ -450,7 +450,7 @@ class CreateResponse(grok.View, BaseView):
 
         if len(response_text) == 0 and not task_has_changed:
             status = IStatusMessage(self.request)
-            msg = _(u"No response text added and no issue changes made.")
+            msg = _(u'No response text added and no issue changes made.')
             msg = translate(msg, 's17.taskmanager', context=self.request)
             status.addStatusMessage(msg, type='error')
         else:
@@ -463,8 +463,8 @@ class CreateResponse(grok.View, BaseView):
 
 class EditResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name("edit_response")
-    grok.require("zope2.View")
+    grok.name('edit_response')
+    grok.require('zope2.View')
     grok.template('edit_response')
 
     @property
@@ -490,8 +490,8 @@ class EditResponse(grok.View, BaseView):
 
 class SaveResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name("save_response")
-    grok.require("zope2.View")
+    grok.name('save_response')
+    grok.require('zope2.View')
 
     def render(self):
         folder = IResponseContainer(self.context)
@@ -499,18 +499,18 @@ class SaveResponse(grok.View, BaseView):
         context = aq_inner(self.context)
         status = IStatusMessage(self.request)
         if not self.can_edit_response:
-            msg = _(u"You are not allowed to edit responses.")
+            msg = _(u'You are not allowed to edit responses.')
             msg = translate(msg, 's17.taskmanager', context=self.request)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = form.get('response_id', None)
             if response_id is None:
-                msg = _(u"No response selected for saving.")
+                msg = _(u'No response selected for saving.')
                 msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='error')
             elif folder[response_id] is None:
-                msg = _(u"Response does not exist anymore; perhaps it was "
-                        "removed by another user.")
+                msg = _(
+                    u'Response does not exist anymore; perhaps it was removed by another user.')
                 msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='error')
             else:
@@ -529,8 +529,8 @@ class SaveResponse(grok.View, BaseView):
 
 class DeleteResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name("delete_response")
-    grok.require("zope2.View")
+    grok.name('delete_response')
+    grok.require('zope2.View')
 
     def render(self):
         folder = IResponseContainer(self.context)
@@ -538,13 +538,13 @@ class DeleteResponse(grok.View, BaseView):
         status = IStatusMessage(self.request)
 
         if not self.can_delete_response:
-            msg = _(u"You are not allowed to delete responses.")
+            msg = _(u'You are not allowed to delete responses.')
             msg = translate(msg, 's17.taskmanager', context=self.request)
             status.addStatusMessage(msg, type='error')
         else:
             response_id = self.request.form.get('response_id', None)
             if response_id is None:
-                msg = _(u"No response selected for removal.")
+                msg = _(u'No response selected for removal.')
                 msg = translate(msg, 's17.taskmanager', context=self.request)
                 status.addStatusMessage(msg, type='error')
             else:

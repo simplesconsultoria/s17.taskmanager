@@ -37,7 +37,7 @@ class ITaskFolder(form.Schema):
 class ITask(form.Schema):
 
     title = schema.TextLine(
-        title=_(u"Task Name"),
+        title=_(u'Task Name'),
         description=_(''),
         required=True,
     )

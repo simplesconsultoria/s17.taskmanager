@@ -10,4 +10,4 @@ def uninstall(portal, reinstall=False):
         profile = 'profile-s17.taskmanager:uninstall'
         setup_tool.runAllImportStepsFromProfile(profile)
 
-        return "Ran all uninstall steps."
+        return 'Ran all uninstall steps.'

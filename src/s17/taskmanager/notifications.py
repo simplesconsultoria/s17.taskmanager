@@ -19,7 +19,7 @@ from s17.taskmanager.content import ITask
 
 wrapper = textwrap.TextWrapper(initial_indent='    ', subsequent_indent='    ')
 
-grok.templatedir("templates")
+grok.templatedir('templates')
 
 
 class BaseMail(grok.View):
@@ -127,8 +127,9 @@ ${task_details}
         context = aq_inner(self.context)
         subject = _(
             'email_new_task_subject_template',
-            u"[New task: ${task_title}]",
-            mapping=dict(task_title=su(context.title)))
+            u'[New task: ${task_title}]',
+            mapping=dict(task_title=su(context.title))
+        )
         # Make the subject unicode and translate it too.
         subject = su(subject)
         subject = translate(subject, 's17.taskmanager', context=self.request)
@@ -174,11 +175,9 @@ class NewResponseMail(BaseMail):
         responseDetails = u'\n\n'.join([wrapper.fill(p) for p in paras])
 
         if responseDetails:
-            header = _(
-                'heading_response_details',
-                u"Response Details")
+            header = _('heading_response_details', u'Response Details')
             header = translate(header, 's17.taskmanager', context=self.request)
-            responseDetails = u"**%s**::\n\n\n%s" % (header, responseDetails)
+            responseDetails = u'**%s**::\n\n\n%s' % (header, responseDetails)
 
         changes = u''
         for change in response.changes:
@@ -190,7 +189,7 @@ class NewResponseMail(BaseMail):
             before = translate(before, 's17.taskmanager', context=self.request)
             after = translate(after, 's17.taskmanager', context=self.request)
             name = translate(name, 's17.taskmanager', context=self.request)
-            changes += u"- %s: %s -> %s\n" % (name, before, after)
+            changes += u'- %s: %s -> %s\n' % (name, before, after)
 
         mail_text = _(
             'email_new_response_template',
@@ -223,7 +222,7 @@ ${response_details}
         context = aq_inner(self.context)
         subject = _(
             'email_new_response_subject_template',
-            u"Re: ${task_title}",
+            u'Re: ${task_title}',
             mapping=dict(task_title=su(context.title)))
         # Ensure that the subject is unicode and translate it too.
         subject = su(subject)
@@ -276,8 +275,9 @@ Task
         context = aq_inner(self.context)
         subject = _(
             'email_task_closed_subject_template',
-            u"[Resolved #${task_title}]",
-            mapping=dict(task_title=su(context.title)))
+            u'[Resolved #${task_title}]',
+            mapping=dict(task_title=su(context.title))
+        )
         # Make the subject unicode and translate it too.
         subject = su(subject)
         subject = translate(subject, 's17.taskmanager', context=self.request)

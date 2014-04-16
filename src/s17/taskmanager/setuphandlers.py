@@ -26,7 +26,7 @@ def run_upgrades(context):
         oStep = step.get('step')
         if oStep is not None:
             oStep.doStep(setup_tool)
-            msg = "Ran upgrade step %s for profile %s" % (oStep.title,
+            msg = 'Ran upgrade step %s for profile %s' % (oStep.title,
                                                           _PROFILE_ID)
             setup_tool.setLastVersionForProfile(_PROFILE_ID, oStep.dest)
             logger.info(msg)

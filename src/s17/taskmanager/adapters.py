@@ -25,12 +25,12 @@ class IResponseContainer(Interface):
 
 class IResponse(Interface):
 
-    text = Attribute("Text of this response")
-    rendered_text = Attribute("Rendered text (html) for caching")
-    changes = Attribute("Changes made to the task in this response.")
-    creator = Attribute("Id of user making this change.")
-    date = Attribute("Date (plus time) this response was made.")
-    responsible = Attribute("Responsible for the task.")
+    text = Attribute('Text of this response')
+    rendered_text = Attribute('Rendered text (html) for caching')
+    changes = Attribute('Changes made to the task in this response.')
+    creator = Attribute('Id of user making this change.')
+    date = Attribute('Date (plus time) this response was made.')
+    responsible = Attribute('Responsible for the task.')
 
     def add_change(id, name, before, after):
         """Add change to the list of changes.
@@ -52,20 +52,20 @@ class ResponseContainer(Persistent):
             annotations[self.ANNO_KEY] = self.__mapping
 
     def __contains__(self, key):
-        '''See interface IReadContainer
+        """See interface IReadContainer
 
         Reimplement this method, since has_key() returns the key if available,
         while we expect True or False.
 
         >>> c = ResponseContainer()
-        >>> "a" in c
+        >>> 'a' in c
         False
-        >>> c["a"] = 1
-        >>> "a" in c
+        >>> c['a'] = 1
+        >>> 'a' in c
         True
-        >>> "A" in c
+        >>> 'A' in c
         False
-        '''
+        """
         return key in self.__mapping
 
     has_key = __contains__
