@@ -6,7 +6,9 @@ There's a frood who really knows where his towel is.
 1.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix content type information as previous rename was incomplete (an upgrade
+  step is available).
+  [hvelarde]
 
 
 1.0b1 (2012-09-28)

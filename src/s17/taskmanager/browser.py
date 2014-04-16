@@ -13,7 +13,7 @@ from s17.taskmanager import MessageFactory as _
 from s17.taskmanager.adapters import IResponseContainer
 from s17.taskmanager.adapters import Response
 from s17.taskmanager.content import ITask
-from s17.taskmanager.content import ITaskFolder
+from s17.taskmanager.content import ITaskPanel
 from zope.cachedescriptors.property import Lazy
 from zope.component import getUtility
 from zope.i18n import translate
@@ -138,7 +138,7 @@ class BaseView:
 
 
 class TaskFolderView(dexterity.DisplayForm):
-    grok.context(ITaskFolder)
+    grok.context(ITaskPanel)
     grok.name('view')
     grok.template('taskfolder_view')
     grok.require('zope2.View')
