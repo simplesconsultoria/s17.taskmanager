@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest
+from plone.testing import layered
+from s17.taskmanager.testing import FUNCTIONAL_TESTING
 
 import robotsuite
-
-from plone.testing import layered
-
-from s17.taskmanager.testing import FUNCTIONAL_TESTING
+import unittest
 
 
 def test_suite():

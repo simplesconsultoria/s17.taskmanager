@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-
-import unittest
-
-from plone.app.customerize import registration
-
 from plone import api
-from plone.app.testing import TEST_USER_ID
+from plone.app.customerize import registration
 from plone.app.testing import setRoles
-
+from plone.app.testing import TEST_USER_ID
+from s17.taskmanager.testing import INTEGRATION_TESTING
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-from s17.taskmanager.testing import INTEGRATION_TESTING
+import unittest
 
 
 class BrowserLayerTest(unittest.TestCase):

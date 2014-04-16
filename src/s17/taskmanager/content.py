@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
-
-from plone.directives import form
-
-from zope import schema
-
 from plone.app.textfield import RichText
-
+from plone.directives import form
 from s17.taskmanager import MessageFactory as _
-
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope import schema
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 priorities = SimpleVocabulary(
     [SimpleTerm(value=1, title=_(u'High')),

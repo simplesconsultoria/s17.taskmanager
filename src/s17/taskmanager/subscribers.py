@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
-from five import grok
-
-from datetime import date
-
 from collective.watcherlist.interfaces import IWatcherList
-
-from zope.lifecycleevent.interfaces import IObjectAddedEvent, IObjectModifiedEvent
-
+from datetime import date
+from five import grok
 from Products.CMFCore.interfaces import IActionSucceededEvent
-
-from s17.taskmanager.content import ITask, ITaskFolder
 from s17.taskmanager.adapters import IResponse
+from s17.taskmanager.content import ITask
+from s17.taskmanager.content import ITaskFolder
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 
 def send_response_notification_mail(task):

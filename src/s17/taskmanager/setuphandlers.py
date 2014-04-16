@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-
-import logging
-
 from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.upgrade import listUpgradeSteps
-
 from s17.taskmanager.config import PROJECTNAME
+
+import logging
 
 _PROFILE_ID = 's17.taskmanager:default'
 

@@ -1,21 +1,18 @@
 # -*- coding: utf-8 -*-
-
-from five import grok
-from email.MIMEText import MIMEText
-from email.MIMEMultipart import MIMEMultipart
-
-import textwrap
-
 from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
-from collective.watcherlist.utils import su
 from collective.watcherlist.utils import get_charset
-from zope.site.hooks import getSite
-from zope.i18n import translate
-
+from collective.watcherlist.utils import su
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+from five import grok
+from Products.CMFCore.utils import getToolByName
 from s17.taskmanager import MessageFactory as _
 from s17.taskmanager.adapters import IResponseContainer
 from s17.taskmanager.content import ITask
+from zope.i18n import translate
+from zope.site.hooks import getSite
+
+import textwrap
 
 wrapper = textwrap.TextWrapper(initial_indent='    ', subsequent_indent='    ')
 

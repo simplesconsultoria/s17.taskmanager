@@ -1,30 +1,24 @@
 # -*- coding: utf-8 -*-
-
 from Acquisition import aq_inner
-
-from five import grok
-
 from collective.watcherlist.interfaces import IWatcherList
-
-from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
-from zope.cachedescriptors.property import Lazy
-from zope.i18n import translate
-from zope.lifecycleevent import modified
-
+from datetime import date
+from five import grok
 from plone.directives import dexterity
 from plone.memoize.view import memoize
-
-from Products.CMFPlone.utils import getToolByName
 from Products.ATContentTypes.interfaces import IATFile
 from Products.ATContentTypes.interfaces import IATImage
+from Products.CMFPlone.utils import getToolByName
 from Products.statusmessages.interfaces import IStatusMessage
-
-from s17.taskmanager.content import ITask, ITaskFolder
-from s17.taskmanager.adapters import Response, IResponseContainer
 from s17.taskmanager import MessageFactory as _
-
-from datetime import date
+from s17.taskmanager.adapters import IResponseContainer
+from s17.taskmanager.adapters import Response
+from s17.taskmanager.content import ITask
+from s17.taskmanager.content import ITaskFolder
+from zope.cachedescriptors.property import Lazy
+from zope.component import getUtility
+from zope.i18n import translate
+from zope.lifecycleevent import modified
+from zope.schema.interfaces import IVocabularyFactory
 
 grok.templatedir('templates')
 

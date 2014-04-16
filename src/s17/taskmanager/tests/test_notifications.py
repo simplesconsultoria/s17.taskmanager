@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-
-import unittest
-
-from zope.component import getMultiAdapter
-
-from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-
+from plone.app.testing import TEST_USER_ID
 from s17.taskmanager.notifications import BaseMail
 from s17.taskmanager.testing import INTEGRATION_TESTING
+from zope.component import getMultiAdapter
+
+import unittest
 
 
 MAIL_ITEMS = [('MIME-Version', '1.0'),

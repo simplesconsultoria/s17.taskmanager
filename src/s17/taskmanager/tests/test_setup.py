@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
+from s17.taskmanager.config import PROJECTNAME
+from s17.taskmanager.testing import INTEGRATION_TESTING
 
 import unittest
-
-from s17.taskmanager.testing import INTEGRATION_TESTING
-from s17.taskmanager.config import PROJECTNAME
 
 
 class InstallTestCase(unittest.TestCase):

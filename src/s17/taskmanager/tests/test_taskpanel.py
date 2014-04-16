@@ -1,21 +1,16 @@
 # -*- coding: utf-8 -*-
-
-import unittest
-
 from AccessControl import Unauthorized
-
+from plone.app.referenceablebehavior.referenceable import IReferenceable
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
+from plone.uuid.interfaces import IAttributeUUID
+from s17.taskmanager.content import ITaskFolder
+from s17.taskmanager.testing import INTEGRATION_TESTING
 from zope.component import createObject
 from zope.component import queryUtility
 
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import setRoles
-
-from plone.app.referenceablebehavior.referenceable import IReferenceable
-from plone.dexterity.interfaces import IDexterityFTI
-from plone.uuid.interfaces import IAttributeUUID
-
-from s17.taskmanager.content import ITaskFolder
-from s17.taskmanager.testing import INTEGRATION_TESTING
+import unittest
 
 ctype = 'TaskPanel'
 

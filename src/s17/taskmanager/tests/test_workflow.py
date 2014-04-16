@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-
-import unittest
-
-from Products.CMFCore.WorkflowCore import WorkflowException
-
+from plone.app.testing import login
+from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import setRoles
-from plone.app.testing import login
-
+from Products.CMFCore.WorkflowCore import WorkflowException
 from s17.taskmanager.testing import INTEGRATION_TESTING
+
+import unittest
 
 ctype = 'Task'
 workflow_id = 'taskmanager_workflow'

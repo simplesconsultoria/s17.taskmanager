@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from plone import api
-from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import PLONE_FIXTURE
-from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import PloneSandboxLayer
 from plone.testing.z2 import ZSERVER_FIXTURE
 
 

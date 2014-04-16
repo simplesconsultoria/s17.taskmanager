@@ -1,22 +1,17 @@
 # -*- coding: utf-8 -*-
-
 from AccessControl import getSecurityManager
-
 from DateTime import DateTime
-
 from persistent import Persistent
 from persistent.list import PersistentList
-
+from s17.taskmanager.content import ITask
 from zope.annotation.interfaces import IAnnotations
+from zope.component import adapts
 from zope.container.contained import ObjectAddedEvent
 from zope.container.contained import ObjectRemovedEvent
-from zope.component import adapts
 from zope.event import notify
 from zope.interface import Attribute
-from zope.interface import Interface
 from zope.interface import implements
-
-from s17.taskmanager.content import ITask
+from zope.interface import Interface
 
 
 class IResponseContainer(Interface):
