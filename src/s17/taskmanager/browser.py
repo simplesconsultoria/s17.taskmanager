@@ -3,6 +3,7 @@ from Acquisition import aq_inner
 from collective.watcherlist.interfaces import IWatcherList
 from datetime import date
 from five import grok
+from plone import api
 from plone.directives import dexterity
 from plone.memoize.view import memoize
 from Products.ATContentTypes.interfaces import IATFile
@@ -137,43 +138,43 @@ class BaseView:
             return []
 
 
-class TaskFolderView(dexterity.DisplayForm):
+class TaskPanelView(grok.View):
     grok.context(ITaskPanel)
     grok.name('view')
-    grok.template('taskfolder_view')
+    grok.template('taskpanel_view')
     grok.require('zope2.View')
 
-    def responsible(self, obj):
-        """ Return the fullname of the responsible for the task
+    def get_fullname(self, username):
+        """Return the fullname of user specified, or its username if fullname
+        is not set.
         """
-        mt = getToolByName(self.context, 'portal_membership')
-        username = obj.responsible
         if username:
-            fullname = mt.getMemberById(username).getProperty('fullname')
-            if fullname:
-                return fullname
-            else:
-                return username
-        else:
-            return None
+            user = api.user.get(username=username)
+            if user:
+                fullname = user.getProperty('fullname')
+                return fullname if fullname else username
 
     def tasks(self):
-        ''' function to return all tasks in the container
-        '''
-        ct = getToolByName(self.context, 'portal_catalog')
-        tasks = ct(
+        """Return all tasks in the Task Panel.
+        """
+        catalog = api.portal.get_tool('portal_catalog')
+        results = catalog(
             object_provides=ITask.__identifier__,
             path='/'.join(self.context.getPhysicalPath())
         )
-        if tasks:
-            return [dict(title=task.Title,
-                         url=task.getURL(),
-                         status=task.review_state.capitalize(),
-                         responsible=self.responsible(task.getObject()),
-                         priority=task.getObject().priority,)
-                    for task in tasks]
-        else:
-            return None
+
+        tasks = []
+        for i in results:
+            obj = i.getObject()
+            t = dict(
+                title=obj.title,
+                url=i.getURL(),
+                status=i.review_state.capitalize(),
+                responsible=self.get_fullname(obj.responsible),
+                priority=obj.priority,
+            )
+            tasks.append(t)
+        return tasks
 
 
 class TaskView(dexterity.DisplayForm, BaseView):

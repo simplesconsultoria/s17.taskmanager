@@ -16,23 +16,22 @@
                i18n:attributes="summary"
                tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
             <tr>
-                <th i18n:translate="tasksfolder_table_task">
+                <th class="column" i18n:translate="tasksfolder_table_task">
                     Task
                 </th>
-                <th i18n:translate="tasksfolder_table_status">
+                <th class="column" i18n:translate="tasksfolder_table_status">
                     Status
                 </th>
-                <th i18n:translate="tasksfolder_table_responsible">
+                <th class="column" i18n:translate="tasksfolder_table_responsible">
                     Responsible
                 </th>
-                <th i18n:translate="tasksfolder_table_priority">
+                <th class="column" i18n:translate="tasksfolder_table_priority">
                     Priority
                 </th>
             </tr>
             <tr tal:repeat="task view/tasks">
                 <td>
-                    <a href=""
-                       title=""
+                    <a href="" title=""
                        tal:attributes="href task/url;
                                        title task/title;"
                        tal:content="task/title">
