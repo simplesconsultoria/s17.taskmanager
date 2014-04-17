@@ -76,6 +76,6 @@ Add Response
 
     Select From List  xpath=//select[@name="transition"]  ${state}
     Select From List  xpath=//select[@name="responsible"]  ${responsible}
-    Select From List  xpath=//select[@name="priority"]  ${priority}
+    Select From List  xpath=//select[@name="priority:int"]  ${priority}
     Click Button  Submit
     Page Should Contain  Added by

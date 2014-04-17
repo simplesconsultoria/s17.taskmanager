@@ -278,7 +278,7 @@
 
                 <div class="field">
                   <label for="priority">Priority</label>
-                  <select id="priority" name="priority">
+                  <select id="priority" name="priority:int">
                       <option tal:repeat="option view/priority_for_display"
                           tal:attributes="value option/value;
                                           selected option/checked;"

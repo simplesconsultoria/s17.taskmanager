@@ -123,7 +123,7 @@ class BaseView:
         return options
 
     @property
-    def available_priority(self):
+    def available_priorities(self):
         vocab = {1: _(u'High'), 2: _(u'Normal'), 3: _(u'Low')}
         return vocab
 
@@ -345,7 +345,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
 
     def get_priority(self):
         priority = self.context.priority
-        return self.available_priority[priority]
+        return self.available_priorities[priority]
 
 
 class CreateResponse(grok.View, BaseView):
@@ -379,7 +379,6 @@ class CreateResponse(grok.View, BaseView):
         folder = IResponseContainer(self.context)
 
         options = [
-            ('priority', _(u'Priority'), 'available_priority'),
             ('responsible', _(u'Responsible'), 'available_responsibles'),
         ]
 
@@ -403,23 +402,23 @@ class CreateResponse(grok.View, BaseView):
 
         transition = form.get('transition', u'')
         if transition and transition in self.available_transitions:
-            wftool = getToolByName(context, 'portal_workflow')
+            wftool = api.portal.get_tool('portal_workflow')
             before = wftool.getInfoFor(context, 'review_state')
-            before = wftool.getTitleForStateOnType(before, 's17.taskmanager.task')
+            before = wftool.getTitleForStateOnType(before, 'Task')
             wftool.doActionFor(context, transition)
             after = wftool.getInfoFor(context, 'review_state')
-            after = wftool.getTitleForStateOnType(after, 's17.taskmanager.task')
+            after = wftool.getTitleForStateOnType(after, 'Task')
             new_response.add_change('review_state', _(u'Task state'), before, after)
             task_has_changed = True
 
-        try:
-            current_priority = context.__getattribute__('priority')
-        except AttributeError:
-            current_priority = None
-        priority = form.get('priority', u'')
-        if priority and priority in self.available_priority and priority != current_priority:
-            context.priority = priority
-            task_has_changed = True
+        new_priority = form.get('priority', None)
+        if new_priority in self.available_priorities:
+            old_priority = context.priority
+            if old_priority != new_priority:
+                context.priority = new_priority
+                new_response.add_change(
+                    'priority', _(u'Priority'), old_priority, new_priority)
+                task_has_changed = True
 
         day = form.get('date-day', None)
         month = form.get('date-month', None)
