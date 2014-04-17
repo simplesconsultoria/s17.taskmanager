@@ -5,8 +5,6 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="s17.taskmanager">
-<body>
-
 <head>
     <metal:block fill-slot="top_slot"
                  tal:define="dummy python:request.set('disable_border',1)" />
@@ -17,7 +15,8 @@
     </metal:css>
 </head>
 
-<metal:main fill-slot="content-core">
+<body>
+  <metal:main fill-slot="content-core">
     <tal:main-macro metal:define-macro="content-core"
         tal:define="member context/@@plone_portal_state/member;
                     isAnon context/@@plone_portal_state/anonymous;
@@ -155,6 +154,8 @@
 
         <div class="visualClear"><!----></div>
 
+        <h2>History</h2>
+
         <tal:responses repeat="response_info view/responses">
             <div class="response-reply"
                  tal:define="id response_info/id;
@@ -259,112 +260,44 @@
         </div>
 
         <tal:add condition="python:user.has_permission('Modify portal content', here)">
-            <h3 i18n:translate="title_add_response">Add response</h3>
+          <h2>Modify properties</h2>
 
-            <form method="post" action="@@create_response"
-                  enctype="multipart/form-data">
+          <form method="post" action="@@create_response" enctype="multipart/form-data">
+
+            <fieldset>
+              <legend>Properties</legend>
+                <div class="field" tal:condition="view/transitions_for_display">
+                  <label for="transition">State</label>
+                  <select id="transition" name="transition">
+                    <option tal:repeat="transition view/transitions_for_display"
+                        tal:attributes="value transition/value;
+                                        checked transition/checked;"
+                        tal:content="transition/label" />
+                  </select>
+                </div>
 
                 <div class="field">
-                    <label for="response"
-                           i18n:translate="task_label_response">Response</label>
-
-                    <div class="formHelp" id="response_help"
-                         i18n:translate="task_help_response">
-                        Please enter your response below
-                    </div>
-                    <div>
-                        <tal:block define="inputname string:response;
-                                   inputvalue string:;
-                                   portal context/@@plone_portal_state/portal;
-                                   member context/@@plone_portal_state/member;
-                                   site_properties context/portal_properties/site_properties;
-                                   default_editor python:site_properties.getProperty('default_editor').lower();
-                                   user_editor python:member.getProperty('wysiwyg_editor', 'plone_wysiwyg').lower();
-                                   editor python:user_editor or default_editor;
-                                   portal_url context/@@plone_portal_state/portal_url;
-                                   here_url context/@@plone_context_state/object_url;
-                                   support python: path('nocall:here/%s_wysiwyg_support|here/%s/wysiwyg_support|here/portal_skins/plone_wysiwyg/wysiwyg_support' % (editor, editor));"
-                                   on-error="string:$editor not installed correctly: ${error/value}">
-
-                            <metal:block use-macro="support/macros/wysiwygEditorBox" />
-                        </tal:block>
-                    </div>
-
+                  <label for="priority">Priority</label>
+                  <select id="priority" name="priority">
+                      <option tal:repeat="option view/priority_for_display"
+                          tal:attributes="value option/value;
+                                          selected option/checked;"
+                          tal:content="option/label" />
+                  </select>
                 </div>
 
-                <div style="float: left; width: 49%;"
-                     tal:condition="view/transitions_for_display">
-                    <label for="transition"
-                           i18n:translate="task_label_issueTransition">
-                        Change task state
-                    </label>
-
-                    <div class="formHelp"
-                         id="issueTransition_help"
-                         i18n:translate="task_help_issueTransition">
-                        Select a change of state in the task this response is for, if applicable
-                    </div>
-
-                    <select name="transition">
-                        <option tal:repeat="transition view/transitions_for_display"
-                                tal:attributes="value transition/value;
-                                                checked transition/checked;"
-                                tal:content="transition/label"></option>
-                    </select>
+                <div class="field" tal:condition="view/responsibles_for_display">
+                  <label for="responsible">Responsible</label>
+                  <select id="responsible" name="responsible">
+                    <option tal:repeat="option view/responsibles_for_display"
+                        tal:attributes="value option/value;
+                                        selected option/checked;"
+                        tal:content="option/label" />
+                  </select>
                 </div>
 
-
-                <div style="float: right; width: 49%;">
-                    <label for="priority"
-                           i18n:translate="task_label_newPriority">
-                        Change task priority
-                    </label>
-
-                    <div class="formHelp" id="priority_help"
-                         i18n:translate="task_help_newPriority">
-                        Select the priority for this task
-                    </div>
-
-                    <select id="priority" name="priority">
-                        <option tal:repeat="option view/priority_for_display"
-                                tal:attributes="value option/value;
-                                                selected option/checked;"
-                                tal:content="option/label"></option>
-                    </select>
-
-                </div>
-
-                <div class="visualClear"><!----></div>
-
-                <div style="float: left; width: 49%;"
-                     tal:condition="view/responsibles_for_display">
-                    <label for="responsible"
-                           i18n:translate="task_label_newResponsible">
-                        Change responsible
-                    </label>
-
-                    <div class="formHelp" id="responsible_help"
-                         i18n:translate="task_help_newResponsible">
-                        Select the responsible for this task
-                    </div>
-
-                    <select name="responsible">
-                        <option tal:repeat="option view/responsibles_for_display"
-                                tal:attributes="value option/value;
-                                                selected option/checked;"
-                                tal:content="option/label"></option>
-                        <br />
-                    </select>
-                </div>
-
-                <div style="float: right; width: 49%;"
-                     id="expected_date"
-                     class="z3cformInlineValidation kssattr-fieldname-form.widgets.expected_date">
-
-                    <label class="horizontal" for="expected_date"
-                           i18n:translate="">
-                        Expected date
-                    </label>
+                <div class="field">
+                  <label class="horizontal" for="expected_date">Expected date</label>
                     <input type="text"
                            value=""
                            maxlength="2"
@@ -374,18 +307,17 @@
                            id="date-day"
                            tal:attributes="value view/day" /> /
                     <select class="date-widget date-field" name="date-month" id="date-month">
-                        <option value="" selected=""
-                                tal:repeat="item view/months"
-                                tal:attributes="value item/value;
-                            selected python:item['selected'] and 'selected' or None"
-                                tal:content="item/name"></option>
-                    </select> /
+                      <option value="" selected=""
+                          tal:repeat="item view/months"
+                          tal:attributes="value item/value;
+                                          selected python:item['selected'] and 'selected' or None"
+                          tal:content="item/name" />
+                    </select>
                     <input type="text"
                            value=""
                            maxlength="4"
                            size="4"
                            accesskey=""
-                           alt=""
                            class="date-widget date-field"
                            name="date-year"
                            id="date-year"
@@ -402,6 +334,29 @@
 
                     <a tal:replace="structure view/show_jquerytools_dateinput_js" />
                 </div>
+            </fieldset>
+
+            <div class="field">
+              <label>Notes</label>
+              <div>
+                <tal:block
+                    define="inputname string:response;
+                            inputvalue string:;
+                            portal context/@@plone_portal_state/portal;
+                            member context/@@plone_portal_state/member;
+                            site_properties context/portal_properties/site_properties;
+                            default_editor python:site_properties.getProperty('default_editor').lower();
+                            user_editor python:member.getProperty('wysiwyg_editor', 'plone_wysiwyg').lower();
+                            editor python:user_editor or default_editor;
+                            portal_url context/@@plone_portal_state/portal_url;
+                            here_url context/@@plone_context_state/object_url;
+                            support python: path('nocall:here/%s_wysiwyg_support|here/%s/wysiwyg_support|here/portal_skins/plone_wysiwyg/wysiwyg_support' % (editor, editor));"
+                            on-error="string:$editor not installed correctly: ${error/value}">
+
+                  <metal:block use-macro="support/macros/wysiwygEditorBox" />
+                </tal:block>
+              </div>
+            </div>
 
                 <div class="visualClear"><!----></div>
 
@@ -415,7 +370,6 @@
         <div class="visualClear"><!----></div>
 
     </tal:main-macro>
-</metal:main>
-
+  </metal:main>
 </body>
 </html>
