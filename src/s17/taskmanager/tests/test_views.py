@@ -24,8 +24,8 @@ class BrowserLayerTest(unittest.TestCase):
         self.task = folder['task']
 
     def test_views_registered_task(self):
-        views = ['view', 'create_response', 'edit_response', 'save_response',
-                 'delete_response', 'watching']
+        views = ['view', 'create-response', 'edit-response', 'save-response',
+                 'delete-response', 'watching']
         registered = [v.name for v in registration.getViews(IDefaultBrowserLayer)]
         # empty set only if all 'views' are 'registered'
         self.assertEqual(set(views) - set(registered), set([]))
@@ -41,7 +41,7 @@ class BrowserLayerTest(unittest.TestCase):
         self.assertTrue(view.render() is None)
 
     def test_create_response_view(self):
-        view = api.content.get_view('create_response', self.task, self.request)
+        view = api.content.get_view('create-response', self.task, self.request)
         view.update()
         responsibles = view.responsibles_for_display
         # first we check the structure

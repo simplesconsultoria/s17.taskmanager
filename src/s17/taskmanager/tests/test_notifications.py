@@ -90,7 +90,7 @@ class TestNotifications(unittest.TestCase):
         new_response_mail = getMultiAdapter(
             (self.task, self.request), name=u'new-response-mail')
         create_response = getMultiAdapter(
-            (self.task, self.request), name=u'create_response')
+            (self.task, self.request), name=u'create-response')
 
         self.request.form['responsible'] = 'someuser'
         create_response.render()

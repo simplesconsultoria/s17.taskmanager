@@ -44,7 +44,7 @@
             </p>
 
             <div id="content-core">
-                <form method="post" action="@@save_response"
+                <form method="post" action="@@save-response"
                       tal:condition="view/can_edit_response">
 
                     <div class="field">

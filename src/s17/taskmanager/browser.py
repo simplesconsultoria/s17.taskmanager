@@ -350,7 +350,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
 
 class CreateResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name('create_response')
+    grok.name('create-response')
     grok.require('zope2.View')
 
     # FIXME: this method is way too complex (17)
@@ -458,7 +458,7 @@ class CreateResponse(grok.View, BaseView):
 
 class EditResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name('edit_response')
+    grok.name('edit-response')
     grok.require('zope2.View')
     grok.template('edit_response')
 
@@ -485,7 +485,7 @@ class EditResponse(grok.View, BaseView):
 
 class SaveResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name('save_response')
+    grok.name('save-response')
     grok.require('zope2.View')
 
     def render(self):
@@ -524,7 +524,7 @@ class SaveResponse(grok.View, BaseView):
 
 class DeleteResponse(grok.View, BaseView):
     grok.context(ITask)
-    grok.name('delete_response')
+    grok.name('delete-response')
     grok.require('zope2.View')
 
     def render(self):

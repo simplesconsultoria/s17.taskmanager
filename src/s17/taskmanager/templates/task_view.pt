@@ -166,7 +166,7 @@
                 <div class="response-actions"
                      tal:condition="view/can_edit_response|view/can_delete_response">
                     <form method="post"
-                          tal:attributes="action string:@@edit_response"
+                          tal:attributes="action string:@@edit-response"
                           tal:condition="view/can_edit_response">
                         <input type="hidden" name="response_id" tal:attributes="value id" />
                         <input name="edit-response"
@@ -177,7 +177,7 @@
                                 />
                     </form>
                     <form method="post"
-                          tal:attributes="action string:@@delete_response"
+                          tal:attributes="action string:@@delete-response"
                           tal:condition="view/can_delete_response">
                         <input type="hidden" name="response_id" tal:attributes="value id" />
                         <input name="delete-response"
@@ -262,7 +262,7 @@
         <tal:add condition="python:user.has_permission('Modify portal content', here)">
           <h2>Modify properties</h2>
 
-          <form method="post" action="@@create_response" enctype="multipart/form-data">
+          <form method="post" action="@@create-response" enctype="multipart/form-data">
 
             <fieldset>
               <legend>Properties</legend>
