@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from plone import api
 from s17.taskmanager.config import PROJECTNAME
 
 import logging
@@ -13,3 +13,6 @@ def update_content_type_information(context):
     """
     context.runImportStepFromProfile(PROFILE_ID, 'typeinfo')
     logger.info('Portal type information was updated')
+    # update the catalog to refresh getIcon and object_provides
+    catalog = api.portal.get_tool('portal_catalog')
+    catalog.refreshCatalog()
