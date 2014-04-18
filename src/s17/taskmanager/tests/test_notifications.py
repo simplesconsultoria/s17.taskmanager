@@ -93,6 +93,8 @@ class TestNotifications(unittest.TestCase):
             (self.task, self.request), name=u'create-response')
 
         self.request.form['responsible'] = 'someuser'
+        # we need to provide some date fields to avoid ValueError
+        self.request.form['date-day'] = self.request.form['date-year'] = ''
         create_response.render()
 
         self.request.set('response_id', 0)

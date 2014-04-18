@@ -420,26 +420,31 @@ class CreateResponse(grok.View, BaseView):
                     'priority', _(u'Priority'), old_priority, new_priority)
                 task_has_changed = True
 
-        day = form.get('date-day', None)
-        month = form.get('date-month', None)
-        if month and len(month) == 1:
-            month = '0' + month
-        year = form.get('date-year', None)
+        try:
+            day = form.get('date-day', None)
+            month = form.get('date-month', None)
+            year = form.get('date-year', None)
+            new_provided_date = date(year, month, day)
+        except TypeError:
+            if day == '' or year == '':
+                # either there were no changes or
+                # the user wants to clear the field's value
+                new_provided_date = None
+            else:
+                # in any other case we just raise an error
+                raise ValueError(_(u'Invalid date specified'))
+        except ValueError:
+            raise ValueError(_(u'Invalid date specified'))
 
-        if day and month and year:
-            value = []
-            value.append(year)
-            value.append(month)
-            value.append(day)
-            dateobj = date(*map(int, value))
-            try:
-                current = context.__getattribute__('provided_date')
-            except AttributeError:
-                current = None
-            context.provided_date = dateobj
-            changes['provided_date'] = dateobj
+        old_provided_date = context.provided_date
+        if old_provided_date != new_provided_date:
+            context.provided_date = new_provided_date
             new_response.add_change(
-                'provided_date', _(u'Expected date'), current, dateobj)
+                'provided_date',
+                _(u'Expected date'),
+                old_provided_date,
+                new_provided_date,
+            )
             task_has_changed = True
 
         if len(response_text) == 0 and not task_has_changed:

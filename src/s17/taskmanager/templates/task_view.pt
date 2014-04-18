@@ -197,16 +197,15 @@
                       tal:content="creator/name_or_id" />
                     <span i18n:translate="task_added_on">on</span>
                 <span class="contact-user"
-                      tal:content="python:toLocalizedTime(response.date, long_format=True)"/>
-                    <div tal:repeat="delta response/changes"
-                         tal:define="DateTime python:modules['DateTime'].DateTime">
+                      tal:content="python:toLocalizedTime(response.date, long_format=True)" />
+                    <div tal:repeat="delta response/changes">
                         <div tal:condition="python:delta['id'] != 'provided_date'">
-                            <span i18n:translate="" tal:content="string:${delta/name}" />:
+                            <span i18n:translate="" tal:content="delta/name" />:
                             <span class="taskChange"
                                   i18n:translate=""
                                   i18n:domain="plone"
                                   tal:content="delta/before" />
-                                &#8594;
+                            &#8594;
                             <span class="taskChange"
                                   i18n:translate=""
                                   i18n:domain="plone"
@@ -215,17 +214,17 @@
                         <div tal:condition="python:delta['id'] == 'provided_date'"
                              tal:define="before python:delta['before'];
                                          after python:delta['after'];">
-                            <span i18n:translate="" tal:content="string:${delta/name}" />:
+                            <span i18n:translate="" tal:content="delta/name" />:
                             <span class="taskChange"
                                   i18n:translate=""
                                   i18n:domain="plone"
                                   tal:condition="before"
-                                  tal:content=" python:toLocalizedTime(DateTime(before.isoformat()))" />
+                                  tal:content="python:toLocalizedTime(before)" />
                             &#8594;
                             <span class="taskChange"
                                   i18n:translate=""
                                   i18n:domain="plone"
-                                  tal:content="python: toLocalizedTime(DateTime(after.isoformat()))" />
+                                  tal:content="python:toLocalizedTime(after)" />
                         </div>
 
                     </div>
