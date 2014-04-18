@@ -6,18 +6,12 @@ from five import grok
 from plone import api
 from plone.directives import dexterity
 from plone.memoize.view import memoize
-from Products.ATContentTypes.interfaces import IATFile
-from Products.ATContentTypes.interfaces import IATImage
-from Products.CMFPlone.utils import getToolByName
-from Products.statusmessages.interfaces import IStatusMessage
 from s17.taskmanager import MessageFactory as _
 from s17.taskmanager.adapters import IResponseContainer
 from s17.taskmanager.adapters import Response
 from s17.taskmanager.content import ITask
 from s17.taskmanager.content import ITaskPanel
-from zope.cachedescriptors.property import Lazy
 from zope.component import getUtility
-from zope.i18n import translate
 from zope.lifecycleevent import modified
 from zope.schema.interfaces import IVocabularyFactory
 
@@ -38,22 +32,19 @@ class WatcherView(grok.View):
 
 class BaseView:
 
-    @Lazy
-    def memship(self):
-        context = aq_inner(self.context)
-        return getToolByName(context, 'portal_membership')
-
     @property
     @memoize
     def can_edit_response(self):
         context = aq_inner(self.context)
-        return self.memship.checkPermission('Modify portal content', context)
+        mt = api.portal.get_tool('portal_membership')
+        return mt.checkPermission('Modify portal content', context)
 
     @property
     @memoize
     def can_delete_response(self):
         context = aq_inner(self.context)
-        return self.memship.checkPermission('Delete objects', context)
+        mt = api.portal.get_tool('portal_membership')
+        return mt.checkPermission('Delete objects', context)
 
     @property
     def priority(self):
@@ -93,9 +84,11 @@ class BaseView:
         """Display the available transitions for this issue.
         """
         context = aq_inner(self.context)
-        if not self.memship.checkPermission('Modify portal content', context):
+        membership = api.portal.get_tool('portal_membership')
+        if not membership.checkPermission('Modify portal content', context):
             return []
-        wftool = getToolByName(context, 'portal_workflow')
+
+        wftool = api.portal.get_tool('portal_workflow')
         transitions = []
         transitions.append(
             dict(value='', label=_(u'No change'), checked='checked'))
@@ -185,7 +178,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
 
     calendar_type = 'gregorian'
 
-    popup_calendar_icon = '.css("background","url(popup_calendar.gif)")'\
+    popup_calendar_icon = '.css("background","url(popup_calendar.png)")'\
                           '.css("height", "16px")'\
                           '.css("width", "16px")'\
                           '.css("display", "inline-block")'\
@@ -197,27 +190,14 @@ class TaskView(dexterity.DisplayForm, BaseView):
                                    'yearRange: [-10, 10]'
 
     def images(self):
-        ct = getToolByName(self.context, 'portal_catalog')
-        images = ct(
-            object_provides=IATImage.__identifier__,
-            path='/'.join(self.context.getPhysicalPath())
-        )
-        if images:
-            images = [image.getObject() for image in images]
-            return images
-        else:
-            return None
+        """Return a list of image objects inside the Task.
+        """
+        return self.context.listFolderContents({'portal_type': 'Image'})
 
     def files(self):
-        ct = getToolByName(self.context, 'portal_catalog')
-        files = ct(
-            object_provides=IATFile.__identifier__,
-            path='/'.join(self.context.getPhysicalPath())
-        )
-        if files:
-            return files
-        else:
-            return None
+        """Return a list of file objects inside the Task.
+        """
+        return self.context.listFolderContents({'portal_type': 'File'})
 
     def is_watching(self):
         """
@@ -319,7 +299,7 @@ class TaskView(dexterity.DisplayForm, BaseView):
     def responsible(self):
         """ Return the fullname of the responsible for the task
         """
-        mt = getToolByName(self.context, 'portal_membership')
+        mt = api.portal.get_tool('portal_membership')
         username = self.context.responsible
         if username:
             fullname = mt.getMemberById(username).getProperty('fullname')
@@ -376,7 +356,6 @@ class CreateResponse(grok.View, BaseView):
             new_response = Response(response_text, responsible)
         else:
             new_response = Response(response_text)
-        folder = IResponseContainer(self.context)
 
         options = [
             ('responsible', _(u'Responsible'), 'available_responsibles'),
@@ -448,14 +427,10 @@ class CreateResponse(grok.View, BaseView):
             task_has_changed = True
 
         if len(response_text) == 0 and not task_has_changed:
-            status = IStatusMessage(self.request)
             msg = _(u'No response text added and no issue changes made.')
-            msg = translate(msg, 's17.taskmanager', context=self.request)
-            status.addStatusMessage(msg, type='error')
+            api.portal.show_message(message=msg, request=self.request)
         else:
-            # Apply changes to issue
-            self.update(**changes)
-            # Add response
+            folder = IResponseContainer(self.context)
             folder.add(new_response)
         self.request.response.redirect(context.absolute_url())
 
@@ -496,22 +471,17 @@ class SaveResponse(grok.View, BaseView):
         folder = IResponseContainer(self.context)
         form = self.request.form
         context = aq_inner(self.context)
-        status = IStatusMessage(self.request)
         if not self.can_edit_response:
             msg = _(u'You are not allowed to edit responses.')
-            msg = translate(msg, 's17.taskmanager', context=self.request)
-            status.addStatusMessage(msg, type='error')
+            api.portal.show_message(message=msg, request=self.request, type='error')
         else:
             response_id = form.get('response_id', None)
             if response_id is None:
                 msg = _(u'No response selected for saving.')
-                msg = translate(msg, 's17.taskmanager', context=self.request)
-                status.addStatusMessage(msg, type='error')
+                api.portal.show_message(message=msg, request=self.request, type='error')
             elif folder[response_id] is None:
-                msg = _(
-                    u'Response does not exist anymore; perhaps it was removed by another user.')
-                msg = translate(msg, 's17.taskmanager', context=self.request)
-                status.addStatusMessage(msg, type='error')
+                msg = _(u'Response does not exist anymore; perhaps it was removed by another user.')
+                api.portal.show_message(message=msg, request=self.request, type='error')
             else:
                 response = folder[response_id]
                 response_text = form.get('response', u'')
@@ -520,8 +490,7 @@ class SaveResponse(grok.View, BaseView):
                     u'Changes saved to response id ${response_id}.',
                     mapping=dict(response_id=response_id)
                 )
-                msg = translate(msg, 's17.taskmanager', context=self.request)
-                status.addStatusMessage(msg, type='info')
+                api.portal.show_message(message=msg, request=self.request)
                 modified(response, context)
         self.request.response.redirect(context.absolute_url())
 
@@ -534,18 +503,15 @@ class DeleteResponse(grok.View, BaseView):
     def render(self):
         folder = IResponseContainer(self.context)
         context = aq_inner(self.context)
-        status = IStatusMessage(self.request)
 
         if not self.can_delete_response:
             msg = _(u'You are not allowed to delete responses.')
-            msg = translate(msg, 's17.taskmanager', context=self.request)
-            status.addStatusMessage(msg, type='error')
+            api.portal.show_message(message=msg, request=self.request, type='error')
         else:
             response_id = self.request.form.get('response_id', None)
             if response_id is None:
                 msg = _(u'No response selected for removal.')
-                msg = translate(msg, 's17.taskmanager', context=self.request)
-                status.addStatusMessage(msg, type='error')
+                api.portal.show_message(message=msg, request=self.request, type='error')
             else:
                 try:
                     response_id = int(response_id)
@@ -554,8 +520,7 @@ class DeleteResponse(grok.View, BaseView):
                         u'Response id ${response_id} is no integer so it cannot be removed.',
                         mapping=dict(response_id=response_id)
                     )
-                    msg = translate(msg, 's17.taskmanager', context=self.request)
-                    status.addStatusMessage(msg, type='error')
+                    api.portal.show_message(message=msg, request=self.request, type='error')
                     self.request.response.redirect(context.absolute_url())
                     return
                 if response_id >= len(folder):
@@ -563,14 +528,13 @@ class DeleteResponse(grok.View, BaseView):
                         u'Response id ${response_id} does not exist so it cannot be removed.',
                         mapping=dict(response_id=response_id)
                     )
-                    msg = translate(msg, 's17.taskmanager', context=self.request)
-                    status.addStatusMessage(msg, type='error')
+                    api.portal.show_message(message=msg, request=self.request, type='error')
                 else:
                     folder.delete(response_id)
                     msg = _(
                         u'Removed response id ${response_id}.',
                         mapping=dict(response_id=response_id)
                     )
-                    msg = translate(msg, 's17.taskmanager', context=self.request)
-                    status.addStatusMessage(msg, type='info')
+                    api.portal.show_message(message=msg, request=self.request)
+
         self.request.response.redirect(context.absolute_url())
