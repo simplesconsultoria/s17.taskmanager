@@ -7,8 +7,7 @@ s17.taskmanager
 Life, the Universe, and Everything
 ==================================
 
-A package containing a Dexterity-based content type and behaviors to provide a
-structure for managing tasks, like `Redmine`_, but smaller and simpler.
+A package containing a Dexterity-based content type and behaviors to provide a simple structure for managing tasks.
 
 Features
 --------
@@ -40,8 +39,7 @@ Installation
 
 To enable this product on a buildout based installation:
 
-#. Edit your buildout.cfg and add ``s17.taskmanager`` to the list of eggs
-   to install ::
+#. Edit your buildout.cfg and add ``s17.taskmanager`` to the list of eggs to install::
 
     [buildout]
     ...
@@ -50,8 +48,7 @@ To enable this product on a buildout based installation:
     zcml =
         s17.taskmanager
 
-After updating the configuration you need to run the ''bin/buildout'', which
-will take care of updating your system.
+After updating the configuration you need to run the ''bin/buildout'', which will take care of updating your system.
 
 Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
 
@@ -72,4 +69,4 @@ Not entirely unlike
 
 .. _`Poi`: https://pypi.python.org/pypi/Products.Poi
 .. _`Redmine`: http://www.redmine.org/
-.. _`opening a support ticket`: simplesconsultoria/s17.taskmanager/issues
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.taskmanager/issues
