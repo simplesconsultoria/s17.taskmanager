@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s17.taskmanager\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-09-23 23:51-0300\n"
-"Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
+"PO-Revision-Date: 2014-04-18 16:39-0300\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: Simples Consultoria <lepri@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -14,53 +14,69 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: s17.taskmanager\n"
 
-#: s17/taskmanager/browser.py:513
+#: s17/taskmanager/profiles/default/types/TaskPanel.xml
+msgid "A task panel."
+msgstr "Um painel de tarefas."
+
+#: s17/taskmanager/profiles/default/types/Task.xml
+msgid "A task."
+msgstr "Uma tarefa"
+
+#: s17/taskmanager/browser.py:510
 msgid "Changes saved to response id ${response_id}."
 msgstr "Alterações salvas para a resposta com id ${response_id}."
 
-#: s17/taskmanager/templates/task_view.pt:182
+#: s17/taskmanager/templates/task_view.pt:178
 msgid "Delete"
 msgstr "Apagar"
 
-#: s17/taskmanager/templates/task_view.pt:171
+#: s17/taskmanager/templates/task_view.pt:169
 msgid "Edit"
 msgstr "Editar"
 
-#: s17/taskmanager/templates/task_view.pt:142
+#: s17/taskmanager/templates/task_view.pt:141
 msgid "Edit task"
 msgstr "Editar tarefa"
 
-#: s17/taskmanager/content.py:77
-#: s17/taskmanager/templates/task_view.pt:65
+#: s17/taskmanager/interfaces.py:70
+#: s17/taskmanager/templates/task_view.pt:64
 msgid "End date"
 msgstr "Data final"
 
-#: s17/taskmanager/browser.py:441
-#: s17/taskmanager/content.py:84
-#: s17/taskmanager/templates/task_view.pt:69
+#: s17/taskmanager/browser.py:447
+#: s17/taskmanager/interfaces.py:77
+#: s17/taskmanager/templates/task_view.pt:68
 msgid "Expected date"
 msgstr "Data estimada"
 
-#: s17/taskmanager/browser.py:118
-#: s17/taskmanager/content.py:14
+#: s17/taskmanager/browser.py:110
+#: s17/taskmanager/interfaces.py:10
 msgid "High"
 msgstr "Alta"
 
-#: s17/taskmanager/content.py:70
-#: s17/taskmanager/templates/task_view.pt:60
+#: s17/taskmanager/interfaces.py:63
+#: s17/taskmanager/templates/task_view.pt:59
 msgid "Initial date"
 msgstr "Data inicial"
 
-#: s17/taskmanager/browser.py:118
-#: s17/taskmanager/content.py:16
+#: s17/taskmanager/browser.py:400
+msgid "Invalid date specified"
+msgstr "Data especificada inválida"
+
+#: s17/taskmanager/browser.py:337
+msgid "Invalid fieldname specified"
+msgstr "Nome de campo especificado inválido"
+
+#: s17/taskmanager/browser.py:110
+#: s17/taskmanager/interfaces.py:12
 msgid "Low"
 msgstr "Baixa"
 
-#: s17/taskmanager/browser.py:101
+#: s17/taskmanager/browser.py:94
 msgid "No change"
 msgstr "Sem alterações"
 
-#: s17/taskmanager/browser.py:538
+#: s17/taskmanager/browser.py:534
 msgid "No response selected for removal."
 msgstr "Nenhuma resposta selecionada para remoção."
 
@@ -68,60 +84,61 @@ msgstr "Nenhuma resposta selecionada para remoção."
 msgid "No response selected for saving."
 msgstr "Nenhuma resposta selecionada para salvar."
 
-#: s17/taskmanager/browser.py:446
+#: s17/taskmanager/browser.py:451
 msgid "No response text added and no issue changes made."
 msgstr "Não foi adicionado um texto à resposta e nenhuma alteração foi realizada na tarefa."
 
-#: s17/taskmanager/browser.py:80
+#: s17/taskmanager/browser.py:67
 msgid "Nobody"
 msgstr "Ninguém"
 
-#: s17/taskmanager/browser.py:118
-#: s17/taskmanager/content.py:15
+#: s17/taskmanager/browser.py:110
+#: s17/taskmanager/interfaces.py:11
 msgid "Normal"
 msgstr "Normal"
 
-#: s17/taskmanager/browser.py:379
-#: s17/taskmanager/content.py:53
-#: s17/taskmanager/templates/task_view.pt:42
+#: s17/taskmanager/browser.py:435
+#: s17/taskmanager/interfaces.py:49
+#: s17/taskmanager/templates/task_view.pt:41
 msgid "Priority"
 msgstr "Prioridade"
 
-#: s17/taskmanager/browser.py:560
+#: s17/taskmanager/browser.py:555
 msgid "Removed response id ${response_id}."
 msgstr "Resposta com o id ${response_id} removida."
 
-#: s17/taskmanager/browser.py:505
+#: s17/taskmanager/browser.py:504
 msgid "Response does not exist anymore; perhaps it was removed by another user."
 msgstr "Resposta não mais existe; talvez ela tenha sido removida por outro usuário."
 
-#: s17/taskmanager/browser.py:553
+#: s17/taskmanager/browser.py:548
 msgid "Response id ${response_id} does not exist so it cannot be removed."
 msgstr "Resposta com o id ${response_id} não existe de modo que não pode ser removida."
 
-#: s17/taskmanager/browser.py:545
+#: s17/taskmanager/browser.py:540
 msgid "Response id ${response_id} is no integer so it cannot be removed."
 msgstr "Resposta com o id ${response_id} não é inteiro de modo que não pode ser removida."
 
-#: s17/taskmanager/browser.py:380
-#: s17/taskmanager/content.py:23
-#: s17/taskmanager/templates/task_view.pt:56
+#: s17/taskmanager/browser.py:441
+#: s17/taskmanager/interfaces.py:19
+#: s17/taskmanager/templates/task_view.pt:55
 msgid "Responsible"
 msgstr "Responsável"
 
-#: s17/taskmanager/templates/task_view.pt:35
+#: s17/taskmanager/browser.py:429
+#: s17/taskmanager/templates/task_view.pt:34
 msgid "State"
 msgstr "Estado"
 
-#: s17/taskmanager/templates/task_view.pt:79
+#: s17/taskmanager/templates/task_view.pt:78
 msgid "Stop watching this task"
 msgstr "Para de observar esta tarefa"
 
-#: s17/taskmanager/templates/task_view.pt:46
+#: s17/taskmanager/templates/task_view.pt:45
 msgid "Submitted by"
 msgstr "Enviado por"
 
-#: s17/taskmanager/templates/task_view.pt:52
+#: s17/taskmanager/templates/task_view.pt:51
 msgid "Submitted on"
 msgstr "Enviado em"
 
@@ -129,61 +146,57 @@ msgstr "Enviado em"
 msgid "Task"
 msgstr "Tarefa"
 
-#: s17/taskmanager/content.py:61
+#: s17/taskmanager/interfaces.py:57
 msgid "Task Detail"
 msgstr "Detalhe da tarefa"
-
-#: s17/taskmanager/content.py:40
-msgid "Task Name"
-msgstr "Nome da tarefa"
 
 #: s17/taskmanager/profiles/default/types/TaskPanel.xml
 msgid "Task Panel"
 msgstr "Painel de Tarefas"
 
-#: s17/taskmanager/templates/task_view.pt:26
+#: s17/taskmanager/templates/task_view.pt:25
 msgid "Task details"
 msgstr "Detalhe da tarefa"
 
-#: s17/taskmanager/browser.py:410
-msgid "Task state"
-msgstr "Estado da tarefa"
-
-#: s17/taskmanager/templates/taskfolder_view.pt:15
+#: s17/taskmanager/templates/taskpanel_view.pt:15
 msgid "Tasks"
 msgstr "Tarefas"
 
-#: s17/taskmanager/templates/task_view.pt:148
+#: s17/taskmanager/interfaces.py:36
+msgid "Title"
+msgstr "Título"
+
+#: s17/taskmanager/templates/task_view.pt:147
 msgid "Upload multiple files or images"
 msgstr "Enviar arquivos ou imagens"
 
-#: s17/taskmanager/templates/task_view.pt:85
+#: s17/taskmanager/templates/task_view.pt:84
 msgid "Watch this task"
 msgstr "Observar esta tarefa"
 
-#: s17/taskmanager/content.py:30
+#: s17/taskmanager/interfaces.py:26
 msgid "Who can add tasks?"
 msgstr "Quem pode adicionar tarefas?"
 
-#: s17/taskmanager/browser.py:532
+#: s17/taskmanager/browser.py:529
 msgid "You are not allowed to delete responses."
 msgstr "Você não pode apagar respostas."
 
-#: s17/taskmanager/browser.py:495
+#: s17/taskmanager/browser.py:496
 msgid "You are not allowed to edit responses."
 msgstr "Você não pode editar respostas."
 
-#: s17/taskmanager/notifications.py:38
+#: s17/taskmanager/notifications.py:35
 msgid "[No subject]"
 msgstr "[Sem assunto]"
 
 #. Default: "Re: ${task_title}"
-#: s17/taskmanager/notifications.py:224
+#: s17/taskmanager/notifications.py:220
 msgid "email_new_response_subject_template"
 msgstr "Re: ${task_title}"
 
 #. Default: "A new response has been given to the task **${task_title}**\nby **${response_author}**.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n${changes}\n\n${response_details}\n\n* This is an automated email, please do not reply - ${from_name}"
-#: s17/taskmanager/notifications.py:195
+#: s17/taskmanager/notifications.py:191
 msgid "email_new_response_template"
 msgstr ""
 "Uma nova resposta foi dada à tarefa **${task_title}**\n"
@@ -202,12 +215,12 @@ msgstr ""
 "* Este é um email automático, por favor, não responda - ${from_name}"
 
 #. Default: "[New task: ${task_title}]"
-#: s17/taskmanager/notifications.py:128
+#: s17/taskmanager/notifications.py:125
 msgid "email_new_task_subject_template"
 msgstr "[Nova tarefa: ${task_title}]"
 
 #. Default: "A new task has been submitted by **${task_author}**.\n\nTask Information\n----------------\n\nTask\n  ${task_title} (${task_url})\n\n\n**Task Details**::\n\n${task_details}\n\n\n* This is an automated email, please do not reply - ${from_name}"
-#: s17/taskmanager/notifications.py:98
+#: s17/taskmanager/notifications.py:95
 msgid "email_new_task_template"
 msgstr ""
 "Uma nova tarefa foi adicionada por **${task_author}**.\n"
@@ -227,18 +240,18 @@ msgstr ""
 "* Este é um email automático, por favor, não responda - ${from_name}"
 
 #. Default: "No details in the task "
-#: s17/taskmanager/notifications.py:97
+#: s17/taskmanager/notifications.py:94
 msgid "email_null_task_details"
 msgstr "Nenhum detalhe na tarefa"
 
 #. Default: "[Resolved #${task_title}]"
-#: s17/taskmanager/notifications.py:277
+#: s17/taskmanager/notifications.py:273
 #, fuzzy
 msgid "email_task_closed_subject_template"
 msgstr "[Resolvida #${task_title}]"
 
 #. Default: "The task **${task_title}** has been marked as resolved by **${response_author}**.\nPlease visit the task and either confirm that it has been\nsatisfactorily resolved or re-open it.\n\nResponse Information\n--------------------\n\nTask\n  ${task_title} (${task_url})\n\n\n* This is an automated email, please do not reply - ${from_name}"
-#: s17/taskmanager/notifications.py:250
+#: s17/taskmanager/notifications.py:246
 msgid "email_task_closed_template"
 msgstr ""
 "A Tarefa **${task_title}** foi marcada como fechada por **${response_author}**.\n"
@@ -255,7 +268,7 @@ msgstr ""
 "Este é um email automático, por favor, não responda - ${from_name}"
 
 #. Default: "Response Details"
-#: s17/taskmanager/notifications.py:177
+#: s17/taskmanager/notifications.py:175
 msgid "heading_response_details"
 msgstr "Detalhes da Resposta"
 
@@ -270,104 +283,59 @@ msgid "label_return_to_issue"
 msgstr "Retornar à tarefa."
 
 #. Default: "If you can, please log in before submitting a reaction."
-#: s17/taskmanager/templates/task_view.pt:246
+#: s17/taskmanager/templates/task_view.pt:241
 msgid "login_suggestion_response"
 msgstr "Se puder, logue-se antes de submeter uma reação."
 
 #. Default: "No responses can be added."
-#: s17/taskmanager/templates/task_view.pt:237
+#: s17/taskmanager/templates/task_view.pt:232
 msgid "msg_no_responses_can_be_added"
 msgstr "Nenhuma resposta pode ser adicionada"
 
 #. Default: "Added by"
-#: s17/taskmanager/templates/task_view.pt:192
+#: s17/taskmanager/templates/task_view.pt:188
 msgid "task_added_by"
 msgstr "Adicionado por"
 
 #. Default: "on"
-#: s17/taskmanager/templates/task_view.pt:197
+#: s17/taskmanager/templates/task_view.pt:193
 msgid "task_added_on"
 msgstr "em"
 
 #. Default: "Files"
-#: s17/taskmanager/templates/task_view.pt:115
+#: s17/taskmanager/templates/task_view.pt:114
 msgid "task_files"
 msgstr "Aquivos"
 
-#. Default: "Select a change of state in the task this response is for, if applicable"
-#: s17/taskmanager/templates/task_view.pt:302
-msgid "task_help_issueTransition"
-msgstr "Selecione a mudança do estado, caso seja aplicável"
-
-#. Default: "Select the priority for this task"
-#: s17/taskmanager/templates/task_view.pt:323
-msgid "task_help_newPriority"
-msgstr "Selecione a prioridade para a tarefa"
-
-#. Default: "Select the responsible for this task"
-#: s17/taskmanager/templates/task_view.pt:346
-msgid "task_help_newResponsible"
-msgstr "Selecione o responsável pela tarefa"
-
-#. Default: "Please enter your response below"
-#: s17/taskmanager/templates/task_view.pt:271
-msgid "task_help_response"
-msgstr "Por favor, insira a resposta abaixo"
-
 #. Default: "Images"
-#: s17/taskmanager/templates/task_view.pt:99
+#: s17/taskmanager/templates/task_view.pt:98
 msgid "task_images"
 msgstr "Imagens"
 
-#. Default: "Change task state"
-#: s17/taskmanager/templates/task_view.pt:297
-msgid "task_label_issueTransition"
-msgstr "Alterar o estado da tarefa"
-
-#. Default: "Change task priority"
-#: s17/taskmanager/templates/task_view.pt:318
-msgid "task_label_newPriority"
-msgstr "Alterar a prioridade da tarefa"
-
-#. Default: "Change responsible"
-#: s17/taskmanager/templates/task_view.pt:341
-msgid "task_label_newResponsible"
-msgstr "Alterar o responsável"
-
-#. Default: "Response"
-#: s17/taskmanager/templates/task_view.pt:268
-msgid "task_label_response"
-msgstr "Resposta"
-
 #. Default: "Priority"
-#: s17/taskmanager/templates/taskfolder_view.pt:28
+#: s17/taskmanager/templates/taskpanel_view.pt:28
 msgid "tasksfolder_table_priority"
 msgstr "Prioridade"
 
 #. Default: "Responsible"
-#: s17/taskmanager/templates/taskfolder_view.pt:25
+#: s17/taskmanager/templates/taskpanel_view.pt:25
 msgid "tasksfolder_table_responsible"
 msgstr "Responsável"
 
 #. Default: "Status"
-#: s17/taskmanager/templates/taskfolder_view.pt:22
+#: s17/taskmanager/templates/taskpanel_view.pt:22
 msgid "tasksfolder_table_status"
 msgstr "Status"
 
 #. Default: "Task"
-#: s17/taskmanager/templates/taskfolder_view.pt:19
+#: s17/taskmanager/templates/taskpanel_view.pt:19
 msgid "tasksfolder_table_task"
 msgstr "Tarefa"
 
 #. Default: "Tasks"
-#: s17/taskmanager/templates/taskfolder_view.pt:13
+#: s17/taskmanager/templates/taskpanel_view.pt:13
 msgid "tasksfolder_title"
 msgstr "Tarefas"
-
-#. Default: "Add response"
-#: s17/taskmanager/templates/task_view.pt:262
-msgid "title_add_response"
-msgstr "Adicionar resposta"
 
 #. Default: "Edit response"
 #: s17/taskmanager/templates/edit_response.pt:35

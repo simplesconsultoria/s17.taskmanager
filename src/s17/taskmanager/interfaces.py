@@ -33,7 +33,7 @@ class ITaskPanel(form.Schema):
 class ITask(form.Schema):
 
     title = schema.TextLine(
-        title=_(u'Task Name'),
+        title=_(u'Title'),
         description=_(''),
         required=True,
     )
