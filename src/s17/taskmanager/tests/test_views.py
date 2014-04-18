@@ -47,9 +47,9 @@ class BrowserLayerTest(unittest.TestCase):
         # first we check the structure
         self.assertDictEqual(
             responsibles[0],
-            {'checked': 'checked', 'value': 'nobody', 'label': u'Nobody'},
+            {'checked': 'checked', 'value': '', 'label': u'Nobody'},
         )
         # then we check all users created are also there
         responsibles = [r['value'] for r in responsibles]
-        expected = ['nobody', 'manager', 'user1', 'user2']
+        expected = ['', 'manager', 'user1', 'user2']
         self.assertListEqual(responsibles, expected)

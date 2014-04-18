@@ -64,11 +64,11 @@ class BaseView:
         users = users_factory(context)
         if not self.res:
             options = [
-                {'checked': 'checked', 'value': 'nobody', 'label': _('Nobody')},
+                {'checked': 'checked', 'value': '', 'label': _('Nobody')},
             ]
         else:
             options = [
-                {'checked': '', 'value': 'nobody', 'label': _('Nobody')},
+                {'checked': '', 'value': '', 'label': _('Nobody')},
             ]
         for value in users:
             values = {}
@@ -333,97 +333,125 @@ class CreateResponse(grok.View, BaseView):
     grok.name('create-response')
     grok.require('zope2.View')
 
-    # FIXME: this method is way too complex (17)
-    def render(self):  # noqa
-        form = self.request.form
-        context = aq_inner(self.context)
+    def _valid_values(self, fieldname):
+        """Return a vocabulary of valid values for a field name.
+        """
+        if fieldname == 'priority':
+            return self.available_priorities
+        elif fieldname == 'responsible':
+            return self.available_responsibles
+        else:
+            raise AttributeError(_(u'Invalid fieldname specified'))
 
+    def _update_text_field(self, fieldname):
+        """Compare the value of the field with the one on the request and
+        change it if different.
+
+        :param fieldname: [required] value to be converted
+        :type fieldname: string
+        :returns: a tuple containing the values (old, new) or False is no
+                  update was made
+        :rtype: tuple of boolean
+        """
+        updated = False
+        new = self.request.form.get(fieldname, None)
+        if new in self._valid_values(fieldname):
+            old = getattr(self.context, fieldname)
+            if old != new:
+                setattr(self.context, fieldname, new)
+                updated = (old, new)
+        return updated
+
+    def _update_workflow(self):
+        """Make the workflow transition defined on the request, if available.
+
+        :returns: a tuple containing the values (old, new) or False is no
+                  update was made
+        :rtype: tuple of boolean
+        """
+        updated = False
+        transition = self.request.form.get('transition', None)
+        if transition in self.available_transitions:
+            wftool = api.portal.get_tool('portal_workflow')
+            old = wftool.getInfoFor(self.context, 'review_state')
+            old = wftool.getTitleForStateOnType(old, 'Task')
+            wftool.doActionFor(self.context, transition)
+            new = wftool.getInfoFor(self.context, 'review_state')
+            new = wftool.getTitleForStateOnType(new, 'Task')
+            return (old, new)
+        return updated
+
+    def _update_date(self):
+        """Compare the value of the provided_date field with the one on the
+        request and change it if different.
+
+        :returns: a tuple containing the values (old, new) or False is no
+                  update was made
+        :rtype: tuple of boolean
+        """
+        updated = False
+        form = self.request.form
+        # the date came split in 3 different fields
+        day = form.get('date-day', None)
+        month = form.get('date-month', None)
+        year = form.get('date-year', None)
+
+        if day == '' or year == '':
+            # either there were no changes or we want to clear current value
+            new = None
+        else:
+            try:
+                year, month, day = map(int, (year, month, day))
+                new = date(year, month, day)
+            except TypeError, ValueError:
+                raise ValueError(_(u'Invalid date specified'))
+
+        old = self.context.provided_date
+        if old != new:
+            self.context.provided_date = new
+            return (old, new)
+
+        return updated
+
+    def render(self):
+        form = self.request.form
         task_has_changed = False
 
-        try:
-            current_responsible = context.__getattribute__('responsible')
-        except AttributeError:
-            current_responsible = None
+        # XXX: I do not get the point on storing the responsible on the
+        #      response annotation; that information is not being used
+        #      anywhere so this could be way simpler
+        current_responsible = self.context.responsible
         response_text = form.get('response', u'')
         responsible = form.get('responsible', u'')
-        if responsible and responsible != current_responsible:
-            if responsible == 'nobody':
-                responsible = ''
-            else:
-                responsible = responsible
+        if responsible != current_responsible:
             self.context.responsible = responsible
             task_has_changed = True
             new_response = Response(response_text, responsible)
         else:
             new_response = Response(response_text)
 
-        options = [
-            ('responsible', _(u'Responsible'), 'available_responsibles'),
-        ]
-
-        # Changes that need to be applied to the issue (apart from
-        # workflow changes that need to be handled separately).
-
-        changes = {}
-        for option, title, vocab in options:
-            new = form.get(option, u'')
-            if new and new in self.__getattribute__(vocab):
-                try:
-                    current = context.__getattribute__(option)
-                except AttributeError:
-                    current = None
-                if option == 'responsible':
-                    current = current_responsible
-                if current != new:
-                    changes[option] = new
-                    new_response.add_change(option, title, current, new)
-                    task_has_changed = True
-
-        transition = form.get('transition', u'')
-        if transition and transition in self.available_transitions:
-            wftool = api.portal.get_tool('portal_workflow')
-            before = wftool.getInfoFor(context, 'review_state')
-            before = wftool.getTitleForStateOnType(before, 'Task')
-            wftool.doActionFor(context, transition)
-            after = wftool.getInfoFor(context, 'review_state')
-            after = wftool.getTitleForStateOnType(after, 'Task')
-            new_response.add_change('review_state', _(u'Task state'), before, after)
+        result = self._update_workflow()
+        if result:
+            old, new = result
+            new_response.add_change('review_state', _(u'State'), old, new)
             task_has_changed = True
 
-        new_priority = form.get('priority', None)
-        if new_priority in self.available_priorities:
-            old_priority = context.priority
-            if old_priority != new_priority:
-                context.priority = new_priority
-                new_response.add_change(
-                    'priority', _(u'Priority'), old_priority, new_priority)
-                task_has_changed = True
+        result = self._update_text_field('priority')
+        if result:
+            old, new = result
+            new_response.add_change('priority', _(u'Priority'), old, new)
+            task_has_changed = True
 
-        try:
-            day = form.get('date-day', None)
-            month = form.get('date-month', None)
-            year = form.get('date-year', None)
-            new_provided_date = date(year, month, day)
-        except TypeError:
-            if day == '' or year == '':
-                # either there were no changes or
-                # the user wants to clear the field's value
-                new_provided_date = None
-            else:
-                # in any other case we just raise an error
-                raise ValueError(_(u'Invalid date specified'))
-        except ValueError:
-            raise ValueError(_(u'Invalid date specified'))
+        result = self._update_text_field('responsible')
+        if result:
+            old, new = result
+            new_response.add_change('responsible', _(u'Responsible'), old, new)
+            task_has_changed = True
 
-        old_provided_date = context.provided_date
-        if old_provided_date != new_provided_date:
-            context.provided_date = new_provided_date
-            new_response.add_change(
-                'provided_date',
-                _(u'Expected date'),
-                old_provided_date,
-                new_provided_date,
-            )
+        result = self._update_date()
+        if result:
+            old, new = result
+            new_response.add_change('provided_date', _(u'Expected date'), old, new)
             task_has_changed = True
 
         if len(response_text) == 0 and not task_has_changed:
@@ -432,7 +460,7 @@ class CreateResponse(grok.View, BaseView):
         else:
             folder = IResponseContainer(self.context)
             folder.add(new_response)
-        self.request.response.redirect(context.absolute_url())
+        self.request.response.redirect(self.context.absolute_url())
 
 
 class EditResponse(grok.View, BaseView):
