@@ -120,16 +120,6 @@ class BaseView:
         vocab = {1: _(u'High'), 2: _(u'Normal'), 3: _(u'Low')}
         return vocab
 
-    @property
-    def available_responsibles(self):
-        context = aq_inner(self.context)
-        users_factory = getUtility(IVocabularyFactory, name=u'plone.app.vocabularies.Users')
-        users = users_factory(context)
-        if users:
-            return [value.token for value in users]
-        else:
-            return []
-
 
 class TaskPanelView(grok.View):
     grok.context(ITaskPanel)
@@ -339,7 +329,10 @@ class CreateResponse(grok.View, BaseView):
         if fieldname == 'priority':
             return self.available_priorities
         elif fieldname == 'responsible':
-            return self.available_responsibles
+            users = getUtility(
+                IVocabularyFactory, name=u'plone.app.vocabularies.Users')
+            users = users(self.context)
+            return [v.token for v in users]
         else:
             raise AttributeError(_(u'Invalid fieldname specified'))
 
