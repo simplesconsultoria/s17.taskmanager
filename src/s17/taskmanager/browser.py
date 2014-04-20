@@ -364,7 +364,7 @@ class CreateResponse(grok.View, BaseView):
         """
         updated = False
         transition = self.request.form.get('transition', None)
-        if transition in self.available_transitions:
+        if transition and (transition in self.available_transitions):
             wftool = api.portal.get_tool('portal_workflow')
             old = wftool.getInfoFor(self.context, 'review_state')
             old = wftool.getTitleForStateOnType(old, 'Task')
