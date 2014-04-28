@@ -29,7 +29,13 @@ Mostly Harmless
     :alt: coveralls badge
     :target: https://coveralls.io/r/simplesconsultoria/s17.taskmanager
 
+.. image:: https://pypip.in/d/s17.taskmanager/badge.png
+    :target: https://pypi.python.org/pypi/s17.taskmanager/
+    :alt: Downloads
+
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
+
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.taskmanager/issues
 
 Don't Panic
 ===========
@@ -68,5 +74,3 @@ Not entirely unlike
     Poi is an issue tracker product for Plone.
 
 .. _`Poi`: https://pypi.python.org/pypi/Products.Poi
-.. _`Redmine`: http://www.redmine.org/
-.. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.taskmanager/issues
