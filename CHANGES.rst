@@ -6,8 +6,30 @@ There's a frood who really knows where his towel is.
 1.0b2 (unreleased)
 ------------------
 
+- A bug that prevented edition of responses because of missing property
+  ``wysiwyg_editor`` was fixed.
+  [ericof]
+
+- Brazilian Portuguese translations were updated.
+  [hvelarde]
+
+- Notification views were renamed to ``create-response``, ``delete-response``,
+  ``edit-response`` and ``save-response``.
+  [hvelarde]
+
+- Task panel and task views were refactored; some bugs were fixed: information
+  displayed was reordered and markup was simplified.
+  [hvelarde]
+
 - Fix content type information as previous rename was incomplete (an upgrade
   step is available).
+  [hvelarde]
+
+- Support for z3c.autoinclude plugin was removed.
+  [hvelarde]
+
+- Package dependencies were updated; dependencies on plone.principalsource,
+  unittest2 and zope.app.container were removed. We now depend on plone.api.
   [hvelarde]
 
 
