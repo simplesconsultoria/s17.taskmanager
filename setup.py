@@ -12,7 +12,7 @@ long_description = (
 
 setup(name='s17.taskmanager',
       version=version,
-      description="",
+      description="A package containing a Dexterity-based content type and behaviors to provide a simple structure for managing tasks.",
       long_description=long_description,
       classifiers=[
           "Development Status :: 4 - Beta",
